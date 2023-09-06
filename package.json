@@ -1,0 +1,37 @@
+{
+  "name": "blog-madin",
+  "private": true,
+  "author": {
+    "name": "Ibrahim Najjar",
+    "url": "https://madin.dev"
+  },
+  "description": "Madin blog",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:abjrcode/blog-madin.git"
+  },
+  "keywords": [],
+  "categories": [],
+  "scripts": {
+    "start": "cross-env NODE_ENV=development concurrently --kill-others -c blue,magenta,yellow -n ZOLA,TAILWIND npm:dev:zola npm:dev:css npm:dev:js",
+    "dev:zola": "zola --root ./blog serve",
+    "dev:css": "npm run css -- --watch",
+    "dev:js": "npm run js -- --watch",
+    "build": "cross-env NODE_ENV=production npm run build:css && npm run build:js && npm run build:zola",
+    "build:zola": "zola --root ./blog build",
+    "build:css": "npm run css -- --minify",
+    "build:js": "npm run js",
+    "css": "tailwindcss -i bundles/main.css -o blog/static/main.generated.css --postcss",
+    "js": "esbuild bundles/main.js --outfile=blog/static//main.generated.js --bundle"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.19.2",
+    "postcss": "^8.4.29",
+    "shx": "^0.3.4",
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-debug-screens": "^2.2.1"
+  }
+}
