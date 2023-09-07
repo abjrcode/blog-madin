@@ -22,12 +22,13 @@
     "build:css": "npm run css -- --minify",
     "build:js": "npm run js",
     "css": "tailwindcss -i bundles/main.css -o blog/static/main.generated.css --postcss",
-    "js": "esbuild bundles/main.js --outfile=blog/static//main.generated.js --bundle"
+    "js": "esbuild bundles/main.js --outfile=blog/static/main.generated.js --bundle"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
+    "cssnano": "^6.0.1",
     "esbuild": "^0.19.2",
     "postcss": "^8.4.29",
     "shx": "^0.3.4",
