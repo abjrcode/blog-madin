@@ -4,7 +4,7 @@ This repository contains the source code for the _Madin_ blog hosted at [madin.d
 
 If you have questions or want to suggest a correction, please open an issue.
 
-The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust series](https://github.com/phil-opp/blog_os), highly recommended.
+The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust series](https://os.phil-opp.com/), highly recommended.
 
 # Local Development
 
