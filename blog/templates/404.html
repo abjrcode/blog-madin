@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Page not found | {{ config.title }}{%
+endblock title %} {% block main %}
+<h1 class="text-7xl dark:text-gray-200">Page not found :(</h1>
+<p class="dark:text-gray-300">Sorry, this address is not valid.</p>
+
+<br />
+<br />
+
+<p class="dark:text-gray-300">
+  <a class="underline" href="{{ config.base_url | safe }}"
+    >Go to the index page</a
+  >.
+</p>
+<p class="dark:text-gray-300">
+  If you followed a link on this site, please
+  <a
+    class="underline"
+    href="https://github.com/abjrcode/blog-madin/issues"
+    target="_blank"
+    >report it</a
+  >!
+</p>
+{% endblock main %}
