@@ -1,6 +1,9 @@
 # The URL the site will be built for
 base_url = "https://madin.dev"
 
+title = "Madin"
+description = "Madin blog: Software, mathematics and everything else I don't understand"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
@@ -16,4 +19,6 @@ ignored_content = ["*/README.md", "*/LICENSE-CC-BY-NC"]
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
+subtitle = "Ibrahim Najjar's blog"
+author = { name = "Ibrahim Najjar" }
+default_language = "en"
