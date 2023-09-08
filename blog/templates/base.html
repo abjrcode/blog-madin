@@ -14,7 +14,10 @@
     />
     <meta name="author" content="{{ config.extra.author.name }}" />
 
-    <link rel="stylesheet" href="main.generated.css" />
+    <link
+      rel="stylesheet"
+      href="main.g.css?v={{ get_hash(path='static/main.g.css', base64=true) | safe }}"
+    />
     <script>
       if (
         localStorage.getItem("color-theme") === "dark" ||
@@ -26,7 +29,10 @@
         document.documentElement.classList.remove("dark");
       }
     </script>
-    <script defer src="main.generated.js"></script>
+    <script
+      defer
+      src="main.g.js?v={{ get_hash(path='static/main.g.js', base64=true) | safe }}"
+    ></script>
 
     <title>{% block title %}{% endblock title %}</title>
   </head>

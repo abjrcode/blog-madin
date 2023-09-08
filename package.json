@@ -13,7 +13,7 @@
   "keywords": [],
   "categories": [],
   "scripts": {
-    "start": "cross-env NODE_ENV=development concurrently --kill-others -c blue,magenta,yellow -n ZOLA,TAILWIND npm:dev:zola npm:dev:css npm:dev:js",
+    "start": "cross-env NODE_ENV=development concurrently --restart-tries 3 --restart-after 500 -c blue,magenta,yellow -n TAILWIND,ESBUILD,ZOLA npm:dev:css npm:dev:js npm:dev:zola",
     "dev:zola": "zola --root ./blog serve",
     "dev:css": "npm run css -- --watch",
     "dev:js": "npm run js -- --watch",
@@ -21,8 +21,8 @@
     "build:zola": "zola --root ./blog build",
     "build:css": "npm run css -- --minify",
     "build:js": "npm run js",
-    "css": "tailwindcss -i bundles/main.css -o blog/static/main.generated.css --postcss",
-    "js": "esbuild bundles/main.js --outfile=blog/static/main.generated.js --bundle"
+    "css": "tailwindcss -i bundles/main.css -o blog/static/main.g.css --postcss",
+    "js": "esbuild bundles/main.js --outfile=blog/static/main.g.js --bundle"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
