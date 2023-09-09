@@ -2,7 +2,7 @@
 base_url = "https://madin.dev"
 
 title = "Madin"
-description = "Madin blog: Software, mathematics and everything else I don't understand"
+description = "Madin blog: Software and other things I don't understand"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
