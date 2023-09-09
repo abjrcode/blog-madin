@@ -60,13 +60,13 @@
     <title>{% block title %}{% endblock title %}</title>
   </head>
 
-  <body class="flex flex-col min-h-screen bg-purple-200 dark:bg-purple-800">
+  <body class="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-800">
     <header
-      class="flex flex-row bg-purple-300 dark:bg-purple-700 border-b-2 border-b-purple-400 dark:border-b-purple-300"
+      class="flex flex-row bg-slate-50 dark:bg-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-300 shadow-sm dark:shadow-slate-600"
     >
       <a
         href="{{ config.base_url | safe }}"
-        class="font-['Black_Ops_One'] text-5xl sm:text-7xl mx-4 sm:mx-6 md:mx-8 lg:mx-10 text-purple-800 dark:text-purple-100 drop-shadow-lg dark:drop-shadow-xl"
+        class="font-['Black_Ops_One'] text-4xl sm:text-5xl lg:text-6xl mx-4 sm:mx-6 md:mx-8 lg:mx-10 text-slate-800 dark:text-slate-100 drop-shadow-md"
       >
         M
       </a>
@@ -74,11 +74,11 @@
       <button
         id="theme-toggle"
         type="button"
-        class="ml-auto mr-4 self-center text-purple-700 bg-purple-300 dark:text-purple-100 dark:bg-purple-600 border-[1px] dark:border-purple-100 border-purple-700 rounded-lg p-1"
+        class="ml-auto mr-4 self-center text-slate-700 bg-slate-300 dark:text-slate-100 dark:bg-slate-600 border-[1px] dark:border-slate-100 border-slate-700 rounded-lg p-1"
       >
         <svg
           id="theme-toggle-dark-icon"
-          class="w-6 h-6 hidden"
+          class="w-5 h-5 hidden"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@
         </svg>
         <svg
           id="theme-toggle-light-icon"
-          class="w-6 h-6 hidden"
+          class="w-5 h-5 hidden"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -108,10 +108,10 @@
     </main>
 
     <footer
-      class="flex flex-row max-h-24 items-center justify-center border-t-[1px] border-purple-300 dark:border-purple-600 py-2 lg:py-4"
+      class="flex flex-row max-h-24 items-center justify-center border-t-[1px] border-slate-300 dark:border-slate-600 py-1 lg:py-2"
     >
       <small
-        class="flex flex-col items-center justify-center text-xs font-light dark:text-purple-300"
+        class="flex flex-col items-center justify-center text-xs font-light dark:text-slate-300"
       >
         <p class="flex items-center justify-center gap-2">
           <span>Contact &rightarrow;</span>
