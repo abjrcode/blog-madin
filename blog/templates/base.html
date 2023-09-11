@@ -79,13 +79,15 @@
     <title>{% block title %}{% endblock title %}</title>
   </head>
 
-  <body class="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-800">
+  <body
+    class="flex flex-col min-h-screen bg-gradient-to-b from-purple-50 to-gray-50 dark:from-slate-900 dark:to-indigo-950"
+  >
     <header
-      class="flex flex-row bg-slate-50 dark:bg-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-300 shadow-sm dark:shadow-slate-600"
+      class="flex flex-row bg-slate-50 dark:bg-slate-800 border-t-4 border-t-purple-600 dark:border-t-fuchsia-600 shadow dark:shadow-slate-700"
     >
       <a
         href="{{ config.base_url | safe }}"
-        class="font-['Black_Ops_One'] text-4xl sm:text-5xl lg:text-6xl mx-4 sm:mx-6 md:mx-8 lg:mx-10 text-slate-800 dark:text-slate-100 drop-shadow-md"
+        class="font-['Black_Ops_One'] text-4xl sm:text-5xl lg:text-6xl text-purple-700 dark:text-fuchsia-600 mx-4 sm:mx-6 md:mx-8 lg:mx-10 drop-shadow-lg dark:shadow-gray-400"
       >
         M
       </a>
@@ -128,7 +130,7 @@
     </main>
 
     <footer
-      class="flex flex-row max-h-24 items-center justify-center border-t-[1px] border-slate-300 dark:border-slate-600 py-1 lg:py-2"
+      class="flex flex-row max-h-24 items-center justify-center border-t-[0.5px] border-slate-300 dark:border-slate-600 py-1 lg:py-2"
     >
       <small
         class="flex flex-col items-center justify-center text-xs font-light dark:text-slate-300"
