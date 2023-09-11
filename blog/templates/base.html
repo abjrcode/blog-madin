@@ -37,14 +37,33 @@
       href="main.g.css?v={{ get_hash(path='static/main.g.css', base64=true) | safe }}"
     />
     <script>
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
+      if ("color-theme" in localStorage) {
+        var theme = localStorage.getItem("color-theme");
+
+        switch (theme) {
+          case "dark":
+            document.documentElement.classList.add("dark");
+            break;
+          case "light":
+            document.documentElement.classList.remove("dark");
+          default: {
+            var isDarkModePreferred = window.matchMedia(
+              "(prefers-color-scheme: dark)"
+            ).matches;
+
+            if (isDarkModePreferred) {
+              document.documentElement.classList.add("dark");
+            }
+          }
+        }
       } else {
-        document.documentElement.classList.remove("dark");
+        var isDarkModePreferred = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        if (isDarkModePreferred) {
+          document.documentElement.classList.add("dark");
+        }
       }
     </script>
     <script
@@ -74,6 +93,7 @@
       <button
         id="theme-toggle"
         type="button"
+        aria-label="Toggle dark mode"
         class="ml-auto mr-4 self-center text-slate-700 bg-slate-300 dark:text-slate-100 dark:bg-slate-600 border-[1px] dark:border-slate-100 border-slate-700 rounded-lg p-1"
       >
         <svg
@@ -115,7 +135,11 @@
       >
         <p class="flex items-center justify-center gap-2">
           <span>Contact &rightarrow;</span>
-          <a href="https://github.com/abjrcode" target="_blank">
+          <a
+            href="https://github.com/abjrcode"
+            target="_blank"
+            aria-label="Blog's GitHub Repository"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-3.5 h-3.5"
@@ -130,7 +154,11 @@
               />
             </svg>
           </a>
-          <a href="https://twitter.com/abjrcode" target="_blank">
+          <a
+            href="https://twitter.com/abjrcode"
+            target="_blank"
+            aria-label="Blog Author Twitter Account"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-3.5 h-3.5"

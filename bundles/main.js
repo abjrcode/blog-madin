@@ -4,16 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "theme-toggle-light-icon"
   );
 
-  if (
-    localStorage.getItem("color-theme") === "dark" ||
-    (!("color-theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    themeToggleLightIcon.classList.remove("hidden");
-  } else {
-    themeToggleDarkIcon.classList.remove("hidden");
-  }
-
   const themeToggleBtn = document.getElementById("theme-toggle");
 
   themeToggleBtn.addEventListener("click", function () {
@@ -38,4 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    themeToggleLightIcon.classList.remove("hidden");
+  } else {
+    themeToggleDarkIcon.classList.remove("hidden");
+  }
 });
