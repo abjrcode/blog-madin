@@ -1,25 +1,28 @@
 {% extends "base.html" %} {% block title %}Page not found | {{ config.title }}{%
-endblock title %} {% block main %}
-<h1 class="text-7xl text-slate-900 dark:text-slate-200">Page not found :(</h1>
-<p class="text-slate-700 dark:text-slate-300">
-  Sorry, this address is not valid.
-</p>
+endblock title %} {% block main_extra_classes %} flex flex-col justify-center {%
+endblock main_extra_classes %} {% block main %}
+<div
+  class="flex flex-col items-center min-h-full mx-auto max-w-2xl md:max-w-5xl"
+>
+  <h1 class="text-4xl md:text-5xl lg:text-7xl">Page not found :(</h1>
+  <p>Sorry, this address is not valid.</p>
 
-<br />
-<br />
+  <br />
+  <br />
 
-<p class="text-slate-700 dark:text-slate-300">
-  <a class="underline" href="{{ config.base_url | safe }}"
-    >Go to the index page</a
-  >.
-</p>
-<p class="text-slate-700 dark:text-slate-300">
-  If you followed a link on this site, please
-  <a
-    class="underline"
-    href="https://github.com/abjrcode/blog-madin/issues"
-    target="_blank"
-    >report it</a
-  >!
-</p>
+  <p>
+    <a class="underline" href="{{ config.base_url | safe }}"
+      >Go to the index page</a
+    >.
+  </p>
+  <p class="text-sm md:text-base">
+    If you followed a link on this site, please
+    <a
+      class="underline"
+      href="https://github.com/abjrcode/blog-madin/issues"
+      target="_blank"
+      >report it</a
+    >!
+  </p>
+</div>
 {% endblock main %}

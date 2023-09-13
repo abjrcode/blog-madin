@@ -12,29 +12,11 @@
       name="description"
       content="{% block description %}{{ config.description }}{% endblock description %}"
     />
-    <meta name="author" content="{{ config.extra.author.name }}" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="author" content="{{ config.author }}" />
 
     <link
       rel="stylesheet"
-      href="main.g.css?v={{ get_hash(path='static/main.g.css', base64=true) | safe }}"
+      href="/main.g.css?v={{ get_hash(path='/static/main.g.css', base64=true) | safe }}"
     />
     <script>
       if ("color-theme" in localStorage) {
@@ -46,6 +28,7 @@
             break;
           case "light":
             document.documentElement.classList.remove("dark");
+            break;
           default: {
             var isDarkModePreferred = window.matchMedia(
               "(prefers-color-scheme: dark)"
@@ -68,39 +51,78 @@
     </script>
     <script
       defer
-      src="main.g.js?v={{ get_hash(path='static/main.g.js', base64=true) | safe }}"
+      src="/main.g.js?v={{ get_hash(path='/static/main.g.js', base64=true) | safe }}"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"
     ></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <title>{% block title %}{% endblock title %}</title>
   </head>
 
   <body
-    class="flex flex-col min-h-screen bg-gradient-to-b from-purple-50 to-gray-50 dark:from-slate-900 dark:to-indigo-950"
+    class="flex flex-col min-h-screen text-purple-800 dark:text-purple-200 bg-gradient-to-b from-purple-50 to-gray-50 dark:from-gray-950 dark:to-gray-900"
   >
     <header
-      class="flex flex-row bg-slate-50 dark:bg-slate-800 border-t-4 border-t-purple-600 dark:border-t-fuchsia-600 shadow dark:shadow-slate-700"
+      class="flex flex-row items-center bg-gray-50 dark:bg-black border-t-4 border-t-purple-600 dark:border-t-purple-600 shadow dark:shadow-purple-800 dark:shadow-2xl px-1 md:px-4 py-1"
     >
       <a
         href="{{ config.base_url | safe }}"
-        class="font-['Black_Ops_One'] text-4xl sm:text-5xl lg:text-6xl text-purple-700 dark:text-fuchsia-600 mx-4 sm:mx-6 md:mx-8 lg:mx-10 drop-shadow-lg dark:shadow-gray-400"
+        class="text-4xl sm:text-5xl lg:text-6xl dark:text-purple-200 mx-4 sm:mx-6 md:mx-8 lg:mx-10 drop-shadow-lg dark:shadow-gray-200"
       >
-        M
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8 md:w-12 md:h-12"
+          fill="currentColor"
+          viewBox="0 0 58.318 47.948"
+        >
+          <g
+            id="svgGroup"
+            stroke-linecap="round"
+            fill-rule="evenodd"
+            font-size="9pt"
+            stroke-width="0.25mm"
+          >
+            <path
+              d="M 39.999 28.111 L 28.473 47.948 L 0.036 0 L 17.019 0 L 29.882 21.318 L 39.999 3.975 L 39.999 28.111 Z M 58.318 47.948 L 42.348 47.948 L 42.348 0 L 58.318 0 L 58.318 47.948 Z M 14.923 47.948 L 0 47.948 L 0 4.444 L 14.923 29.484 L 14.923 47.948 Z"
+              vector-effect="non-scaling-stroke"
+            />
+          </g>
+        </svg>
       </a>
-
+      <nav>
+        <ul class="flex flex-row gap-2 md:gap-6 text-sm sm:text-base">
+          <li>
+            <a
+              class="uppercase hover:underline"
+              href="{{ config.base_url | safe }}"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="uppercase hover:underline"
+              href="{{ get_url(path='@/about_me.md') | safe }}"
+              >about</a
+            >
+          </li>
+        </ul>
+      </nav>
       <button
         id="theme-toggle"
         type="button"
         aria-label="Toggle dark mode"
-        class="ml-auto mr-4 self-center text-purple-700 bg-purple-200 dark:text-fuchsia-100 dark:bg-fuchsia-700 border-[1px] dark:border-fuchsia-100 border-purple-700 rounded-lg p-1"
+        class="ml-auto mr-4 self-center bg-purple-200 dark:text-purple-700 dark:bg-purple-200 border-[1px] dark:border-purple-700 border-purple-700 rounded-lg p-1"
       >
         <svg
           id="theme-toggle-dark-icon"
-          class="w-5 h-5 hidden"
+          class="w-4 h-4 md:w-5 md:h-5 hidden"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -125,15 +147,17 @@
       </button>
     </header>
 
-    <main class="flex-1 flex flex-col items-center justify-center">
+    <main
+      class="flex-1 py-6 px-8 {% block main_extra_classes %}{% endblock main_extra_classes %}"
+    >
       {% block main %}{% endblock main %}
     </main>
 
     <footer
-      class="flex flex-row max-h-24 items-center justify-center border-t-[0.5px] border-slate-300 dark:border-slate-600 py-1 lg:py-2"
+      class="flex flex-row max-h-24 items-center justify-center border-t-[0.5px] border-gray-200 dark:border-gray-600 py-1 lg:py-2"
     >
       <small
-        class="flex flex-col items-center justify-center text-xs font-light dark:text-slate-300"
+        class="flex flex-col items-center justify-center text-xs font-light dark:text-purple-300"
       >
         <p class="flex items-center justify-center gap-2">
           <span>Contact &rightarrow;</span>
@@ -181,7 +205,7 @@
           <time datetime="{{ now() | date(format='%Y') }}"
             >{{ now() | date(format="%Y") }}</time
           >
-          — {{ config.extra.author.name }}
+          — {{ config.author }}
         </p>
 
         <p>

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  #md-content h1 {
+    @apply font-bold text-2xl mt-8 border-b-[1px] border-dotted border-purple-300;
+  }
+  #md-content h2 {
+    @apply font-semibold text-lg mt-8 border-b-[1px] border-dotted border-purple-300;
+  }
+  #md-content h3 {
+    @apply font-semibold text-base mt-8 border-b-[1px] border-dotted border-purple-300;
+  }
+  #md-content a {
+    @apply underline;
+  }
+  #md-content a[x-heading-anchor] {
+    @apply no-underline;
+  }
+  #md-content pre {
+    @apply border-dotted border-2 p-1 my-2;
+  }
+}

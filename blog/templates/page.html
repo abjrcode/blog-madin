@@ -1,0 +1,59 @@
+{% import "macros/post_toc.html" as post_toc %} {% extends "index.html" %} {%
+block title %}{{ page.title }}{% endblock title %} {% block main %}
+
+<div class="mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl">
+  <div id="post-header">
+    <h1 class="text-4xl mb-2">{{ page.title }}</h1>
+    <div class="flex justify-between">
+      {% if page.updated %}
+      <time
+        class="uppercase font-light text-xs self-end dark:"
+        aria-label="Last updated on"
+        datetime="{{ page.date }}"
+        >updated
+        <strong>{{ page.updated | date(format='%d-%b-%Y') }}</strong></time
+      >
+      {% endif %}
+      <time
+        class="uppercase font-light text-xs self-end dark:"
+        aria-label="Published on"
+        datetime="{{ page.date }}"
+        >published
+        <strong>{{ page.date | date(format='%d-%b-%Y') }}</strong></time
+      >
+    </div>
+    <hr class="border-purple-400 dark:border-purple-200 mb-4" />
+  </div>
+
+  <aside id="toc-panel">
+    <button
+      id="toc-toggle"
+      type="button"
+      aria-label="Toggle TOC"
+      class="py-1 mb-2 visited:outline-none active:outline-none"
+      x-data="{ open: false }"
+      @click="open = !open; document.getElementById('toc').classList.toggle('hidden')"
+    >
+      <span :class="!open ? 'visible' : 'hidden'">&#x25B7;&nbsp;</span
+      ><span :class="open ? 'visible' : 'hidden'">&#x25BD;&nbsp;</span
+      ><span class="uppercase">table of contents</span>
+    </button>
+    <div id="toc" class="hidden">{{ post_toc::render(toc=page.toc) }}</div>
+  </aside>
+
+  <br />
+
+  <div id="md-content">{{ page.content | safe }}</div>
+</div>
+{#
+<button
+  id="scroll-to-top"
+  type="button"
+  aria-label="Scroll to top"
+  class="fixed bottom-8 right-2 sm:bottom-10 sm:right-10 z-50 dark:bg-purple-700 border-[1px] border-purple-700 dark:border-purple-100 rounded-md leading-tight px-[4px] active:outline-none"
+  x-data
+  @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+>
+  &#x23CF;
+</button>
+#} {% endblock main %}

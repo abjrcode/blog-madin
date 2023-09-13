@@ -1,0 +1,33 @@
+{% macro render(toc) %}
+
+<ul
+  class="list-square list-inside border-2 rounded-md border-dashed border-purple-300 p-4"
+>
+  {% for h1 in toc %}
+  <li>
+    <a class="underline" href="#{{h1.id | safe}}">{{ h1.title | safe }}</a>
+    {% if h1.children %}
+    <ul class="list-square list-inside pl-4">
+      {% for h2 in h1.children %}
+      <li>
+        <a class="underline" href="#{{h2.id | safe}}">{{ h2.title | safe }}</a>
+        {% if h2.children %}
+        <ul class="list-square list-inside pl-4">
+          {% for h3 in h2.children %}
+          <li>
+            <a class="underline" href="#{{h3.id | safe}}"
+              >{{ h3.title | safe }}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endmacro render %}

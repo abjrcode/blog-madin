@@ -1,0 +1,15 @@
+{% import "macros/post_toc.html" as post_toc %} {% extends "index.html" %} {%
+block title %}{{ page.title }}{% endblock title %} {% block main_extra_classes
+%} flex flex-col justify-center {% endblock main_extra_classes %} {% block main
+%}
+
+<div class="flex flex-col items-center gap-4 mx-auto">
+  <img
+    src="/ibrahim_najjar.jpg"
+    alt="Ibrahim Najjar's profile picture"
+    class="saturate-150 dark:grayscale w-40 h-40 md:w-60 md:h-60 rounded-full border-2 border-purple-400"
+  />
+  <div id="md-content" class="text-center">{{ page.content | safe }}</div>
+</div>
+
+{% endblock main %}
