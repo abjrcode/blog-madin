@@ -1,12 +1,12 @@
 +++
 title = "About Me"
-description = "Madin blog authros biography"
+description = "Madin blog author's biography"
 date = "2023-09-17"
 template = "about_me.html"
 +++
 
 Hi,
 
-I enjoy learning things and building interesting stuff, so I decided to share along the way.
+I love learning new things and building interesting stuff
 
-If you are keen, [here is my Résumé](https://abjrcode.github.io/).
+If you are keen, [here is my Résumé](https://abjrcode.github.io/)

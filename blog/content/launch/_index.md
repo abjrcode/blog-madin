@@ -1,10 +1,10 @@
 +++
-title = "Welcome"
-description = "Welcome to my blog"
+title = "Welcome to Madin"
+description = "What is it about and what to expect next?"
 weight = 1
 insert_anchor_links = "left"
 
 [extra]
 type = "standalone"
-date = "2022-10-10"
+date = "2023-09-15"
 +++

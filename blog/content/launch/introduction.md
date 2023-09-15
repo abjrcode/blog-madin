@@ -1,29 +1,30 @@
 +++
-title = "Intro"
+title = "Madin 1.0"
 description = "Welcome to my blog"
-date = "2022-01-01"
-updated = "2023-01-01"
-weight = 1
+date = "2023-09-15"
 +++
 
-# I Love You
+# Welcome
 
-lorem ipsum
+This is _the_ first post on this blog and hopefully the beginning of many more to come.
 
-## What is love realy
+\
+**Madin** _(pronounced as one would say "Made In" but as a single word)_ is intended to be a place for me to share my thoughts and ideas, as well as a place to learn from others.
 
-_sdfdsaglsjfkdslj_ ksd jsk jflaksjfsk lj
+\
+I have been writing software for well over a decade now. Specifically, I have worked on what is known in the industry as [Line of Business (LOB)](https://www.irisclasson.com/2012/07/19/stupid-question-2-what-do-you-mean-by-lob-line-of-business-application/) applications, the boring kind you know: a database, some business rules, a user interface and reporting _(wait, that actually might be most of software)_
 
-### Is it something tangible
+\
+I have used many languages and frameworks over the years. Started with Pascal back during school days and then on to Java and Python, then C# with .NET and lately I have been doing quite some TypeScript. I've also experimented with Go and Rust. Hell, I even learned CSS and designed this very website with it.
 
-```rust
-fn main() {
-  println!("Hello, world!");
-}
-```
+\
+I've always been more focused on the "backend" _(database, business logic)_ side of things, and, have gained quite some experience along the way with things like [Domain Driven Design (DDD)](https://martinfowler.com/bliki/DomainDrivenDesign.html) and [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html).
 
-# What else is there to do?
+\
+But, guess what, this blog is not about any of those things -- at least not for now. It is more about exploring everything else outside those realms. Think compilers, games, algorithms, AI , and, perhaps even some Math and Physics.
 
-seriously this **world** is all [made of absolute shit](https://google.com)
+\
+Next up we will build a very small, actually super small, compiler for a super tiny language. But, we will do it end to end; We will have a type checker, basic integration with Visual Studio Code through a [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) and native code generation using [LLVM](https://llvm.org/).
 
-# Hallo from the under ground
+\
+So, stay tuned!
