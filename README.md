@@ -6,7 +6,12 @@ If you have questions or want to suggest a correction, please open an issue.
 
 The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust series](https://os.phil-opp.com/), highly recommended.
 
-# Local Development
+# Dependencies
+
+- [NodeJS 18.x.x](https://nodejs.org/en/download)
+- [Zola 0.17.2](https://www.getzola.org/documentation/getting-started/installation/)
+
+## Local Development
 
 ```
 npm install
