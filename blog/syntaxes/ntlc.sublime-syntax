@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+name: NTLC
+file_extensions:
+  - ntlc
+scope: source.ntlc
+
+contexts:
+  main:
+    - match: \b(if|else|then)\b
+      scope: keyword.control.ntlc
+
+    - match: \b(succ|iszero|pred)\b
+      scope: support.function.ntlc
+
+    - match: \b(0|true|false)\b
+      scope: constant.language.ntlc
+
+    - match: \(
+      push: brackets
+
+    - match: \)
+      scope: invalid.illegal.stray-bracket-end
+  brackets:
+    - match: \)
+      pop: true
+    - include: main

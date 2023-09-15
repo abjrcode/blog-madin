@@ -33,5 +33,7 @@ render_emoji = true
 
 smart_punctuation = true
 
+extra_syntaxes_and_themes = ["syntaxes"]
+
 [extra]
 subtitle = "Ibrahim Najjar's blog"

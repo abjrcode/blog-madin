@@ -1,5 +1,6 @@
-{% import "macros/post_toc.html" as post_toc %} {% extends "index.html" %} {%
-block title %}{{ page.title }}{% endblock title %} {% block main %}
+{% import "macros/post_toc.html" as post_toc %} {% import
+"macros/series_toc.html" as series_toc %} {% extends "index.html" %} {% block
+title %}{{ page.title }}{% endblock title %} {% block main %}
 
 <div class="mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl">
   <div id="post-header">
@@ -24,6 +25,15 @@ block title %}{{ page.title }}{% endblock title %} {% block main %}
     </div>
     <hr class="border-purple-400 dark:border-purple-200 mb-4" />
   </div>
+
+  {% if page.higher or page.lower %}
+  <aside class="mb-8" id="series-toc-panel">
+    <div id="series-toc">
+      {{ series_toc::render(parent_section=page.ancestors |
+      last,current_page=page) }}
+    </div>
+  </aside>
+  {% endif %}
 
   <aside id="toc-panel">
     <button

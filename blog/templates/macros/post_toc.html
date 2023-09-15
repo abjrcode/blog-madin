@@ -7,12 +7,12 @@
   <li>
     <a class="underline" href="#{{h1.id | safe}}">{{ h1.title | safe }}</a>
     {% if h1.children %}
-    <ul class="list-square list-inside pl-4">
+    <ul class="list-square list-inside text-sm md:text-base pl-4">
       {% for h2 in h1.children %}
       <li>
         <a class="underline" href="#{{h2.id | safe}}">{{ h2.title | safe }}</a>
         {% if h2.children %}
-        <ul class="list-square list-inside pl-4">
+        <ul class="list-square list-inside text-xs md:text-sm pl-8">
           {% for h3 in h2.children %}
           <li>
             <a class="underline" href="#{{h3.id | safe}}"
