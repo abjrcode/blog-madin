@@ -4,6 +4,10 @@ base_url = "https://madin.dev"
 title = "Madin"
 description = "Madin blog: Software and other things I don't understand"
 
+default_language = "en"
+
+author = "Ibrahim Najjar"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
@@ -13,12 +17,21 @@ build_search_index = true
 # Ignore blog license
 ignored_content = ["*/README.md", "*/LICENSE-CC-BY-NC"]
 
+# Generate RSS feed
+generate_feed = true
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
 
+highlight_theme = "monokai"
+
+external_links_target_blank = true
+
+render_emoji = true
+
+smart_punctuation = true
+
 [extra]
 subtitle = "Ibrahim Najjar's blog"
-author = { name = "Ibrahim Najjar" }
-default_language = "en"
