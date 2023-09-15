@@ -15,7 +15,7 @@ first_page = section.pages[0] %}
       class="font-light text-xs self-end dark:"
       aria-label="Published on"
       x-data="{relativeDate: window.madin.relativeDate('{{ sectionDate }}') }"
-      x-text="'{{ sectionDate | date(format='%d %B, %Y') }}' + '&nbsp; (' + relativeDate + ')'"
+      x-text="'{{ sectionDate | date(format='%d %B \u2014 %Y') }}' + '&nbsp; (' + relativeDate + ')'"
       x-datetime="{{ sectionDate }}"
     ></time>
   </div>

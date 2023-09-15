@@ -15,6 +15,9 @@
   #md-content a {
     @apply underline;
   }
+  #md-content a[target="_blank"] {
+    @apply hover:after:content-['\2197'];
+  }
   #md-content a[x-heading-anchor] {
     @apply no-underline;
   }
