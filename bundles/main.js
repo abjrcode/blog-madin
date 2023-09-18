@@ -81,7 +81,7 @@ window.madin.relativeDate = function (date) {
   } else if (diff < day * 2) {
     return "yesterday";
   } else if (diff < week) {
-    return week + " days ago";
+    return Math.floor(diff / day) + " days ago";
   } else if (diff < month) {
     return Math.floor(diff / week) + " weeks ago";
   } else if (diff < year) {
