@@ -2,7 +2,7 @@
 "macros/series_toc.html" as series_toc %} {% extends "index.html" %} {% block
 title %}{{ page.title }}{% endblock title %} {% block main %}
 
-<div class="mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl">
+<div>
   <div id="post-header">
     <h1 class="text-4xl md:text-6xl font-semibold mb-2">{{ page.title }}</h1>
     <div class="flex justify-between">
@@ -66,4 +66,49 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
 >
   &#x23CF;
 </button>
-#} {% endblock main %}
+#} {% endblock main %} {%block giscus_script %} {% if not
+page.extra.comments_disabled %}
+<script>
+  let giscusTheme = document.documentElement.classList.contains("dark")
+    ? "purple_dark"
+    : "light";
+
+  let giscusAttributes = {
+    src: "https://giscus.app/client.js",
+    "data-repo": "abjrcode/blog-madin",
+    "data-repo-id": "R_kgDOKP4BUQ",
+    "data-category": "General",
+    "data-category-id": "DIC_kwDOKP4BUc4CZItL",
+    "data-mapping": "title",
+    "data-strict": "1",
+    "data-reactions-enabled": "1",
+    "data-emit-metadata": "0",
+    "data-input-position": "bottom",
+    "data-theme": giscusTheme,
+    "data-lang": "en",
+    "data-loading": "lazy",
+    crossorigin: "anonymous",
+    async: "",
+  };
+
+  let giscusScript = document.createElement("script");
+
+  Object.entries(giscusAttributes).forEach(([key, value]) =>
+    giscusScript.setAttribute(key, value)
+  );
+
+  document.getElementById("rootContainer").appendChild(giscusScript);
+
+  function sendGiscusFrameMessage(message) {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+  }
+
+  window.addEventListener("theme-switch", (event) => {
+    const currentTheme = event.detail;
+    const giscusTheme = currentTheme === "dark" ? "purple_dark" : "light";
+    sendGiscusFrameMessage({ setConfig: { theme: giscusTheme } });
+  });
+</script>
+{% endif %} {% endblock giscus_script %}

@@ -2,6 +2,9 @@
 title = "Madin 1.0"
 description = "Welcome to my blog"
 date = "2023-09-15"
+
+[extra]
+comments_disabled = true
 +++
 
 # Welcome
