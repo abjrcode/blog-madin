@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       10
     );
 
-    let newFontSize = currentFontSize;
+    let newFontSize = currentFontSize || 16;
 
     switch (currentFontSize) {
       case 16:
@@ -79,6 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
         newFontSize = 16;
         break;
     }
+
+    localStorage.setItem("font-size", newFontSize);
 
     document.documentElement.style.fontSize = `${newFontSize}px`;
   });

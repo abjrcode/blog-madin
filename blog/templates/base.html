@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html
-  style="font-size: 16px"
   class="{% if config.mode == 'serve' %}debug-screens{% endif %}"
   lang="{% if lang %}{{ lang }}{% else %}{{ config.default_language }}{% endif %}"
 >
@@ -48,6 +47,13 @@
         if (isDarkModePreferred) {
           document.documentElement.classList.add("dark");
         }
+      }
+
+      if ("font-size" in localStorage) {
+        var fontSize = localStorage.getItem("font-size") ?? 16;
+        document.documentElement.style.fontSize = `${fontSize}px`;
+      } else {
+        document.documentElement.style.fontSize = "16px";
       }
     </script>
     <script
@@ -176,7 +182,7 @@
 
     <main
       id="rootContainer"
-      class="flex-1 py-6 px-8 sm:px-16 md:px-20 lg:px-24 xl:px-28 mx-auto max-w-full {% block main_extra_classes %}{% endblock main_extra_classes %}"
+      class="flex-1 mx-auto min-w-full max-w-full py-6 px-8 sm:px-16 md:px-20 lg:px-24 xl:px-28 {% block main_extra_classes %}{% endblock main_extra_classes %}"
     >
       {% block main %}{% endblock main %}
     </main>
