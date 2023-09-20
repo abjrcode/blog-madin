@@ -1,6 +1,7 @@
 {
   "origins": [
     "https://madin.dev",
+    "https://www.madin.dev",
     "https://blog-madin.pages.dev"
   ],
   "originsRegex": [
