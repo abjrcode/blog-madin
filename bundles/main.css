@@ -4,7 +4,7 @@
 
 @layer components {
   #md-content h1 {
-    @apply font-medium text-3xl md:text-5xl mt-8 mb-1 md:mb-2 border-b-[1px] border-dotted border-purple-300;
+    @apply font-medium text-2xl md:text-4xl mt-8 mb-1 md:mb-2 border-b-[1px] border-dotted border-purple-300;
   }
   #md-content h2 {
     @apply font-medium text-xl md:text-2xl mt-8 border-b-[1px] border-dotted border-purple-300;
@@ -22,6 +22,27 @@
     @apply no-underline;
   }
   #md-content pre {
-    @apply border-dotted border-2 p-1 my-2;
+    @apply resize-y border-dotted border-2 p-1 my-2 max-h-[54rem] overflow-auto;
+  }
+  #md-content pre[style*="height"] {
+    @apply max-h-none;
+  }
+  #md-content :not(pre) code {
+    @apply bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border-[1px] border-gray-400 dark:border-purple-300 px-1 shadow-inner;
+  }
+  #md-content blockquote {
+    @apply bg-purple-100 dark:bg-purple-900 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;
+  }
+  #md-content ul {
+    @apply pl-4 list-disc list-inside leading-6 my-2;
+  }
+  #md-content ol {
+    @apply pl-4 list-roman list-inside leading-6 my-2;
+  }
+  #md-content #footnotes li {
+    @apply text-sm italic;
+  }
+  #md-content img {
+    @apply mx-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-purple-700 dark:border-purple-200 border-dotted bg-purple-50;
   }
 }
