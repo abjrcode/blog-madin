@@ -89,7 +89,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
   &#x23CF;
 </button>
 #} {% endblock main %} {%block giscus_script %} {% if not
-page.extra.comments_disabled %}
+page.extra.comments_disabled and config.mode != "serve" %}
 <script>
   let giscusTheme = document.documentElement.classList.contains("dark")
     ? "purple_dark"
