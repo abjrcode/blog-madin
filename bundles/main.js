@@ -54,6 +54,34 @@ document.addEventListener("DOMContentLoaded", function () {
       themeToggleDarkIcon.classList.remove("hidden");
     }
   }
+
+  const changeFontSizeBtn = document.getElementById("font-size-switcher");
+
+  changeFontSizeBtn.addEventListener("click", function () {
+    const currentFontSize = parseInt(
+      document.documentElement.style.fontSize.substring(0, 2),
+      10
+    );
+
+    let newFontSize = currentFontSize;
+
+    switch (currentFontSize) {
+      case 16:
+        newFontSize = 18;
+        break;
+      case 18:
+        newFontSize = 20;
+        break;
+      case 20:
+        newFontSize = 16;
+        break;
+      default:
+        newFontSize = 16;
+        break;
+    }
+
+    document.documentElement.style.fontSize = `${newFontSize}px`;
+  });
 });
 
 window.madin = window.madin || {};
