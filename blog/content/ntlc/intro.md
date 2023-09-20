@@ -1,7 +1,7 @@
 +++
 title = "Introduction"
 description = "What is NTLC, and, what are we building exactly?"
-date = "2023-09-16"
+date = "2023-09-20"
 weight = 1
 +++
 
@@ -30,10 +30,10 @@ Well, that's how one really learns in my opinion -- by doing.
 As for Rust, it's a language that I have been wanting to explore for a while now -- _the hype you know_ -- and this seemed like a good opportunity to do so _(spoiler alert: it might not have been the wisest choice)_.
 
 \
-Having already planned to write about NTLC, I should have chosen a language that is more beginner friendly or one that I am really proficient with but that's no fun!
+In my opinion, Rust is not a beginner friendly language. It's a very powerful one, but, it's also a complex one, especially if you haven't done any C or C++ before. Nevertheless, I will do my best to explain things as we go.
 
 \
-In my opinion, Rust is not a beginner friendly language. It's a very powerful one, but, it's also a complex one, especially if you haven't done any C or C++ before. Nevertheless, I will do my best to explain things as we go.
+Having already planned to write about NTLC; I should've perhaps chosen a language that is more beginner friendly or one that I am really proficient with but where is the challenge in that!
 
 # The Language
 
@@ -68,7 +68,7 @@ if iszero(succ(0)) then true else false
 which evaluates, you guessed it, to `false`.
 
 \
-`iszero()` is a builtin function that checks if the given argument is zero, `succ()` _(successor)_ is a function that increments its argument by one, and, `true`, `false` and `0` are predefined constants.
+`iszero()` is a builtin function that checks if the given argument is zero. `succ()` _(successor)_ is a function that increments its argument by one. `true`, `false` and `0` are predefined constants.
 
 \
 There is one more builtin function called `pred()` _(predecessor)_ that decrements its argument by one.
@@ -80,13 +80,14 @@ You can also nest things, here is another contrived example:
 if iszero(succ(pred(0))) then if true then false else true else false
 ```
 
+\
 Yikes! And, that's it. That's the whole language.
 
 \
 There are no user defined types _(think classes, structs, or even variables)_ or functions. There are no loops. There are no strings. There aren't even any other numbers beside the predefined `0` constant. The language doesn't even allow empty lines. The whole program must be typed in one single line.
 
 \
-Again, this keeps things simple and allows us to build things end to end. Also, adding those -- albeit tricky for some and near impossible for others -- constructs can be done iteratively and incrementally.
+Again, this keeps things simple and allows us to build things end to end. Also, adding those -- _albeit tricky for some and near impossible for other_ -- constructs can be done iteratively and incrementally.
 
 # What's next?
 

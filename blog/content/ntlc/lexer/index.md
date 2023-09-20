@@ -1,7 +1,7 @@
 +++
 title = "Lexer"
 description = "The lexer is the first step in the compilation process. It takes the source code and converts it into a stream of tokens."
-date = "2023-09-17"
+date = "2023-09-20"
 weight = 2
 +++
 
@@ -25,26 +25,26 @@ Here is a very typical compiler pipeline<sup><a href="#compiler_pipeline">2</a><
 
 ## Why do we need a lexer?
 
-Strictly speaking, we don't. It just allows us to work with the source code on a higher conceptual level. Later stages, namely the parser, will have a way easier time reasoning about the structure of the source code if they does't have to worry about string indices and whitespace characters, or, the nuances of character sets and text encoding.
+Strictly speaking, we don't. It just allows us to work with the source code on a higher conceptual level. Later stages, namely the parser, will have way easier time reasoning about the structure of the source code if it doesn't have to worry about string indices, whitespace characters, and/or the nuances of character sets and text encoding.
 
 \
-Actually this is true of every stage in the pipeline. If the source language was so simple, you probably would not even need a compiler, you could get a way of a few regular expressions and a bunch of string manipulation functions.
+Actually this is true of every stage in the pipeline. If the source language was so simple, you probably would not even need a compiler. You could get away with a few regular expressions and a bunch of string manipulation functions.
 
 \
 The compiler is essentially a systematic and deterministic way to convert a program written in one language to another. Remember the good old divide and conquer technique: it advises you to break a big problem into smaller manageable ones! Well, that's what the compiler really does with all its stages.
 
 # Lexer output
 
-You remember when we said earlier that the lexer converts source code to tokens. It is time to talk about those tokens.
+Remember when we said earlier that the lexer converts source code to tokens. It is time we talk about those tokens.
 
-The lexer typically outputs an array/vector of tokens _(technically speaking, that's if it is not a streaming lexer but let's ignore that for simplicity's sake)_.
+The lexer typically outputs an array/vector/list of tokens _(technically speaking, that's if it is not a streaming lexer but let's ignore that for now)_.
 
 \
-Now, most of the time a token<sup><a href="#token">3</a></sup> is a structure that has a type and a value. Here is an example to illustrate how our NTLC snippet from the previous article would map to a list of tokens:
+Now, most of the time a token<sup><a href="#token">3</a></sup> is a structure that has a type and a value. Here is an example to illustrate how our NTLC snippet from the [previous post](@/ntlc/intro.md) would map to a list of tokens:
 
 ![Lexer Output](lexer_at_work.svg)
 
-Notice that because our language is very simple, things map almost one-to-one without any additional data.
+Notice that because our language is very simple, things almost map one-to-one without any additional data.
 
 \
 But, say for example our language was to support arbitrary numbers or strings, then we would probably extend our token type to include a value field that would hold the actual value of the token.
@@ -91,7 +91,7 @@ Actually, sort of. Remember, this is _our_ language and we get to define the rul
 Before we describe the workings of the lexer, and parser for that matter, it is worth mentioning that there exists tools known as Parser Generators _([yacc](https://en.wikipedia.org/wiki/Yacc) and [Tree Sitter](https://tree-sitter.github.io/tree-sitter/) are such tools)_ that can actually generate code that implements the lexer and parser for your given you provide them with your programming language definition in some form or another, but hey, where is the fun in that!
 
 \
-Okay, getting back to how lexers work. They basically scan the input character by character<sup><a href="#lexer_regex">4</a></sup> _(and most of the time, they take a sneak peek ahead at the next character or characters)_ and try to match those characters against a set of rules. If a rule matches, the lexer would emit a token and move on to the next character. If it comes across an unexpected character, it will throw an error.
+Okay, getting back to how lexers work. They basically scan the input character by character<sup><a href="#lexer_regex">4</a></sup> _(and most of the time, they take a sneak peek ahead at the next character or characters)_ and try to match those characters against a set of rules. If a rule matches, the lexer would emit a token and move on to the next character. If it comes across an unexpected character, it would throw an error.
 
 \
 It's good to know that in NTLC we have the following token types:
@@ -117,7 +117,10 @@ pub enum Token {
 \
 Okay, enough with words. I feel that describing the workings of a compiler makes things sound more complicated than they actually are. So, let's just look at the code. I have left comments all over the place to explain what is going on.
 
-### Footnotes
+\
+\
+
+---
 
 <ol id="footnotes">
   <li id="lexer_derivation">The word "lexer" is derived from the Latin word "lexicon" which refers to the vocabulary of a language, including its words and their meanings.</li>
@@ -134,7 +137,7 @@ Okay, enough with words. I feel that describing the workings of a compiler makes
 Again, the full source code for the project is available [here](https://github.com/abjrcode/ntlc/blob/main/compiler/src/lexer.rs)!
 
 \
-The `scan()`function at line **271** is the entry point of the lexer module and where all the magic happens, so, make sure you start there first as everything else is more or less helper utilities.
+The `scan()`function at line **271** is the entry point of the lexer module and the place where the main logic resides, so, make sure you start there first as everything else is more or less helper utilities.
 
 ```rust,linenos
 use std::error::Error;

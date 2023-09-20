@@ -7,4 +7,4 @@ date = "2023-09-16"
 
 # Type Checker
 
-TBD
+SOON!
