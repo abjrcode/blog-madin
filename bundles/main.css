@@ -37,7 +37,10 @@
     @apply pl-4 list-disc list-inside leading-6 my-2;
   }
   #md-content ol {
-    @apply pl-4 list-roman list-inside leading-6 my-2;
+    @apply pl-4 list-roman list-inside leading-7 my-2;
+  }
+  #md-content #footnotes {
+    @apply leading-8;
   }
   #md-content #footnotes li {
     @apply text-sm italic;
