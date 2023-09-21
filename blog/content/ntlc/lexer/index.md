@@ -13,7 +13,7 @@ weight = 2
 The **lexer**<sup><a href="#lexer_derivation">1</a></sup>, also known as the **tokenizer** or the **scanner**, is the first stage in the compilation process. It takes source code _(NTLC source code in our case)_ and converts it into a stream of "tokens".
 
 \
-First stage you say, are there more? definitely!
+First stage you say, are there more? Definitely!
 
 \
 Actually, the compiler is more like a pipeline. Each stage takes the output of the previous one and transforms it into something that is ready for the next stage to consume. The output of the lexer is the input of the parser, and so on.
@@ -81,7 +81,7 @@ Token::StringLiteral("Hello World")
 ```
 
 \
-One final thing, you might be thinking: wait, where did we get our token types from? did we just make them up?
+One final thing, you might be thinking: wait, where did we get our token types from? Did we just make them up?
 
 \
 Actually, sort of. Remember, this is _our_ language and we get to define the rules, but, we won't get into those until the next article on [parsers](@/ntlc/parser.md).
