@@ -84,7 +84,7 @@ Token::StringLiteral("Hello World")
 One final thing, you might be thinking: wait, where did we get our token types from? Did we just make them up?
 
 \
-Actually, sort of. Remember, this is _our_ language and we get to define the rules, but, we won't get into those until the next article on [parsers](@/ntlc/parser.md).
+Actually, sort of. Remember, this is _our_ language and we get to define the rules, but, we won't get into those until the next article on [parsers](@/ntlc/parser/index.md).
 
 ## How do lexers work?
 
