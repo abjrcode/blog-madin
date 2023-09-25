@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  body * {
+    @apply transition-colors duration-[20ms];
+  }
+
   #md-content h1 {
     @apply font-medium text-2xl md:text-4xl mt-8 mb-1 md:mb-2 border-b-[1px] border-dotted border-purple-300;
   }
@@ -13,10 +17,10 @@
     @apply font-medium text-lg md:text-xl mt-8 border-b-[1px] border-dotted border-purple-300;
   }
   #md-content a {
-    @apply underline;
+    @apply underline underline-offset-2 decoration-1;
   }
   #md-content a[target="_blank"] {
-    @apply hover:after:content-['\2197'];
+    @apply after:font-light after:text-xs after:content-['\2197'];
   }
   #md-content a.heading-anchor {
     @apply no-underline;
@@ -37,7 +41,7 @@
     @apply max-h-none;
   }
   #md-content :not(pre) code {
-    @apply bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border-[1px] border-gray-400 dark:border-purple-300 px-1 shadow-inner;
+    @apply whitespace-nowrap bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border-[1px] border-gray-400 dark:border-purple-300 px-1 shadow-inner;
   }
   #md-content blockquote {
     @apply bg-purple-100 dark:bg-purple-900 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;

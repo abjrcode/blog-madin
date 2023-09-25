@@ -150,7 +150,7 @@ As I said earlier, there is a lot of theory on parsing and so many techniques, b
 \
 Why did I choose this technique?
 
-Honestly, it is the only kind of parsing technique that people actually implement by hand<sup><a href="#parsing_techniques">4</a></sup>. Every other technique is typically implemented by Parser Generators<sup><a href="#tree_sitter">5<a></sup>
+Honestly, it is the only kind of parsing technique that people actually implement by hand<sup><a href="#parsing_techniques">4</a></sup>. Every other technique is typically implemented by Parser Generators<sup><a href="#tree_sitter">5</a></sup>
 
 ## Recursive Descent Parsing
 
