@@ -18,8 +18,17 @@
   #md-content a[target="_blank"] {
     @apply hover:after:content-['\2197'];
   }
-  #md-content a[x-heading-anchor] {
+  #md-content a.heading-anchor {
     @apply no-underline;
+  }
+  @media (hover: hover) {
+    #md-content a.heading-anchor {
+      @apply invisible;
+    }
+
+    #md-content :hover > a.heading-anchor {
+      @apply visible;
+    }
   }
   #md-content pre {
     @apply resize-y border-dotted border-2 p-1 my-2 max-h-[54rem] overflow-auto;

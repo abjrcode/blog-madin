@@ -4,6 +4,9 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: ["./blog/templates/**/*.html"],
   darkMode: "class",
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     fontFamily: {
       sans: ["Roboto", ...defaultTheme.fontFamily.sans],

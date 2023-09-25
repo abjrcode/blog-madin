@@ -4,7 +4,7 @@ description = """In this series of posts, we will be building, in Rust, a super 
 from scratch. We will do it end to end including basic VSCode integration support through a language server, and, even native code generation through LLVM"""
 sort_by = "weight"
 weight = 2
-insert_anchor_links = "left"
+insert_anchor_links = "right"
 
 [extra]
 type = "series"
