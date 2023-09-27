@@ -5,7 +5,7 @@ date = "2023-09-24"
 weight = 5
 +++
 
-> Give me the codez: [VSCode Client Side](https://github.com/abjrcode/ntlc/tree/main/lsp-extension) and [Server](https://github.com/abjrcode/ntlc/blob/main/lsp-server/src/main.rs)
+> Just give me the codez: [VSCode Client Side](https://github.com/abjrcode/ntlc/tree/main/lsp-extension) and [Server](https://github.com/abjrcode/ntlc/blob/main/lsp-server/src/main.rs)
 
 # Intro
 

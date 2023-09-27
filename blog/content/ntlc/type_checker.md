@@ -5,9 +5,9 @@ weight = 4
 date = "2023-09-23"
 +++
 
-# Expectation vs Reality
+> [Just give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/type_checker.rs)
 
-> [Give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/type_checker.rs)
+# Expectation vs Reality
 
 The type checker was the part I was mostly excited about when I decided to start this project.
 

@@ -5,11 +5,10 @@ date = "2023-09-20"
 weight = 2
 +++
 
+> [Just give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/lexer.rs)
+
 # What is a lexer?
 
-> [Give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/lexer.rs)
-
-\
 The **lexer**<sup><a href="#lexer_derivation">1</a></sup>, also known as the **tokenizer** or the **scanner**, is the first stage in the compilation process. It takes source code _(NTLC source code in our case)_ and converts it into a stream of "tokens".
 
 \

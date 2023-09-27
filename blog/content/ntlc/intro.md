@@ -9,8 +9,6 @@ weight = 1
 
 We are going to build a super tiny programming language called NTLC, and, we will do it from scratch in [Rust](https://www.rust-lang.org/).
 
-> [Give me the codez](https://github.com/abjrcode/ntlc)
-
 ## Why another programming language?
 
 It's not a _real_ programming language. It's just a toy language that will we will use for fun and learning. It's not meant to be used for anything except learning and exploring.

@@ -5,9 +5,9 @@ date = "2023-09-22"
 weight = 3
 +++
 
-# Intro
+> [Just give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/parser.rs)
 
-> [Give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/parser.rs)
+# Intro
 
 Parsing -- for me -- was the most mysterious, _and to a certain extent the most scary_, part of compilers when I started.
 
