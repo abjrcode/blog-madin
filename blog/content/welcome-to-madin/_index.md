@@ -1,10 +1,14 @@
 +++
-title = "Madin 1.0"
-description = "Welcome to my blog"
-date = "2023-09-15"
-updated = "2023-09-20"
+title = "Welcome to Madin"
+description = "What is it about and what to expect next?"
+weight = 1
+insert_anchor_links = "right"
+aliases = ["/launch/introduction/"]
 
 [extra]
+type = "standalone"
+date = "2023-09-15"
+updated = "2023-09-20"
 comments_disabled = true
 +++
 

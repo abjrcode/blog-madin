@@ -104,7 +104,9 @@ window.madin.relativeDate = function (date) {
   const month = day * 30;
   const year = month * 12;
 
-  if (diff < 30) {
+  if (diff < 0) {
+    return "coming soon";
+  } else if (diff < 30) {
     return "just now";
   } else if (diff < minute) {
     return diff + " seconds ago";

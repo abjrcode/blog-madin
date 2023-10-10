@@ -1,23 +1,24 @@
-{% macro render(section) %} {% set sectionDate = section.extra.date %} {% set
-first_page = section.pages[0] %}
-<li
-  x-data
-  class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-sm rounded-md py-2 px-4 cursor-pointer dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg active:scale-95 transition-all"
-  @click="window.location = '{{ first_page.permalink }}'"
+{% macro render(section) %} {% set sectionDate = section.extra.date %} {% if
+section.pages %} {% set post_link = section.pages | first | get(key="permalink")
+%} {% else %} {% set post_link = section.permalink %} {% endif %}
+<div
+  class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-sm rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg active:scale-95 transition-all"
 >
-  <h3 class="font-semibold text-lg">{{ section.title }}</h3>
-  <hr class="border-purple-600 dark:border-purple-200 border-dotted pb-4" />
-  <div class="flex flex-col gap-8">
-    <p class="text-sm line-clamp-3 text-ellipsis">
-      {{ section.description | default(value="No description") }}
-    </p>
-    <time
-      class="font-light text-xs self-end dark:"
-      aria-label="Published on"
-      x-data="{relativeDate: window.madin.relativeDate('{{ sectionDate | date(format='%Y-%m-%d') }}') }"
-      x-text="'{{ sectionDate | date(format='%d %B \u2014 %Y') }}' + '&nbsp; (' + relativeDate + ')'"
-      x-datetime="{{ sectionDate }}"
-    ></time>
-  </div>
-</li>
-{% endmacro render %}
+  <a href="{{ post_link }}">
+    <h3 class="font-semibold text-lg">{{ section.title }}</h3>
+    <hr class="border-purple-600 dark:border-purple-200 border-dotted pb-4" />
+    <div class="flex flex-col gap-8">
+      <p class="text-sm line-clamp-3 text-ellipsis">
+        {{ section.description | default(value="No description") }}
+      </p>
+      <time
+        class="font-light text-xs self-end dark:"
+        aria-label="Published on"
+        x-data="{relativeDate: window.madin.relativeDate('{{ sectionDate | date(format='%Y-%m-%d') }}') }"
+        x-text="'{{ sectionDate | date(format='%d %B \u2014 %Y') }}' + '&nbsp; (' + relativeDate + ')'"
+        x-datetime="{{ sectionDate }}"
+      ></time>
+    </div>
+  </a>
+  <div>{% endmacro render %}</div>
+</div>
