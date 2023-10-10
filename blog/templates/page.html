@@ -100,18 +100,21 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
   </a>
   {% endif %}
 </div>
-{% endif %} {#
+{% endif %}
+
 <button
   id="scroll-to-top"
   type="button"
   aria-label="Scroll to top"
-  class="fixed bottom-8 right-2 sm:bottom-10 sm:right-10 z-50 dark:bg-purple-700 border-[1px] border-purple-700 dark:border-purple-100 rounded-md leading-tight px-[4px] active:outline-none"
-  x-data
+  class="hidden fixed w-16 bottom-16 right-1/2 translate-x-1/2 z-50 bg-purple-500 text-purple-50 dark:bg-purple-200 dark:text-purple-700 rounded-sm leading-tight px-[4px] active:outline-none"
+  x-data="{ pageHeightThreshold: 800, lastScrollTop: 0 }"
   @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+  @scroll.window="window.pageYOffset > pageHeightThreshold && window.pageYOffset < lastScrollTop ? $el.classList.remove('hidden') : $el.classList.add('hidden'); lastScrollTop = window.pageYOffset < 0 ? 0 : window.pageYOffset;"
 >
   &#x23CF;
 </button>
-#} {% endblock main %} {%block giscus_script %} {% if not
+
+{% endblock main %} {%block giscus_script %} {% if not
 page.extra.comments_disabled and config.mode != "serve" %}
 <script>
   let giscusTheme = document.documentElement.classList.contains("dark")

@@ -128,3 +128,11 @@ window.madin.relativeDate = function (date) {
     return Math.floor(diff / year) + " years ago";
   }
 };
+
+window.madin.getScrollPercentage = function () {
+  const view = document.documentElement;
+
+  return Math.round(
+    (view.scrollTop / (view.scrollHeight - view.clientHeight)) * 100
+  );
+};
