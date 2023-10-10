@@ -77,7 +77,30 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
 
   <div id="md-content">{{ page.content | safe }}</div>
 </div>
-{#
+
+{% if page.lower or page.higher %}
+<div class="flex pt-1 mt-10 border-dashed border-t-2">
+  {% if page.lower %}
+  <a
+    href="{{ page.lower.permalink }}"
+    id="previous-post"
+    aria-label="Previous Post"
+    class="hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
+  >
+    &LeftAngleBracket; {{ page.lower.title }}
+  </a>
+  {% endif %} {% if page.higher %}
+  <a
+    href="{{ page.higher.permalink }}"
+    id="next-post"
+    aria-label="Next Post"
+    class="ml-auto hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
+  >
+    {{ page.higher.title }} &RightAngleBracket;
+  </a>
+  {% endif %}
+</div>
+{% endif %} {#
 <button
   id="scroll-to-top"
   type="button"
