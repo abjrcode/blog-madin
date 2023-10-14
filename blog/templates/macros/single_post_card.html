@@ -14,7 +14,7 @@ section.pages %} {% set post_link = section.pages | first | get(key="permalink")
       <time
         class="font-light text-xs self-end dark:"
         aria-label="Published on"
-        x-data="{relativeDate: window.madin.relativeDate('{{ sectionDate | date(format='%Y-%m-%d') }}') }"
+        x-data="{relativeDate: window.madin.relativeDate('{{ sectionDate | date(format='%Y-%m-%dT00:00') }}') }"
         x-text="'{{ sectionDate | date(format='%d %B \u2014 %Y') }}' + '&nbsp; (' + relativeDate + ')'"
         x-datetime="{{ sectionDate }}"
       ></time>
