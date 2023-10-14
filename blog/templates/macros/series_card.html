@@ -1,6 +1,6 @@
 {% macro render(series) %} {% set seriesDate = series.extra.date %}
 
-<li
+<div
   class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-sm rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg active:scale-95 transition-all"
 >
   <h3 class="flex font-semibold items-center text-lg">
@@ -43,5 +43,5 @@
       x-datetime="{{ seriesDate }}"
     ></time>
   </div>
-</li>
+</div>
 {% endmacro render %}

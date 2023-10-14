@@ -1,14 +1,15 @@
-{% import "macros/post_toc.html" as post_toc %} {% import
-"macros/series_toc.html" as series_toc %} {% extends "index.html" %} {% block
-title %}{{ page.title }}{% endblock title %} {% block main %}
+{% import "macros/series_card.html" as series_card %} {% import
+"macros/post_toc.html" as post_toc %} {% extends "index.html" %} {% block title
+%}{{ section.title }}{% endblock title %} {% block main %} {% if
+section.extra.type == "standalone" %}
 <div class="min-w-full">
   <div id="post-header">
-    <h1 class="text-4xl md:text-6xl font-semibold mb-2">{{ page.title }}</h1>
+    <h1 class="text-4xl md:text-6xl font-semibold mb-2">{{ section.title }}</h1>
     <div class="flex justify-between">
-      {% if page.updated %}
+      {% if section.extra.updated %}
       <time
         class="inline-flex items-center gap-1 font-light text-xs self-end"
-        datetime="{{ page.date }}"
+        datetime="{{ section.extra.date }}"
         ><svg
           class="inline-block w-3 h-3"
           aria-hidden="true"
@@ -23,12 +24,14 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
             d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z"
           />
         </svg>
-        <strong>{{ page.updated | date(format='%d-%b-%Y') }}</strong></time
+        <strong
+          >{{ section.extra.updated | date(format='%d-%b-%Y') }}</strong
+        ></time
       >
       {% endif %}
       <time
         class="inline-flex gap-1 items-center font-light text-xs self-end"
-        datetime="{{ page.date }}"
+        datetime="{{ section.extra.date }}"
         ><svg
           class="inline-block w-3 h-3"
           aria-hidden="true"
@@ -42,20 +45,15 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
           />
         </svg>
 
-        <strong>{{ page.date | date(format='%d-%b-%Y') }}</strong></time
+        <strong
+          >{{ section.extra.date | date(format='%d-%b-%Y') }}</strong
+        ></time
       >
     </div>
     <hr class="border-purple-400 dark:border-purple-200 mb-4" />
   </div>
 
-  {% if page.higher or page.lower %}
-  <aside class="mb-8" id="series-toc-panel">
-    <div id="series-toc">
-      {{ series_toc::render(parent_section=page.ancestors |
-      last,current_page=page) }}
-    </div>
-  </aside>
-  {% endif %} {% if page.toc %}
+  {% if section.toc %}
   <aside id="toc-panel">
     <button
       id="toc-toggle"
@@ -69,38 +67,14 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
       ><span :class="open ? 'visible' : 'hidden'">&#x25BD;&nbsp;</span
       ><span class="uppercase">table of contents</span>
     </button>
-    <div id="toc" class="hidden">{{ post_toc::render(toc=page.toc) }}</div>
+    <div id="toc" class="hidden">{{ post_toc::render(toc=section.toc) }}</div>
   </aside>
   {% endif %}
 
   <br />
 
-  <div id="md-content">{{ page.content | safe }}</div>
+  <div id="md-content">{{ section.content | safe }}</div>
 </div>
-
-{% if page.lower or page.higher %}
-<div class="flex pt-1 mt-10 border-t-2">
-  {% if page.lower %}
-  <a
-    href="{{ page.lower.permalink }}"
-    id="previous-post"
-    aria-label="Previous Post"
-    class="hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
-  >
-    &LeftAngleBracket; {{ page.lower.title }}
-  </a>
-  {% endif %} {% if page.higher %}
-  <a
-    href="{{ page.higher.permalink }}"
-    id="next-post"
-    aria-label="Next Post"
-    class="ml-auto hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
-  >
-    {{ page.higher.title }} &RightAngleBracket;
-  </a>
-  {% endif %}
-</div>
-{% endif %}
 
 <button
   id="scroll-to-top"
@@ -114,8 +88,9 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
   &#x23CF;
 </button>
 
-{% endblock main %} {%block giscus_script %} {% if not
-page.extra.comments_disabled and config.mode != "serve" %}
+{% else %} {{ series_card::render(series=section) }} {% endif %} {% endblock
+main %} {%block giscus_script %} {% if not section.extra.comments_disabled and
+config.mode != "serve" %}
 <script>
   let giscusTheme = document.documentElement.classList.contains("dark")
     ? "purple_dark"
