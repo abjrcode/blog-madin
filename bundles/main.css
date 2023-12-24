@@ -56,10 +56,10 @@
     @apply pl-4 list-roman list-inside leading-7 my-2;
   }
   #md-content #footnotes {
-    @apply leading-8;
+    @apply my-4 leading-8;
   }
   #md-content #footnotes li {
-    @apply text-sm italic;
+    @apply text-sm italic my-2;
   }
   #md-content img {
     @apply mx-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-purple-700 dark:border-purple-200 border-dotted bg-purple-50;
