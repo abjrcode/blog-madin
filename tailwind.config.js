@@ -8,9 +8,6 @@ module.exports = {
     hoverOnlyWhenSupported: true,
   },
   theme: {
-    fontFamily: {
-      sans: ["Roboto", ...defaultTheme.fontFamily.sans],
-    },
     listStyleType: {
       none: "none",
       disc: "disc",
@@ -22,7 +19,12 @@ module.exports = {
       prefix: "dbg-screen: ",
       position: ["bottom", "right"],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+        mono: ["Fira Code", ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [require("tailwindcss-debug-screens")],
 };

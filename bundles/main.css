@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  html {
+    @apply font-sans;
+  }
+
   body * {
     @apply transition-colors duration-[20ms];
   }
@@ -45,7 +49,7 @@
     }
   }
   #md-content pre {
-    @apply resize-y border-dotted border-2 p-1 my-2 max-h-[54rem] overflow-auto;
+    @apply font-mono resize-y border-dotted border-2 p-1 my-2 max-h-[54rem] overflow-auto;
   }
   #md-content pre[style*="height"] {
     @apply max-h-none;
@@ -54,7 +58,16 @@
     @apply whitespace-nowrap bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border-[1px] border-gray-400 dark:border-purple-300 px-1 shadow-inner;
   }
   #md-content blockquote {
-    @apply bg-purple-100 dark:bg-purple-900 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;
+    @apply bg-purple-50 dark:bg-purple-950 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;
+  }
+  #quotes blockquote:nth-child(odd) {
+    @apply -translate-x-8;
+  }
+  #quotes blockquote:nth-child(even) {
+    @apply translate-x-8;
+  }
+  #quotes p:last-child {
+    @apply text-sm text-right mt-4;
   }
   #md-content ul {
     @apply pl-4 list-disc list-inside leading-7 my-2 space-y-1;

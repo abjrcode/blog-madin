@@ -1,0 +1,12 @@
+{% import "macros/post_toc.html" as post_toc %} {% extends "index.html" %} {%
+block title %}{{ page.title }}{% endblock title %} {% block main_extra_classes
+%} flex flex-col justify-center {% endblock main_extra_classes %} {% block main
+%}
+
+<div class="mx-auto">
+  <div id="md-content" class="text-center">
+    <div id="quotes" class="flex flex-col gap-2">{{ page.content | safe }}</div>
+  </div>
+</div>
+
+{% endblock main %}
