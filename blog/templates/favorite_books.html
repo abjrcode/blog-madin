@@ -1,0 +1,82 @@
+{% import "macros/post_toc.html" as post_toc %} {% extends "index.html" %} {%
+block title %}{{ page.title }}{% endblock title %} {% block main_extra_classes
+%} flex flex-col {% endblock main_extra_classes %} {% block main %}
+
+<div>
+  <p>
+    You will find below a list of some of my all time favorite books. I used two
+    criterion for including a book in this list:
+  </p>
+  <ul class="pl-4 list-disc list-inside space-y-1">
+    <li>I have read the entire book, cover to cover</li>
+    <li>I enjoyed reading the book, learned a lot from it or both</li>
+  </ul>
+
+  <h1>Computer Science</h1>
+
+  <h2>Databases & Distributed Systems</h2>
+  <ul class="list-inside">
+    <li>
+      <a
+        target="_blank"
+        href="https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321"
+        >Designing Data-Intensive Applications</a
+      >
+      <span class="italic"> - Martin Kleppmann</span>
+
+      <p class="pl-4 text-base">
+        While the title suggests that you might be reading about large scale
+        data intensive systems, this is not really the case. It is more about
+        how databases and distributed systems work and it serves both as an
+        excellent explanation as well as a reference. I recommend this if you
+        have been building enterprise applications and have a few years of
+        experience under your belt. Excellent book.
+      </p>
+    </li>
+  </ul>
+
+  <h1>Mathematics</h1>
+
+  <div>
+    <a
+      target="_blank"
+      href="https://www.amazon.com/Love-Math-Heart-Hidden-Reality/dp/0465050743"
+      >Love and Math</a
+    >
+
+    <span class="italic"> - Edward Frenkel </span>
+
+    <p class="pl-4 text-base">
+      Don't let the title fool you. This is not apoetic book. It is one that
+      tries to show you the beautiful side of Mathematics. Ones you probably
+      weren't exposed to in school. It is not meant to teach you mathematics but
+      to show you what it is like to be a mathematician. The reason I loved this
+      book is that it takes you on a whirlwind tour in the different landscapes
+      of mathematics. It shows how the different pieces of the puzzle fit
+      together, and the author has an amazing talent in explaining very complex
+      and esoteric concepts very intuitively. I wish "actual" math books were so
+      approachable and intuitive.
+    </p>
+  </div>
+
+  <h2>Pure Math</h2>
+  <ul class="list-inside">
+    <li>
+      <a
+        target="_blank"
+        href="https://www.people.vcu.edu/~rhammack/BookOfProof/"
+        >Book of Proof 3rd Edition</a
+      >
+
+      <span class="italic"> - Richard Hammack </span>
+
+      <p class="pl-4 text-base">
+        First of all, this book is free. Second, it is an excellent introduction
+        to set theory, logic and proof writing. It has a ton of examples and the
+        author explains everything intuitively.
+      </p>
+    </li>
+  </ul>
+</div>
+
+{% endblock main %}

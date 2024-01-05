@@ -111,17 +111,25 @@
         </svg>
       </a>
       <nav>
-        <ul class="flex flex-row gap-2 md:gap-6 text-sm sm:text-base">
+        <ul class="flex flex-row gap-2 md:gap-6 list-none text-sm sm:text-base">
           <li>
             <a
-              class="uppercase font-semibold hover:underline"
+              class="uppercase no-underline font-semibold hover:underline"
               href="{{ config.base_url | safe }}"
               >home</a
             >
           </li>
           <li>
             <a
-              class="uppercase font-semibold hover:underline"
+              class="uppercase no-underline font-semibold hover:underline"
+              href="{{ get_url(path='@/fav_books.md') | safe }}"
+            >
+              books</a
+            >
+          </li>
+          <li>
+            <a
+              class="uppercase no-underline font-semibold hover:underline"
               href="{{ get_url(path='@/fav_quotes.md') | safe }}"
             >
               quotes</a
@@ -129,7 +137,7 @@
           </li>
           <li>
             <a
-              class="uppercase font-semibold hover:underline"
+              class="uppercase no-underline font-semibold hover:underline"
               href="{{ get_url(path='@/about_me.md') | safe }}"
               >about</a
             >
@@ -211,6 +219,7 @@
         <p class="flex items-center justify-center gap-2">
           <span>Contact &rightarrow;</span>
           <a
+            class="no-underline"
             href="https://github.com/abjrcode"
             target="_blank"
             aria-label="Blog's GitHub Repository"
@@ -230,6 +239,7 @@
             </svg>
           </a>
           <a
+            class="no-underline"
             href="https://twitter.com/abjrcode"
             target="_blank"
             aria-label="Blog Author Twitter Account"
@@ -251,7 +261,10 @@
 
         <p>
           &copy;
-          <time datetime="{{ now() | date(format='%Y') }}"
+          <time
+            datetime="{{ '2023-01-01T00:00:00.00+00:00' | date(format='%Y') }}"
+            >{{ '2023-01-01T00:00:00.00+00:00' | date(format="%Y") }}</time
+          >-<time datetime="{{ now() | date(format='%Y') }}"
             >{{ now() | date(format="%Y") }}</time
           >
           — {{ config.author }}

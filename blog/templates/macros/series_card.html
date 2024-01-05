@@ -3,7 +3,7 @@
 <div
   class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-sm rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg transition-all"
 >
-  <h3 class="flex font-semibold items-center text-lg">
+  <h3 class="flex items-center p-0 m-0 border-0 font-semibold text-lg">
     <span>{{ series.title }}</span>
     <svg
       class="inline ml-auto w-5 h-5 dark:text-white"
@@ -27,7 +27,7 @@
     <ol class="flex flex-col gap-4 list-roman list-inside">
       {% for post in series.pages %}
       <li>
-        <a href="{{ post.permalink }}"
+        <a class="no-underline" href="{{ post.permalink }}"
           ><span class="font-semibold underline">{{ post.title }}</span>
           <br />
           <p class="inline font-light">{{ post.description }}</p></a
