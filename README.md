@@ -8,8 +8,8 @@ The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust 
 
 # Dependencies
 
-- [NodeJS 18.x.x](https://nodejs.org/en/download)
-- [Zola 0.17.2](https://www.getzola.org/documentation/getting-started/installation/)
+- [NodeJS 22.x.x](https://nodejs.org/en/download)
+- [Zola 0.19.2](https://www.getzola.org/documentation/getting-started/installation/)
 
 ## Local Development
 

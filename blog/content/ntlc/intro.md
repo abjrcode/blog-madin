@@ -94,11 +94,6 @@ In the next chapter, we will build the first stage of our language compiler -- t
 \
 [See you there!](@/ntlc/lexer/index.md)
 
-\
-\
-
----
-
 <ol id="footnotes"> 
  <li id="full_compiler_pipeline">It is as full of a pipeline as possible with such simple language that doesn't have many constructs but it is more than enough for a start.</li>
 </ol>

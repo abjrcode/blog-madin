@@ -163,11 +163,6 @@ Feel free to copy the contents of the Docker file and adjust them to your needs.
 \
 And finally, If you think I am missing something here or there is a better or simpler way to do this, I would love to hear about it.
 
-\
-\
-
----
-
 <ol id="footnotes"> 
  <li id="no_server_side">Unfortunately, it doesn't "fully" support using server side technologies. e.g. if you want to build your application with Go <code>text/html</code> templates or other templating languages. I say "fully" because you can get it to work but the development experience won't be as nice as when you use full client side frameworks</li>
  <li id="cross_compile">Cross compilation is, simply put, when you can compile an application on one platform (e.g. linux) to produce an executable that can run on another platform (e.g. Windows)</li>

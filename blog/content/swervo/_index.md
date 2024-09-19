@@ -102,11 +102,6 @@ It sounds so obvious in hindsight, but I guess I had to learn it the hard way.
 \
 Nevertheless, I still decided to publish [Swervo as an open source project](https://github.com/abjrcode/swervo). Maybe someone will find it useful or extend it in a way I did not expect, or perhaps someone will be inspired by it and build something better.
 
-\
-\
-
----
-
 <ol id="footnotes"> 
  <li id="github_apps">GitHub provides GitHub Apps to solve this problem and they are the right choice if you are integrating apps from 3rd party providers with your GitHub organization, but in many cases they are an overkill for simple use cases so you still need personal access tokens</li>
  <li id="wails">An Electron alternative that allows you to use Go and any frontend technology to build cross-platform desktop applications</li>

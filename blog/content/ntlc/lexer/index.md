@@ -116,11 +116,6 @@ pub enum Token {
 \
 Okay, enough with words. I feel that describing the workings of a compiler makes things sound more complicated than they actually are. So, let's just look at the code. I have left comments all over the place to explain what is going on.
 
-\
-\
-
----
-
 <ol id="footnotes">
   <li id="lexer_derivation">The word "lexer" is derived from the Latin word "lexicon" which refers to the vocabulary of a language, including its words and their meanings.</li>
   <li id="compiler_pipeline">Actually, there is something quite satisfying about compilers: they are as "pure" as they can be. The compiler is essentially a function that takes a string and returns an alternative representation of that string -- no network calls, no database transactions, no file storage etc.</li>

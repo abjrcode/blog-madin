@@ -226,11 +226,6 @@ If you feel like you have a good grasp of most concepts and would like to challe
 
 The possibilities are endless really. Have fun and happy hacking!
 
-\
-\
-
----
-
 <ol id="footnotes">
   <li id="compiled_vs_interpreted">Some interpreted languages perform some compilation to speed things up at execution time, and some even support both interpretation and compilation which makes it hard to draw a distinction</li>
   <li id="visitor_pattern"><a target="_blank" href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</a> is a common OOP pattern that is used to implement both interpretation and transformation of AST</li>

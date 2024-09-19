@@ -76,7 +76,7 @@
     @apply pl-4 list-roman list-inside leading-7 my-2 space-y-1;
   }
   #md-content #footnotes {
-    @apply my-4 leading-8;
+    @apply my-8 border-t leading-8;
   }
   #md-content #footnotes li {
     @apply text-sm italic my-2;

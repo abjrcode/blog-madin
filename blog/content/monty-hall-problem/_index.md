@@ -122,11 +122,6 @@ I hope this post was helpful in some way. If you're still struggling to accept t
 \
 Explaining how you're thinking about the problem from your perspective, phrased in your own words, might help me help you eliminate the confusion.
 
-\
-\
-
----
-
 <ol id="footnotes"> 
  <li id="monty_hall_background"><a target="_blank" href="https://en.wikipedia.org/wiki/Monty_Hall_problem
 ">https://en.wikipedia.org/wiki/Monty_Hall_problem

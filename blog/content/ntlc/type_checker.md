@@ -139,11 +139,6 @@ Recursion would always stop at terminal nodes since those are always going to be
 
 Again, have a look at the code and I hope all of this would make perfect sense.
 
-\
-\
-
----
-
 <ol id="footnotes">
   <li id="type_inference"><a target="_blank" href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> seems to be the most widely used type-inference algorithm. <a target="_blank" href="https://medium.com/@dhruvrajvanshi/type-inference-for-beginners-part-1-3e0a5be98a4b">Type Inference for Beginners</a> and <a target="_blank" href="https://mukulrathi.com/create-your-own-programming-language/intro-to-type-checking/">Intro to Type Checking</a> do a great job of explaining the concepts</li>
 </ol>

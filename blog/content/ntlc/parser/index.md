@@ -272,11 +272,6 @@ Okay, with all this talk you might think the implementation is pretty complex<su
 \
 So, without further ado, I leave you with the code.
 
-\
-\
-
----
-
 <ol id="footnotes">
   <li id="large_language_models">Recent advances in AI and specifially <a target="_blank" href="https://www.elastic.co/what-is/large-language-models">Largage Language Models (LLMs)</a> might present a different approach to understanding language. After all, many people communicate and understand others although they have never taken a single grammar class</li>
   <li id="parsing_theory">There does not seem to be much recent research on the topic though. I think it's mainly because there aren't any stones which has not been turned. i.e., it is a solved problem</li>
