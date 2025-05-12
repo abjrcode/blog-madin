@@ -2,7 +2,7 @@
 section.pages %} {% set post_link = section.pages | first | get(key="permalink")
 %} {% else %} {% set post_link = section.permalink %} {% endif %}
 <div
-  class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-sm rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg transition-all"
+  class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-xs rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg transition-all"
 >
   <a class="no-underline" href="{{ post_link }}">
     <h3 class="border-0 m-0 font-semibold text-lg">{{ section.title }}</h3>

@@ -2,7 +2,7 @@
 get_section(path=parent_section) %}
 
 <fieldset
-  class="border-[1px] border-dotted border-purple-700 dark:border-purple-200 p-2"
+  class="border border-dotted border-purple-700 dark:border-purple-200 p-2"
 >
   <legend
     class="uppercase px-1 bg-purple-800 dark:bg-purple-100 text-white dark:text-purple-800"
@@ -14,7 +14,7 @@ get_section(path=parent_section) %}
     <li>
       {% if post.permalink == current_page.permalink %}
       <span
-        class="drop-shadow dark:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)] font-semibold"
+        class="drop-shadow-sm dark:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)] font-semibold"
       >
         &rarr; {{ post.title }} &larr;
       </span>
