@@ -63,7 +63,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
       id="toc-toggle"
       type="button"
       aria-label="Toggle TOC"
-      class="py-1 mb-2 visited:outline-none active:outline-none"
+      class="py-1 mb-2 visited:outline-hidden active:outline-hidden"
       x-data="{ open: false }"
       @click="open = !open; document.getElementById('toc').classList.toggle('hidden')"
     >
@@ -87,7 +87,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
     href="{{ page.lower.permalink }}"
     id="previous-post"
     aria-label="Previous Post"
-    class="hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
+    class="hover:drop-shadow-sm dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
   >
     &LeftAngleBracket; {{ page.lower.title }}
   </a>
@@ -96,7 +96,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
     href="{{ page.higher.permalink }}"
     id="next-post"
     aria-label="Next Post"
-    class="ml-auto hover:drop-shadow dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
+    class="ml-auto hover:drop-shadow-sm dark:hover:drop-shadow-[0_2px_4px_rgba(255,255,255,0.70)]"
   >
     {{ page.higher.title }} &RightAngleBracket;
   </a>
@@ -108,7 +108,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
   id="scroll-to-top"
   type="button"
   aria-label="Scroll to top"
-  class="hidden fixed w-16 bottom-16 right-1/2 translate-x-1/2 z-50 bg-purple-500 text-purple-50 dark:bg-purple-200 dark:text-purple-700 rounded-sm shadow-lg font-semibold border-2 border-purple-400 dark:border-purple-700 leading-tight px-[4px] active:outline-none"
+  class="hidden fixed w-16 bottom-16 right-1/2 translate-x-1/2 z-50 bg-purple-500 text-purple-50 dark:bg-purple-200 dark:text-purple-700 rounded-xs shadow-lg font-semibold border-2 border-purple-400 dark:border-purple-700 leading-tight px-[4px] active:outline-hidden"
   x-data="{ pageHeightThreshold: 800, lastScrollTop: 0 }"
   @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
   @scroll.window="window.pageYOffset > pageHeightThreshold && window.pageYOffset < lastScrollTop ? $el.classList.remove('hidden') : $el.classList.add('hidden'); lastScrollTop = window.pageYOffset < 0 ? 0 : window.pageYOffset;"

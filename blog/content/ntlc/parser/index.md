@@ -195,8 +195,6 @@ So the goal of the parser is to take the stream of tokens and convert it into su
 
 Let's go through an example step by step. First the grammar for reference:
 
-\
-
 ```
 TERM ::=
     true

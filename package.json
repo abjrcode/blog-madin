@@ -21,17 +21,16 @@
     "build:zola": "zola --root ./blog build",
     "build:css": "npm run css -- --minify",
     "build:js": "npm run js",
-    "css": "tailwindcss -i bundles/main.css -o blog/static/main.g.css --postcss",
+    "css": "npx @tailwindcss/cli -i bundles/main.css -o blog/static/main.g.css --postcss",
     "js": "esbuild bundles/main.js --outfile=blog/static/main.g.js --bundle"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
+    "@tailwindcss/cli": "^4.1.6",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.7",
     "esbuild": "^0.25.4",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
-    "tailwindcss-debug-screens": "^2.2.1"
+    "tailwindcss": "^4.1.6",
+    "tailwindcss-debug-screens": "^3.0.1"
   }
 }

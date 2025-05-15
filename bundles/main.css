@@ -1,6 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin 'tailwindcss-debug-screens' {
+  position: "bottom, right";
+}
+
+@theme {
+  --font-sans: "Roboto", "sans-serif";
+  --font-mono: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
+    "Consolas", "Liberation Mono", "Courier New", monospace;
+}
+
+/* Configure Dark mode based on a class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility list-roman {
+  list-style-type: upper-roman;
+}
+
+@utility list-square {
+  list-style-type: square;
+}
 
 @layer components {
   html {
@@ -8,11 +27,16 @@
   }
 
   * {
-    @apply transition-colors duration-[20ms];
+    @apply transition-colors duration-20;
   }
 
   body {
     @apply text-lg;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
   }
 
   h1 {
@@ -49,13 +73,13 @@
     }
   }
   #md-content pre {
-    @apply font-mono resize-y border-dotted border-2 p-1 my-2 max-h-[54rem] overflow-auto;
+    @apply font-mono resize-y border-dotted border-2 p-1 my-2 max-h-216 overflow-auto;
   }
   #md-content pre[style*="height"] {
     @apply max-h-none;
   }
   #md-content :not(pre) code {
-    @apply font-mono whitespace-nowrap bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border-[1px] border-gray-400 dark:border-purple-300 px-1 shadow-inner;
+    @apply font-mono whitespace-nowrap bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border border-gray-400 dark:border-purple-300 px-1 shadow-inner;
   }
   #md-content blockquote {
     @apply bg-purple-50 dark:bg-purple-950 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;
