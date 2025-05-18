@@ -3,13 +3,13 @@
 title %}{{ config.title }}{% endblock title %} {% block main %}
 
 <h1
-  class="mx-auto max-w-3xl md:max-w-4xl text-4xl md:text-5xl font-medium tracking dark:text-purple-200 mt-0 mb-8 border-b-0"
+  class="mx-auto max-w-3xl md:max-w-4xl text-4xl md:text-5xl font-medium tracking dark:text-primary-200 mt-0 mb-8 border-b-0"
 >
   Latest Articles
 </h1>
 <div class="relative mx-auto max-w-3xl md:max-w-4xl">
   <div
-    class="absolute left-1/2 -z-10 border-purple-500 dark:border-purple-200 border-l h-full"
+    class="absolute left-1/2 -z-10 border-primary-500 dark:border-primary-200 border-l h-full"
   ></div>
   <ul class="grid grid-cols-1 gap-16">
     {% for section in section.subsections | slice(end=10) | reverse %}

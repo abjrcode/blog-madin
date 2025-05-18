@@ -8,6 +8,33 @@
   --font-sans: "Roboto", "sans-serif";
   --font-mono: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
     "Consolas", "Liberation Mono", "Courier New", monospace;
+
+  --color-primary-50: var(--color-purple-50);
+  --color-primary-100: var(--color-purple-100);
+  --color-primary-200: var(--color-purple-200);
+  --color-primary-300: var(--color-purple-300);
+  --color-primary-400: var(--color-purple-400);
+  --color-primary-500: var(--color-purple-500);
+  --color-primary-600: var(--color-purple-600);
+  --color-primary-700: var(--color-purple-700);
+  --color-primary-800: var(--color-purple-800);
+  --color-primary-900: var(--color-purple-900);
+  --color-primary-950: var(--color-purple-950);
+
+  --color-tone-50: var(--color-gray-50);
+  --color-tone-100: var(--color-gray-100);
+  --color-tone-200: var(--color-gray-200);
+  --color-tone-300: var(--color-gray-300);
+  --color-tone-400: var(--color-gray-400);
+  --color-tone-500: var(--color-gray-500);
+  --color-tone-600: var(--color-gray-600);
+  --color-tone-700: var(--color-gray-700);
+  --color-tone-800: var(--color-gray-800);
+  --color-tone-900: var(--color-gray-900);
+  --color-tone-950: var(--color-gray-950);
+
+  --color-bright: var(--color-white);
+  --color-dark: var(--color-black);
 }
 
 /* Configure Dark mode based on a class */
@@ -40,13 +67,13 @@
   }
 
   h1 {
-    @apply font-medium text-2xl md:text-4xl mt-8 mb-1 md:mb-2 border-b border-dotted border-purple-300;
+    @apply font-medium text-2xl md:text-4xl mt-8 mb-1 md:mb-2 border-b border-dotted border-primary-300;
   }
   h2 {
-    @apply font-medium text-xl md:text-2xl mt-8 mb-1 border-b border-dotted border-purple-300;
+    @apply font-medium text-xl md:text-2xl mt-8 mb-1 border-b border-dotted border-primary-300;
   }
   h3 {
-    @apply font-medium text-lg md:text-xl mt-8 mb-1 border-b border-dotted border-purple-300;
+    @apply font-medium text-lg md:text-xl mt-8 mb-1 border-b border-dotted border-primary-300;
   }
   p {
     @apply leading-relaxed;
@@ -79,10 +106,10 @@
     @apply max-h-none;
   }
   #md-content :not(pre) code {
-    @apply font-mono whitespace-nowrap bg-gray-50 dark:bg-purple-800 dark:text-purple-200 border border-gray-400 dark:border-purple-300 px-1 shadow-inner;
+    @apply font-mono whitespace-nowrap bg-gray-50 dark:bg-primary-800 dark:text-primary-200 border border-gray-400 dark:border-primary-300 px-1 shadow-inner;
   }
   #md-content blockquote {
-    @apply bg-purple-50 dark:bg-purple-950 border-l-4 border-purple-300 dark:border-purple-200 p-2 my-4 mx-4 italic;
+    @apply bg-primary-50 dark:bg-primary-950 border-l-4 border-primary-300 dark:border-primary-200 p-2 my-4 mx-4 italic;
   }
   #quotes blockquote:nth-child(odd) {
     @apply -translate-x-8;
@@ -106,6 +133,6 @@
     @apply text-sm italic my-2;
   }
   #md-content img {
-    @apply mx-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-purple-700 dark:border-purple-200 border-dotted bg-purple-50;
+    @apply mx-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-primary-700 dark:border-primary-200 border-dotted bg-primary-50;
   }
 }
