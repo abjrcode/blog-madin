@@ -1,12 +1,12 @@
 {% macro render(series) %} {% set seriesDate = series.extra.date %}
 
 <div
-  class="border border-purple-600 dark:border-purple-200 bg-purple-50 dark:bg-slate-900 shadow-xs rounded-md py-2 px-4 dark:hover:shadow-purple-200 hover:shadow-xl dark:hover:shadow-lg transition-all"
+  class="border border-primary-600 dark:border-primary-200 bg-primary-50 dark:bg-tone-900 shadow-xs rounded-md py-2 px-4 dark:hover:shadow-primary-200 hover:shadow-xl dark:hover:shadow-lg transition-all"
 >
   <h3 class="flex items-center p-0 m-0 border-0 font-semibold text-lg">
     <span>{{ series.title }}</span>
     <svg
-      class="inline ml-auto w-5 h-5 dark:text-white"
+      class="inline ml-auto w-5 h-5 dark:text-bright"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -21,7 +21,7 @@
       />
     </svg>
   </h3>
-  <hr class="border-purple-600 dark:border-purple-200 border-dotted pb-4" />
+  <hr class="border-primary-600 dark:border-primary-200 border-dotted pb-4" />
   <div class="flex flex-col gap-4 text-sm">
     <p>{{ series.description | default(value="No description") }}</p>
     <ol class="flex flex-col gap-4 list-roman list-inside">

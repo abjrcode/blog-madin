@@ -52,7 +52,7 @@ section.extra.type == "standalone" %}
         ></time
       >
     </div>
-    <hr class="border-purple-400 dark:border-purple-200 mb-4" />
+    <hr class="border-primary-400 dark:border-primary-200 mb-4" />
   </div>
 
   {% if section.toc %}
@@ -82,7 +82,7 @@ section.extra.type == "standalone" %}
   id="scroll-to-top"
   type="button"
   aria-label="Scroll to top"
-  class="hidden fixed w-16 bottom-16 right-1/2 translate-x-1/2 z-50 bg-purple-500 text-purple-50 dark:bg-purple-200 dark:text-purple-700 rounded-xs shadow-lg font-semibold border-2 border-purple-400 dark:border-purple-700 leading-tight px-[4px] active:outline-hidden"
+  class="hidden fixed w-16 bottom-16 right-1/2 translate-x-1/2 z-50 bg-primary-500 text-primary-50 dark:bg-primary-200 dark:text-primary-700 rounded-xs shadow-lg font-semibold border-2 border-primary-400 dark:border-primary-700 leading-tight px-[4px] active:outline-hidden"
   x-data="{ pageHeightThreshold: 800, lastScrollTop: 0 }"
   @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
   @scroll.window="window.pageYOffset > pageHeightThreshold && window.pageYOffset < lastScrollTop ? $el.classList.remove('hidden') : $el.classList.add('hidden'); lastScrollTop = window.pageYOffset < 0 ? 0 : window.pageYOffset;"
