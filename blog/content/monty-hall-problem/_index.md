@@ -6,7 +6,7 @@ insert_anchor_links = "right"
 
 [extra]
 type = "standalone"
-date = "2023-10-15"
+date = "2023-10-15T00:00:00Z"
 +++
 
 # Monty Hall Problem & Intuition

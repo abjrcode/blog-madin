@@ -1,7 +1,7 @@
 +++
 title = "About Me"
 description = "Madin blog author's biography"
-date = "2023-09-17"
+date = "2023-09-17T00:00:00Z"
 template = "about_me.html"
 +++
 

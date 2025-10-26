@@ -1,7 +1,7 @@
 +++
 title = "Favorite Quotes"
 description = "Some of my favorite quotes that I have come across"
-date = "2023-12-30"
+date = "2023-12-30T00:00:00Z"
 template = "favorite_quotes.html"
 +++
 

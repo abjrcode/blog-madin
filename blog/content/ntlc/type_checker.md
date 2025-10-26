@@ -2,7 +2,7 @@
 title = "Type Checker"
 description = "The type checker is the third step in the compilation process. It takes the AST and checks that the types are correct."
 weight = 4
-date = "2023-09-23"
+date = "2023-09-23T00:00:00Z"
 +++
 
 > [Just give me the codez](https://github.com/abjrcode/ntlc/blob/main/compiler/src/type_checker.rs)

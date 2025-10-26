@@ -1,7 +1,7 @@
 +++
 title = "Language Server Protocol"
 description = "The Language Server Protocol (LSP) is a protocol for enabling language features in text editors."
-date = "2023-09-24"
+date = "2023-09-24T00:00:00Z"
 weight = 5
 +++
 

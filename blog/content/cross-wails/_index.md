@@ -6,7 +6,7 @@ insert_anchor_links = "right"
 
 [extra]
 type = "standalone"
-date = "2023-10-28"
+date = "2023-10-28T00:00:00Z"
 +++
 
 # Wails

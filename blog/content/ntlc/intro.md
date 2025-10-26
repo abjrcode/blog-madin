@@ -1,7 +1,7 @@
 +++
 title = "Introduction"
 description = "What is NTLC, and, what are we building exactly?"
-date = "2023-09-20"
+date = "2023-09-20T00:00:00Z"
 weight = 1
 +++
 

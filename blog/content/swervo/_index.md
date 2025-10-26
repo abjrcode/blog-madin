@@ -6,7 +6,7 @@ insert_anchor_links = "right"
 
 [extra]
 type = "standalone"
-date = "2023-12-25"
+date = "2023-12-25T00:00:00Z"
 +++
 
 I haven't written anything in a while. If there is something I enjoy more than learning things, it is applying what I have learned and building things.

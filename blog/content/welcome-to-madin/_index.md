@@ -7,8 +7,8 @@ aliases = ["/launch/introduction/"]
 
 [extra]
 type = "standalone"
-date = "2023-09-15"
-updated = "2023-09-20"
+date = "2023-09-15T00:00:00Z"
+updated = "2023-09-20T00:00:00Z"
 comments_disabled = true
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Lexer"
 description = "The lexer is the first step in the compilation process. It takes the source code and converts it into a stream of tokens."
-date = "2023-09-20"
+date = "2023-09-20T00:00:00Z"
 weight = 2
 +++
 

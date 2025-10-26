@@ -8,5 +8,5 @@ insert_anchor_links = "right"
 
 [extra]
 type = "series"
-date = "2023-09-20"
+date = "2023-09-20T00:00:00Z"
 +++
