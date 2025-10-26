@@ -25,7 +25,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
             d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z"
           />
         </svg>
-        <strong>{{ page.updated | date(format='%d-%b-%Y') }}</strong></time
+        <strong>{{ page.updated | date(format='%d %B %Y') }}</strong></time
       >
       {% endif %}
       <time
@@ -44,7 +44,7 @@ title %}{{ page.title }}{% endblock title %} {% block main %}
           />
         </svg>
 
-        <strong>{{ page.date | date(format='%d-%b-%Y') }}</strong></time
+        <strong>{{ page.date | date(format='%d %B %Y') }}</strong></time
       >
     </div>
     <hr class="border-primary-400 dark:border-primary-200 mb-4" />
