@@ -11,23 +11,17 @@ weight = 6
 
 Welcome to the fourth and final step in our journey. This step is what differentiates a compiled language from an interpreted one<sup>[1](#compiled_vs_interpreted)</sup>
 
-\
 In interpreted languages, the interpreter is responsible for executing the program. It does so by reading the source code, parsing it into an AST and executing the AST directly. JavaScript, Python and Ruby are examples of interpreted languages.
 
-\
 In compiled languages, the compiler reads the source code, parses it into an AST then transforms<sup>[2](#visitor_pattern)</sup> the AST into an [Intermediate Representations (IR)](https://en.wikipedia.org/wiki/Intermediate_representation), assembly code or directly into machine code. The end user can then run the resulting binary directly using their operating system. C, C++ and Rust are examples of compiled languages.
 
 ## Low Level Virtual Machine (LLVM)
 
 Most compilers used to implement code generation directly, but as the number of [platforms](https://en.wikipedia.org/wiki/Computing_platform) _(Windows, OSx, \*Nix)_ kept growing and the number of [compute architectures](https://en.wikipedia.org/wiki/Comparison_of_instruction_set_architectures) became even larger _(think x86_64, arch64 etc...)_, it became harder to maintain a single code generator that targets all platforms.
 
-\
 LLVM<sup>[3](#cranelift)</sup> was born out of the need to solve this problem<sup>[4](#lsp_similarity)</sup>. It is a collection of tools and libraries that can be used to build compiler **backend**s.
 
-\
 Everything that we have worked on so far, i.e. the lexer, parser and type checker are part of the **frontend** of a compiler.
-
-\
 
 The frontend is distinct per programming language and implemented specifically for that language. The frontend is the thing that gives a language its "identity" and provides its unique features that separate it from other languages.
 
@@ -41,13 +35,10 @@ I would love to sit here and give you an introduction to LLVM, but I think [this
 
 NTLC is a very simple language, so translating it to LLVM IR is not that hard.
 
-\
 We will translate an entire NTLC program into a function, conveniently named `main` that takes no arguments and returns an integer. The return value of the function will be the result of evaluating the NTLC program. This is very similar to how `main` works in most programming languages.
 
-\
 The function's body -- implementation -- will be the result of translating each NTLC construct to LLVM IR.
 
-\
 Let's go over each each construct in NTLC and see how it maps to LLVM IR.
 
 ## Integer & Boolean Constants
@@ -58,7 +49,6 @@ Integers and Booleans are the only two types in NTLC. In LLVM IR, integers are r
 
 `succ` and `pred` are both builtin functions in NTLC. They are used to increment and decrement integers respectively. We only need to define both of these functions once since they are kind of "global functions" that can invoked by NTLC code anywhere.
 
-\
 In LLVM IR, we can implement them roughly as:
 
 ```asm
@@ -88,10 +78,8 @@ define i1 @izzero(i32 %x) {
 }
 ```
 
-\
 Now that `succ`, `pred` and `iszero` are all defined, we can invoke (call) them in LLVM by using their name and the appropriate arguments.
 
-\
 An example invocation of `succ` would look like this:
 
 ```asm
@@ -102,13 +90,10 @@ An example invocation of `succ` would look like this:
 
 The final and most complex construct in NTLC is the conditional expression. It is used to alter the execution path of a program based on the value of a boolean expression. In LLVM IR, conditionals are implemented using _labels_ and _jumps_.
 
-\
 Labels and jumps were very popular in the early days of programming, even when working with what was deemed "high level languages" back then. But, the code they can result in can be hard to read and thus not easy to maintain. So, most language introduced constructs such as for loops, while loops and if statements that abstract the developer from working with labels and jumps directly.
 
-\
 I say "abstract" because under the hood, compilers are still converting those language features to labels and jumps.
 
-\
 If you aren't familiar with labels and jumps, here is a small example to illustrate the concept in pseudo code:
 
 ```
@@ -140,7 +125,6 @@ main() {
 }
 ```
 
-\
 If the previous code snippet was actual code, it would cause an infinite loop. The program would print "Hello World" forever.
 
 ### Conditionals in LLVM IR
@@ -162,26 +146,20 @@ You might be thinking: "Why not just generate a unique name for each label?"
 
 The short answer is: You are right. I just got confused with the LLVM API.
 
-\
 When you translate source code to LLVM IR, you don't simple map your source language constructs to LLVM IR. That would be too error prone and would require a lot of boilerplate code.
 
-\
 You use the LLVM API to create constructs that represent your code. So, I thought that I would have to maintain a lookup table for label names I have generated within a function, create a label, check if it exists in the table and if it does then create a new unique name for it. I would have to do so recursively as conditionals can be nested infinitely -- at least in theory.
 
-\
 The solution turned out to be way simpler than I thought. When using the LLVM API to create a label, if the label doesn't exist, LLVM will create it for you. If it does exist, LLVM will generate a new unique name for you and everything will work as expected.
 
-\
 That's why the LLVM API gives you the `context` and `IRBuilder` types. They are used internally by LLVM to keep track of things like label names and other state.
 
-\
 If this still doesn't make sense, don't worry. It will become clearer when we look at the code.
 
 ## LLVM Optimizations
 
 LLVM can be configured to perform optimizations on the generated IR. This is a very powerful feature that can result in significant performance improvements.
 
-\
 Those optimizations tend to "rewrite" your generated IR into a functionally equivalent but more efficient IR.
 
 I have deliberately chosen to disable those optimizations, because:
@@ -197,27 +175,21 @@ If you have cloned the [ntlc repository](https://github.com/abjrcode/ntlc) and f
 2. It would print the output of the lexer, parser and type checker and code generator to the console
 3. Generate a binary called `good` in the `/bin` directory.
 
-\
 Try executing that binary on your operating system by running `./bin/good` in your favorite shell. If everything went well you should not see any output. That's because our NTLC programs do not have the capability to print to the console.
 
-\
 But in Bash, Zsh, PowerShell and other shells, one can check the exit code of the last executed command/program by running `echo $?`
 
-\
 Go ahead and do so and you will see the return value of the NTLC program. Try changing the NTLC program in `/example/good.ntlc` and see how the return value changes.
 
-\
 Congratulations! You have just written your first compiler!
 
 # Closing Thoughts
 
 That's it. You have made it to the end of the journey. I hope you enjoyed it as much as I did and you actually learned something useful from it.
 
-\
 Where to go from here?
 If you want to learn more, then I would refer you to some of the resources I mentioned in the [introduction](@/ntlc/intro.md#why-another-programming-language) article.
 
-\
 If you feel like you have a good grasp of most concepts and would like to challenge yourself a bit more, here are some ideas:
 
 - Add support for more types such as floating point numbers, strings, characters etc...

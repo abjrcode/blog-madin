@@ -11,16 +11,12 @@ weight = 5
 
 I assume you've probably worked before in an IDE environment or a "smart" editor such as VSCode, Vim, Emacs or IntelliJ just to name a few.
 
-\
 All of these editors provide you with smart programming language features such as syntax highlighting _(coloring)_, auto-completion, go to definition, find all references, rename symbol, etc.
 
-\
 Back in the day, each editor had to implement these features for each programming language. This was a lot of work and it was hard to keep up with the latest features of each language.
 
-\
 So, one day, a group of people got together and decided to create a protocol that would allow editors to support many languages without having to implement support for each of them over and over again for each editor.
 
-\
 That protocol is the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/overviews/lsp/overview/).
 
 # Overview
@@ -43,30 +39,24 @@ The way one decouples an editor from a language is by:
 - JSON because the messages exchanged back and forth between the client and server are formatted as JSON text
 - RPC stands for [Remote Procedure Call](https://en.wikipedia.org/wiki/Remote_procedure_call) which means the client and server communicate by calling functions on each other.
 
-\
 The editor typically sends a request to the server, e.g. user opened a file, and the server responds with something that is appropriate for that particular message, e.g. the the server might choose to analyze the file and return a list of grammatical errors to the editor.
 
-\
 The protocol essentially defines all sorts of supported messages, what kind of fields each message has and other features of the protocol.
 
 ## Implementing the Protocol
 
 Implementing the protocol, at least the server side of it, means you have to be able to parse the messages sent from the editor: basically deserializing the JSON payload and converting it to a _class_, _struct_ or whatever in-memory representation that is suitable for your language -- the one you're writing the LSP server _in_, not the one you're writing the server _for_.
 
-\
 The same has to happen when you're sending the response back to client - editor.
 
-\
 As you can imagine, this is repetitive and people don't implement it everyday because the protocol does not change much. Also, that's not really the interesting part of the server. You want to spend your time providing language features, not implementing the protocol details.
 
-\
 So, typically there are libraries that implement the protocol for you. You just have to provide the actual language features. For my use case and since I used Rust to implement the compiler, I decided ot use [Tower LSP](https://github.com/ebkalderon/tower-lsp) to write the server so that I can reuse part of the compiler code.
 
 ## Tower LSP
 
 [Tower LSP](https://github.com/ebkalderon/tower-lsp) is a Rust library that implements the LSP protocol. It basically gives you an interface and you have to fill in the methods that implement the relevant language features for _your language_, NTLC in our case.
 
-\
 For example, if the user hovers over a variable, the editor will send a request to the server asking for the type of the variable.
 
 Tower LSP will receive that message, validate it, deserialize it and then call the method you implemented to handle that specific request. You job is to focus on implementing the logic that retrieves the type of said variable.
@@ -75,17 +65,13 @@ Tower LSP will receive that message, validate it, deserialize it and then call t
 
 Syntax highlighting is something that is usually also implemented by the server, but some editors like VSCode allow you to supply your syntax highlighting rules in [another form](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide).
 
-\
 For NTLC, [this is implemented here](https://github.com/abjrcode/ntlc/blob/main/lsp-extension/syntaxes/ntlc.tmLanguage.json)
 
-\
 The reason editors offer this alternative mechanism in addition to language servers is mainly performance.
 When the user opens a file, the editor can highlight _(color)_ almost instantly without having to wait for the the extension/plugin to activate the language server and for the language server to analyze the file and send the results back.
 
-\
 When the server does finally start and analyzes the file, it can contribute more "accurate" [semantic syntax highlighting](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide).
 
-\
 NTLC is very simple and so there is no need for the server to provide any "semantic" highlighting.
 
 # The Hard Parts
@@ -95,7 +81,6 @@ Two things:
 - You want the server to be super fast and have as little latency as possible: as you can imagine, when working in a project with many files _(some which might be thousands of lines)_ where you are constantly switching between them, inserting, editing and deleting text; the editor will be sending the server a message about each of those events and the server has to, in many cases, re-scan the source code, re-parse and type check it and maybe even more.
 - You optimally want the server to be able to do all of that incrementally, i.e. without having to read the entire file. You can opt-in and tell VSCode to send only information about exactly what had changed in the file. This is called incremental synchronization. But that also means the server has to be able to figure out what to re-analyze. So servers need to keep state and cache intelligently.
 
-\
 In our implementation we do neither of those things:
 
 1. NTLC is a small language that I used to learn all of the stuff I have been writing about in this series
@@ -113,7 +98,6 @@ The code is made out of two parts:
   - Diagnostics: show errors (lexing, parsing or type checking errors) in the code
     ![Diagnostics](./diagnostics.png)
 
-\
 Notice that in the server implementation we reuse bits of the compiler code, namely the lexer, parser and type-checker. This is the main reason I decided to use Rust to implement the language server.
 
 ## VSCode TypeScript Client

@@ -13,21 +13,18 @@ Parsing -- for me -- was the most mysterious, _and to a certain extent the most 
 
 Coming across names and acronyms like Shift-Reduce Parsers, Recursive Descent Parsers, LL(1), LR(1), LALR(1) and more made it feel like an intimidating topic.
 
-\
 But, let's take a step back and consider what a parser is and why we need one.
 
 # Parsing
 
 In the [previous post](@/ntlc/lexer/index.md), we talked about lexing and how it takes a stream of characters and converts it into a stream of tokens.
 
-\
 The concrete example we used was:
 
 ```ntlc
 if iszero(succ(0)) then true else false
 ```
 
-\
 which resulted in the following list of tokens:
 
 ```rust
@@ -47,40 +44,29 @@ which resulted in the following list of tokens:
 ]
 ```
 
-\
 Now, what do we want to do with these tokens?
 
-\
 Well, these tokens are a representation of our program's source code. That source code is something we want to eventually execute.
 
-\
 Now, how would we go about executing -- _evaluating_ -- this source code to get the correct result?
 
-\
 We need to somehow extract "meaning" from the source code, and the way we extract meaning is by extracting structure.
 
 ## Language and Grammar
 
-\
 The source code is written in a language, and we need to understand that language. The best solution that we "humans" came up with so far to "understand" <sup><a href="#large_language_models">1</a></sup> language was to extract structure from it, and the way we extract structure is through following a systematic grammar.
 
-\
 For example, in the case of natural languages such as English, we have a grammar rule that tells us that a sentence is composed of a subject, a verb, and an object.
 
-\
 Computer scientists adopted the same approach to allow computers to "understand" programs written in a programming language. They define grammars for said languages.
 
-\
 The parser is the machinery that carries out the task of extracting structure from source code by following the rules of the grammar.
 
 ## Theory and Practice
 
 As far as I have seen, parsing theory which lends itself to the study of grammars and languages seems to be one of the most studied topics in compilers and computer science in general. There is so much literature and academic work on the topic<sup><a href="#parsing_theory">2</a></sup> that it is impossible to give it justice in a single blog post<sup><a href="#recommendation_grammar_book">3</a></sup>.
 
-\
 For our purposes, I am going to make a very gross simplification and say that grammar is just a bunch of substitution rules. For our language, NTLC, the grammar is:
-
-\
 
 ```
 TERM ::=
@@ -128,10 +114,8 @@ Evidently, this is also nonsensical.
 
 The way we typically prevent such nonsensical programs is through another stage in the compiler pipeline called "Semantic Analysis". This is usually where type-checkers -- a topic we cover in the next post -- live.
 
-\
 "Semantic Analysis" is where most compiler engineers seem to spend most of their time. It is the place where the compiler _(at least in statically typed languages)_ can help the end user, developers, the most.
 
-\
 You may have seen such messages when programming:
 
 - "You are trying to add a number to a string"
@@ -140,14 +124,12 @@ You may have seen such messages when programming:
 
 These and many others are the workings of the Semantic Analyzer.
 
-\
 I digress, let's get back to parsing.
 
 # Parsing Techniques
 
 As I said earlier, there is a lot of theory on parsing and so many techniques, but we are going to use one technique known as [**Recursive Descent Parsing**](https://en.wikipedia.org/wiki/Recursive_descent_parser).
 
-\
 Why did I choose this technique?
 
 Honestly, it is the only kind of parsing technique that people actually implement by hand<sup><a href="#parsing_techniques">4</a></sup>. Every other technique is typically implemented by Parser Generators<sup><a href="#tree_sitter">5</a></sup>
@@ -156,11 +138,9 @@ Honestly, it is the only kind of parsing technique that people actually implemen
 
 Recursive Descent Parsing works by following the rules of the grammar in a recursive fashion, hence the name. And it does it from top to bottom, hence the "Descent" part.
 
-\
 What does that really mean?
 It is actually very simple, but, it is one of those things that seem to click only when you actually implement them.
 
-\
 Before that though, it might help if we actually see what the parser output looks like.
 
 ### Abstract Syntax Tree (AST)
@@ -176,19 +156,16 @@ The reason being, my guess, is that once you have an AST representation of your 
 
 And the list goes on. They are pretty much a canonical representation of your source code.
 
-\
 So what would the AST for our NTLC program look like if it was parsed?
 
 ```ntlc
 if iszero(succ(0)) then true else false
 ```
 
-\
 Would produce the following AST:
 
 ![ast](ast.svg)
 
-\
 So the goal of the parser is to take the stream of tokens and convert it into such AST.
 
 ### Step by step
@@ -212,7 +189,6 @@ and let's say we have the following source code:
 if true then succ(0) else pred(0)
 ```
 
-\
 The corresponding tokens would be:
 
 ```rust
@@ -252,22 +228,17 @@ The way recursive descent would work on the preceding list of tokens is by follo
 
 ### Problems and solutions
 
-\
 Now our grammar is simple, but in some cases there could be multiple possible paths (choices) that are possible and so recursive descent would have to _backtrack_ and try different alternatives.
 
-\
 I also did not mention two possible problems that could rise in different grammars:
 
 - **Ambiguity**: There are multiple possible correct paths to parse a given input, but usually only one of them is "semantically" correct. For example, `1 + 2 * 3` could be parsed as `(1 + 2) * 3` or `1 + (2 * 3)`. The latter one is the correct one.
 - **Left Recursion**: A non-terminal can be replaced by itself. Imagine if the grammar had a rule like `TERM ::= TERM + TERM`. This would result in infinite recursion. People usually solve this by rewriting the grammar rule into a "semantically equivalent" rule without the recursion on the left.
 
-\
 For a better understanding on both issues and their solutions, I refer you to [Pratt Parsers: Expression Parsing Made Easy](https://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/) and [Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html).
 
-\
 Okay, with all this talk you might think the implementation is pretty complex<sup><a href="#error_recovery">6</a></sup>, but actually it almost _rolls off the tongue_.
 
-\
 So, without further ado, I leave you with the code.
 
 <ol id="footnotes">

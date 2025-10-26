@@ -13,10 +13,8 @@ date = "2023-10-15"
 
 If you have spent some time studying probability, especially [conditional probability](https://en.wikipedia.org/wiki/Conditional_probability) and [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem), you've very likely come across the Monty Hall Problem.
 
-\
 If not, fear nothing for this post is not really about probability theory or mathematics, but rather my attempt to document the pitfalls I fell into when trying to solve the problem, and how it finally "clicked" for me.
 
-\
 Perhaps you had your own pitfalls, or you're still struggling to understand the solution. If that is the case, I hope this post will help you in some way.
 
 ## The Problem Statement
@@ -27,31 +25,23 @@ The problem comes in many forms, but the most common one is the following:
 
 {{ imgcaption(src="./monty_hall_problem.jpeg", caption="The Monty Hall Problem - Courtesy of Bing AI") }}
 
-\
-\
 The question is: Should you switch or not?
 That is, which action of the too would maximize your chances of winning the car?
 
-\
 If you had never heard of this problem before, I suggest you take a moment to think through it before rushing into a final answer.
 
 ## On Failing Intuition
 
 When I first heard of this problem, my immediate reaction was to think that it doesn't really matter whether I switch or not. It is not going to change my odds of winning. After all, _nothing has really changed after the host opened the door!_.
 
-\
 I was soooo wrong!
 
-\
 It turns out that you should always switch. You will have a 2/3 (~66%) chance of winning if you do, and only 1/3 (~33%) if you don't.
 
-\
 Now if your intuition failed you as well, don't worry, you are not alone in this.
 
-\
 When the problem was first published somewhere in the 90s, many people, including mathematicians, wrote to the author claiming that he was wrong. Many who supposedly had PhD's in mathematics. Even [Paul Erdős](https://en.wikipedia.org/wiki/Paul_Erd%C5%91s), one of the most prolific mathematicians of the 20th century, had to be shown a computer simulation before he was convinced<sup><a href="#monty_hall_background">1</a></sup>.
 
-\
 I was no different. Even after I saw the solution and the reasoning behind it, I was still trying to justify why and how that solution could be wrong.
 
 ## Common Explanations
@@ -67,7 +57,6 @@ You can find many more [here](https://www.quora.com/Guys-Im-going-crazy-why-dont
 
 Even after seeing these and other explanations, I was still struggling to "accept" it.
 
-\
 I was still thinking:
 
 1. hey, so what? of course the host can open 98 doors, he knows where the car is and he will always be able to leave only one door closed.
@@ -76,17 +65,14 @@ I was still thinking:
 
 In reality, while all of these are valid questions, they don't change the fact that switching will always give you a 2/3 chance of winning. Even if the host is playing mind games; as long as he is sticking to the rules of the game, switching will always give you better odds!
 
-\
 Let's try to understand why.
 
 ## What Made It Click for Me
 
 I have to make a confession here. Even after seeing so many explanations and simulations, I was still struggling to accept the solution. I was still trying to find a way to justify why the solution was wrong.
 
-\
 Acceptance is hard, but that did not prevent me from attempting to seek an explanation that satisfied my curiosity, even a little bit.
 
-\
 As it turns out, it all boils down to the fact that the host knows where the prize (car) is. He knows which door to open and which door to leave closed. If that was not the case, then changing your initial choice _(even trillion times)_ would make absolutely no difference.
 
 ### Why does that matter so much?
@@ -106,20 +92,16 @@ Let's go through this step by step:
 
 Now notice, when you made your initial choice, you had 3 "equally likely" options to choose from and that meant your chances of winning (i.e. making the "right" choice) were 1 in 3 (1/3). That also meant your chances of losing were 2 in 3 (2/3)
 
-\
 Okay, so now, if you were to switch all the time, you would only lose in the case where you picked the door with the car behind it, but hey, that's the least likely scenario! You only had a 1/3 chance of picking the right door in the first place!
 
-\
 The more likely scenario is that you picked a door with a goat behind it, and in that case, switching would always win you the car, and that's where the 2/3 odds come from!
 
-\
 The host knowing where the car is, and by extension, knowing which door to open doesn't change our luck per sé. It just changes the "environment" in which we are playing. In a way he is eliminating another "bad" choice for us.
 
 # Conclusion
 
 I hope this post was helpful in some way. If you're still struggling to accept the solution, I would love to hear from you in the comments.
 
-\
 Explaining how you're thinking about the problem from your perspective, phrased in your own words, might help me help you eliminate the confusion.
 
 <ol id="footnotes"> 

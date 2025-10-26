@@ -11,16 +11,13 @@ date = "2023-09-23"
 
 The type checker was the part I was mostly excited about when I decided to start this project.
 
-\
 Why you might ask? there are a couple of reasons:
 
 - Every time I sat off to write a compiler, I stopped at the parsing phase.
 - Most courses on compilers usually stop here and instead implement an _interpreter_.
 
-\
 Spoiler alert though: our type checker is very basic. I did not realize that when I started off but for a type checker to do any meaningful work the language needs to, at the least, have variables. NTLC does not, and so there is barely any work for the type checker to do.
 
-\
 Before we start though, let's clear up some terminology.
 
 ## Type Checking vs Type Inference
@@ -32,10 +29,8 @@ const x = 1;
 const y = x + 3;
 ```
 
-\
 Notice that in the previous example, we did not have to specify the type of `x` nor `y`. The compiler would **infer** that `x` is an integer because it is assigned the value `1`, and so `y` is also an integer since it is equal to `INTEGER + INTEGER`.
 
-\
 Notice that JavaScript does not have type inference and the previous example would still have ran even if you did something like:
 
 ```javascript
@@ -43,13 +38,10 @@ const x = 1;
 const y = "hello" + 3;
 ```
 
-\
 This is not about type inference but about static vs dynamic typing, which we will get to in a bit.
 
-\
 You might think all of this is very obvious, and it is in this silly example, but this can get _really tricky_ as you add functions and more complex types to a language<sup><a href="#type_inference">1</a></sup>.
 
-\
 If JavaScript was statically typed, then we would have to specify the types of `x` and `y` explicitly.
 
 ```javascript
@@ -62,14 +54,12 @@ Now, the compiler would not have to do any sort of inference. It just checks tha
 
 For example, since `y = x + 3`, `y` must be a number because we can only do addition with numbers. So, if the developer would have declared `y` as a `string` for example, the compiler would have errored.
 
-\
 It is not uncommon to see languages that have a mixture of both, where they infer the types of some expressions and require the developer to specify the types of others.
 
 ## Static vs Dynamic Typing
 
 Type inference algorithms in some languages are pretty powerful that you might have mistaken those languages for being dynamically typed, OCaml is one example.
 
-\
 JavaScript is a dynamically typed language. This means that the type of a variable is not known until runtime, or at least not checked until then. This is why you can do things like:
 
 ```javascript
@@ -79,7 +69,6 @@ const y = "hello" + 3;
 
 And the compiler would not complain. It is only _at runtime_ that the interpreter would realize that you are trying to add a string to a number and throw an error.
 
-\
 Contrast this to a statically typed language like Rust where the compiler would not even compile the program, let alone let you run it.
 
 ```rust
@@ -93,18 +82,15 @@ let y: i32 = "hello" + 3;
 
 As I mentioned earlier, NTLC is a very simple language. It does not have variables, so there is no room for type inference.
 
-\
 But, we can still do type checking to prevent nonsensical programs such as:
 
 ```ntlc
 if succ(true) then 0 else succ(0)
 ```
 
-\
 How are we supposed to evaluate `succ(true)`?
 We could potentially do an implicit cast from `true` to `1` and pretend as if the previous expression is `succ(1)` but that sounds weird, at least to me.
 
-\
 Notice that if we don't add type checking to NTLC, that would make a dynamic language and the previous program would be valid, and you would be able to compile and run it - only to have the program crash at runtime.
 
 ## Type Checking Algorithm
@@ -131,10 +117,8 @@ The idea is very simple:
 
 These will form the base cases of our type checking algorithm.
 
-\
 The algorithm is very similar to the recursive descent algorithm we used to parse the AST. We will traverse the AST and check that the types of the nodes match what we expect them to be.
 
-\
 Recursion would always stop at terminal nodes since those are always going to be either `0`, `true` or `false` which types we know.
 
 Again, have a look at the code and I hope all of this would make perfect sense.

@@ -11,13 +11,10 @@ weight = 2
 
 The **lexer**<sup><a href="#lexer_derivation">1</a></sup>, also known as the **tokenizer** or the **scanner**, is the first stage in the compilation process. It takes source code _(NTLC source code in our case)_ and converts it into a stream of "tokens".
 
-\
 First stage you say, are there more? Definitely!
 
-\
 Actually, the compiler is more like a pipeline. Each stage takes the output of the previous one and transforms it into something that is ready for the next stage to consume. The output of the lexer is the input of the parser, and so on.
 
-\
 Here is a very typical compiler pipeline<sup><a href="#compiler_pipeline">2</a></sup>:
 
 ![Compiler Pipeline](compiler_pipeline.svg)
@@ -26,10 +23,8 @@ Here is a very typical compiler pipeline<sup><a href="#compiler_pipeline">2</a><
 
 Strictly speaking, we don't. It just allows us to work with the source code on a higher conceptual level. Later stages, namely the parser, will have way easier time reasoning about the structure of the source code if it doesn't have to worry about string indices, whitespace characters, and/or the nuances of character sets and text encoding.
 
-\
 Actually this is true of every stage in the pipeline. If the source language was so simple, you probably would not even need a compiler. You could get away with a few regular expressions and a bunch of string manipulation functions.
 
-\
 The compiler is essentially a systematic and deterministic way to convert a program written in one language to another. Remember the good old divide and conquer technique: it advises you to break a big problem into smaller manageable ones! Well, that's what the compiler really does with all its stages.
 
 # Lexer output
@@ -38,17 +33,14 @@ Remember when we said earlier that the lexer converts source code to tokens. It 
 
 The lexer typically outputs an array/vector/list of tokens _(technically speaking, that's if it is not a streaming lexer but let's ignore that for now)_.
 
-\
 Now, most of the time a token<sup><a href="#token">3</a></sup> is a structure that has a type and a value. Here is an example to illustrate how our NTLC snippet from the [previous post](@/ntlc/intro.md) would map to a list of tokens:
 
 ![Lexer Output](lexer_at_work.svg)
 
 Notice that because our language is very simple, things almost map one-to-one without any additional data.
 
-\
 But, say for example our language was to support arbitrary numbers or strings, then we would probably extend our token type to include a value field that would hold the actual value of the token.
 
-\
 For instance, a string token might look like this:
 
 ```rust
@@ -72,27 +64,22 @@ class StringLiteral {
 type Token = StringLiteral | ...
 ```
 
-\
 When the lexer scans an input that has a string literal like "Hello World", it would emit a token of type `StringLiteral` with a value of "Hello World" like so:
 
 ```
 Token::StringLiteral("Hello World")
 ```
 
-\
 One final thing, you might be thinking: wait, where did we get our token types from? Did we just make them up?
 
-\
 Actually, sort of. Remember, this is _our_ language and we get to define the rules, but, we won't get into those until the next article on [parsers](@/ntlc/parser/index.md).
 
 ## How do lexers work?
 
 Before we describe the workings of the lexer, and parser for that matter, it is worth mentioning that there exists tools known as Parser Generators _([yacc](https://en.wikipedia.org/wiki/Yacc) and [Tree Sitter](https://tree-sitter.github.io/tree-sitter/) are such tools)_ that can actually generate code that implements the lexer and parser for your given you provide them with your programming language definition in some form or another, but hey, where is the fun in that!
 
-\
 Okay, getting back to how lexers work. They basically scan the input character by character<sup><a href="#lexer_regex">4</a></sup> _(and most of the time, they take a sneak peek ahead at the next character or characters)_ and try to match those characters against a set of rules. If a rule matches, the lexer would emit a token and move on to the next character. If it comes across an unexpected character, it would throw an error.
 
-\
 It's good to know that in NTLC we have the following token types:
 
 ```rust
@@ -113,7 +100,6 @@ pub enum Token {
 }
 ```
 
-\
 Okay, enough with words. I feel that describing the workings of a compiler makes things sound more complicated than they actually are. So, let's just look at the code. I have left comments all over the place to explain what is going on.
 
 <ol id="footnotes">
@@ -127,10 +113,8 @@ Okay, enough with words. I feel that describing the workings of a compiler makes
 
 > HINT: check the tests at the bottom of the file for more examples on how the lexer works
 
-\
 Again, the full source code for the project is available [here](https://github.com/abjrcode/ntlc/blob/main/compiler/src/lexer.rs)!
 
-\
 The `scan()`function at line **271** is the entry point of the lexer module and the place where the main logic resides, so, make sure you start there first as everything else is more or less helper utilities.
 
 ```rust,linenos

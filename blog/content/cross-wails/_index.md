@@ -13,7 +13,6 @@ date = "2023-10-28"
 
 [Wails](https://wails.io/) is a framework for building cross platform desktop applications using Go and Web Technologies. It is similar to [Electron](https://www.electronjs.org/) and [Tauri](https://tauri.app/) but uses Go instead of JavaScript and Rust, respectively.
 
-\
 It still allows you to use whatever technology _(React, Vue, Svelte etc...)_ you want for the frontend part<sup><a href="#no_server_side">1</a></sup>
 
 ## The Lure of Go
@@ -24,10 +23,8 @@ I personally find Golang to be a very simple and minimalistic language. That is 
 
 Cross-compilation with CGO!
 
-\
 See, while Go does allow you to cross-compile to any platform & architecture combination, you will need to have "some plumbing" in place when you want to use CGO!
 
-\
 What's CGO you might ask? Well, [it's a way to call C code from Go](https://go.dev/blog/cgo).
 
 You might be thinking: I rarely ever have to do that and you're probably right. Except...
@@ -36,17 +33,14 @@ You might be thinking: I rarely ever have to do that and you're probably right. 
 
 No man is an island as the saying goes. We all depend on third party libraries and frameworks to get our work done. And some of these libraries and frameworks might be written in C or C++.
 
-\
 Matter of fact, I ran into this on my very first Go application. I was trying to use [Sqlite](https://github.com/mattn/go-sqlite3) and guess what! it relies on CGO.
 
 ## The Not So Fun Part
 
 This was very confusing and frustrating to me when I came across it. I thought Go took care of all of this for me and I can just enjoy my life but nope, not so easy!
 
-\
 To pause for a moment here, none of this is an issue if you can afford to build your application on the target platform. That is, you can arrange all sorts of different build agents, like a Windows one, an OSX one, a Linux one and so on, and hey, don't forget about the different architectures too: AMD64, ARM64 etc...
 
-\
 I simply use GitHub Actions for most of my projects and I cannot afford the luxury of having all these different configurations. Also, [GitHub Actions don't support ARM64](https://github.com/actions/runner-images/issues/5631), yet!
 
 The solution is to cross-compile. Not only does it allow you to build for different platforms and architectures, it also allows you to build for them on a single machine.
@@ -55,17 +49,14 @@ The solution is to cross-compile. Not only does it allow you to build for differ
 
 Simply put: it boils down to installing the correct cross-compilers for the target platform and architecture you want to build for. To be honest, it cannot be further from simple. At least for me, as I never had to deal with this before coming from working with managed languages like C#, JavaScript, Python etc...
 
-\
 Essentially we need to have a compiler that say, can run on Linux AMD64 and output binary code for MacOS ARM64 and so on and so forth.
 
-\
 Also, Wails itself depends on GTK and WebKit. So we need to have the correct versions of those libraries installed as well.
 
 ## Cross Wails
 
 After many trials and errors and experimenting with various solutions - I discovered [goreleaser-cross](https://github.com/goreleaser/goreleaser-cross) which is a Docker image that allows you to do just that. It had everything I needed except for the GTK, WebKit, NodeJS and Wails itself of course.
 
-\
 I initially started using it in my project but then I realized the image itself is `10GB` in size.
 That was an issue for a couple of reasons:
 
@@ -74,20 +65,16 @@ That was an issue for a couple of reasons:
 
 I decided to spend some time and trim this image to the bare minimum I need for my use cases: Linux AMD64, Linux ARM64 and Windows AMD64.
 
-\
 The result is a `4.2GB` image that I am using in my projects and it is working great so far as I managed to also reduce my build time from `10` minutes to `6` _(not a lot but it is something)_
 
-\
 I have published it [here](https://github.com/abjrcode/cross-wails/tree/main) as open-source so please feel free to use it in your projects as well.
 
 ### Usage
 
 You can use the image in your CI/CD pipeline or even when building locally for different platforms.
 
-\
 For a full example, please check out [cross-wails/example](https://github.com/abjrcode/cross-wails/tree/main/example)
 
-\
 Here is an example `Dockerfile` you would put in the root of your Wails project:
 
 ```dockerfile
@@ -157,10 +144,8 @@ Wails doesn't support cross-compiling to MacOS yet. So you will need to build yo
 
 While the above image is meant to be used with Wails, it can be used with any Go project that needs needs to cross-compile to Linux AMD64, Linux ARM64 and Windows AMD64.
 
-\
 Feel free to copy the contents of the Docker file and adjust them to your needs.
 
-\
 And finally, If you think I am missing something here or there is a better or simpler way to do this, I would love to hear about it.
 
 <ol id="footnotes"> 
