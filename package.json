@@ -28,7 +28,7 @@
     "@tailwindcss/cli": "^4.1.16",
     "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
-    "cssnano": "^7.1.1",
+    "cssnano": "^7.1.2",
     "esbuild": "^0.25.11",
     "tailwindcss": "^4.1.6",
     "tailwindcss-debug-screens": "^3.0.1"
