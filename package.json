@@ -29,7 +29,7 @@
     "concurrently": "^10.0.3",
     "cross-env": "^7.0.3",
     "cssnano": "^7.1.9",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "tailwindcss": "^4.1.6",
     "tailwindcss-debug-screens": "^3.0.1"
   }
