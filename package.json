@@ -33,6 +33,7 @@
     "esbuild": "^0.28.2",
     "svgo": "^4.0.2",
     "tailwindcss": "^4.3.3",
-    "tailwindcss-debug-screens": "^3.0.1"
+    "tailwindcss-debug-screens": "^3.0.1",
+    "wrangler": "^4.144.0"
   }
 }
