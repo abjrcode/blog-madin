@@ -1,0 +1,6 @@
+/* Dev-only entry so the breakpoint badge never ships to production */
+@import "./main.css";
+
+@plugin 'tailwindcss-debug-screens' {
+  position: "bottom, right";
+}

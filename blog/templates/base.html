@@ -1,286 +1,87 @@
-<!DOCTYPE html>
-<html
-  class="{% if config.mode == 'serve' %}debug-screens{% endif %}"
-  lang="{% if lang %}{{ lang }}{% else %}{{ config.default_language }}{% endif %}"
->
+<!doctype html>
+<html lang="{{ lang or config.default_language }}"{% if config.mode == "serve" %} class="debug-screens"{% endif %}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="{% block description %}{{ config.description }}{% endblock description %}"
-    />
-    <meta name="author" content="{{ config.author }}" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% set doc_title = page?.title or section?.title or "" %}
+    {% set desc = page?.description or section?.description or config.description %}
+    <title>{% block title %}{{ doc_title ~ " | " ~ config.title if doc_title and doc_title != config.title else config.title }}{% endblock title %}</title>
+    <meta name="description" content="{{ desc }}">
+    <meta name="author" content="{{ config.author }}">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#9333ea">
+    {% if current_url %}
+    <link rel="canonical" href="{{ current_url | safe }}">
+    <meta property="og:url" content="{{ current_url | safe }}">
+    {% endif %}
+    <meta property="og:site_name" content="{{ config.title }}">
+    <meta property="og:title" content="{{ doc_title or config.title }}">
+    <meta property="og:description" content="{{ desc }}">
+    <meta property="og:type" content="{{ "article" if page or section?.extra?.date else "website" }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@abjrcode">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="/main.g.css?v={{ get_hash(path='/static/main.g.css', base64=true) | safe }}"
-    />
+    {# Runs before first paint so the stored theme and font size never flash #}
     <script>
-      if ("color-theme" in localStorage) {
-        var theme = localStorage.getItem("color-theme");
-
-        switch (theme) {
-          case "dark":
-            document.documentElement.classList.add("dark");
-            break;
-          case "light":
-            document.documentElement.classList.remove("dark");
-            break;
-          default: {
-            var isDarkModePreferred = window.matchMedia(
-              "(prefers-color-scheme: dark)"
-            ).matches;
-
-            if (isDarkModePreferred) {
-              document.documentElement.classList.add("dark");
-            }
-          }
-        }
-      } else {
-        var isDarkModePreferred = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-
-        if (isDarkModePreferred) {
-          document.documentElement.classList.add("dark");
-        }
-      }
-
-      if ("font-size" in localStorage) {
-        var fontSize = localStorage.getItem("font-size") ?? 16;
-        document.documentElement.style.fontSize = `${fontSize}px`;
-      } else {
-        document.documentElement.style.fontSize = "16px";
-      }
+      (function () {
+        var d = document.documentElement, s = {};
+        try { s.t = localStorage.getItem("color-theme"); s.f = localStorage.getItem("font-size"); } catch (e) {}
+        if (s.t === "dark" || (s.t !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)) d.classList.add("dark");
+        if (s.f) d.style.fontSize = s.f + "px";
+      })();
     </script>
-    <script
-      defer
-      src="/main.g.js?v={{ get_hash(path='/static/main.g.js', base64=true) | safe }}"
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
+    <link rel="stylesheet" href="{{ get_url(path='main.g.css', cachebust=true) | safe }}">
+    <script defer src="{{ get_url(path='main.g.js', cachebust=true) | safe }}"></script>
+    {% if config.mode != "serve" %}
+    <script type="speculationrules">
+      {"prerender": [{"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
+    </script>
+    {% endif %}
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <title>{% block title %}{% endblock title %}</title>
+    <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml', trailing_slash=false) | safe }}">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
 
-  <body
-    class="flex flex-col min-h-screen text-primary-950 dark:text-primary-200 bg-linear-to-b from-bright to-tone-50 dark:from-tone-950 dark:to-tone-900"
-  >
-    <header
-      class="flex flex-row items-center bg-tone-50 dark:bg-dark border-t-4 border-t-primary-600 dark:border-t-primary-600 shadow-sm dark:shadow-primary-800 dark:shadow-2xl px-1 md:px-4 py-1"
-    >
-      <a
-        href="{{ config.base_url | safe }}"
-        class="text-4xl sm:text-5xl lg:text-6xl dark:text-primary-200 mx-4 sm:mx-6 md:mx-8 lg:mx-10 drop-shadow-lg dark:shadow-tone-200"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-8 h-8 md:w-12 md:h-12"
-          fill="currentColor"
-          viewBox="0 0 58.318 47.948"
-        >
-          <g
-            id="svgGroup"
-            stroke-linecap="round"
-            fill-rule="evenodd"
-            font-size="9pt"
-            stroke-width="0.25mm"
-          >
-            <path
-              d="M 39.999 28.111 L 28.473 47.948 L 0.036 0 L 17.019 0 L 29.882 21.318 L 39.999 3.975 L 39.999 28.111 Z M 58.318 47.948 L 42.348 47.948 L 42.348 0 L 58.318 0 L 58.318 47.948 Z M 14.923 47.948 L 0 47.948 L 0 4.444 L 14.923 29.484 L 14.923 47.948 Z"
-              vector-effect="non-scaling-stroke"
-            />
-          </g>
-        </svg>
+  <body class="flex flex-col min-h-dvh text-primary-950 dark:text-primary-200 bg-linear-to-b from-bright to-tone-50 dark:from-tone-950 dark:to-tone-900">
+    <header class="flex flex-row items-center bg-tone-50 dark:bg-dark border-t-4 border-t-primary-600 shadow-sm dark:shadow-primary-800 dark:shadow-2xl px-1 md:px-4 py-1">
+      <a href="{{ config.base_url | safe }}" aria-label="Home" class="mx-4 sm:mx-6 md:mx-8 lg:mx-10 drop-shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-8 md:size-12" fill="currentColor" viewBox="0 0 58.318 47.948" aria-hidden="true"><path fill-rule="evenodd" d="M 39.999 28.111 L 28.473 47.948 L 0.036 0 L 17.019 0 L 29.882 21.318 L 39.999 3.975 L 39.999 28.111 Z M 58.318 47.948 L 42.348 47.948 L 42.348 0 L 58.318 0 L 58.318 47.948 Z M 14.923 47.948 L 0 47.948 L 0 4.444 L 14.923 29.484 L 14.923 47.948 Z"/></svg>
       </a>
       <nav>
         <ul class="flex flex-row gap-2 md:gap-6 list-none text-sm sm:text-base">
-          <li>
-            <a
-              class="uppercase no-underline font-semibold hover:underline"
-              href="{{ config.base_url | safe }}"
-              >home</a
-            >
-          </li>
-          <li>
-            <a
-              class="uppercase no-underline font-semibold hover:underline"
-              href="{{ get_url(path='@/fav_books.md') | safe }}"
-            >
-              books</a
-            >
-          </li>
-          <li>
-            <a
-              class="uppercase no-underline font-semibold hover:underline"
-              href="{{ get_url(path='@/fav_quotes.md') | safe }}"
-            >
-              quotes</a
-            >
-          </li>
-          <li>
-            <a
-              class="uppercase no-underline font-semibold hover:underline"
-              href="{{ get_url(path='@/about_me.md') | safe }}"
-              >about</a
-            >
-          </li>
+          <li><a class="nav-link" href="{{ config.base_url | safe }}">home</a></li>
+          <li><a class="nav-link" href="{{ get_url(path='@/fav_books.md') | safe }}">books</a></li>
+          <li><a class="nav-link" href="{{ get_url(path='@/fav_quotes.md') | safe }}">quotes</a></li>
+          <li><a class="nav-link" href="{{ get_url(path='@/about_me.md') | safe }}">about</a></li>
         </ul>
       </nav>
-      <div id="controls" class="flex gap-2 md:gap-4 items-center ml-auto mr-4">
-        <button
-          id="font-size-switcher"
-          type="button"
-          aria-label="Change font size"
-          title="Change font size"
-          class="bg-primary-200 dark:text-primary-700 dark:bg-primary-200 border dark:border-primary-700 border-primary-700 rounded-lg p-1"
-        >
-          <svg
-            class="w-4 h-4 md:w-5 md:h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 2V1h10v1M6 1v12m-2 0h4m3-6V6h6v1m-3-1v7m-1 0h2"
-            />
-          </svg>
+      <div class="flex gap-2 md:gap-4 items-center ml-auto mr-4">
+        <button id="font-size-switcher" type="button" class="icon-btn" aria-label="Change font size" title="Change font size">
+          <svg class="size-4 md:size-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 2V1h10v1M6 1v12m-2 0h4m3-6V6h6v1m-3-1v7m-1 0h2"/></svg>
         </button>
-        <button
-          id="theme-toggle"
-          type="button"
-          aria-label="Toggle dark mode"
-          title="Toggle dark mode"
-          class="bg-primary-200 dark:text-primary-700 dark:bg-primary-200 border dark:border-primary-700 border-primary-700 rounded-lg p-1"
-        >
-          <svg
-            id="theme-toggle-dark-icon"
-            class="w-4 h-4 md:w-5 md:h-5 hidden"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-            ></path>
-          </svg>
-          <svg
-            id="theme-toggle-light-icon"
-            class="w-5 h-5 hidden"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="size-4 md:size-5 dark:hidden" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+          <svg class="size-4 md:size-5 hidden dark:block" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
         </button>
       </div>
     </header>
 
-    <main
-      id="rootContainer"
-      class="flex-1 mx-auto min-w-full max-w-full py-6 px-8 sm:px-16 md:px-20 lg:px-44 xl:px-64 {% block main_extra_classes %}{% endblock main_extra_classes %}"
-    >
+    <main class="flex-1 w-full py-6 px-8 sm:px-16 md:px-20 lg:px-44 xl:px-64 {% block main_extra_classes %}{% endblock main_extra_classes %}">
       {% block main %}{% endblock main %}
     </main>
 
-    <footer
-      class="flex flex-row max-h-24 items-center justify-center leading-normal tracking-normal border-t-[0.5px] border-tone-200 dark:border-tone-600 py-1 lg:py-2"
-    >
-      <small
-        class="flex flex-col items-center justify-center text-xs font-light dark:text-primary-300"
-      >
+    <footer class="flex flex-row items-center justify-center border-t-[0.5px] border-tone-200 dark:border-tone-600 py-1 lg:py-2">
+      <small class="flex flex-col items-center justify-center text-xs font-light dark:text-primary-300">
         <p class="flex items-center justify-center gap-2 mb-0">
           <span>Contact &rightarrow;</span>
-          <a
-            class="no-underline"
-            href="https://github.com/abjrcode"
-            target="_blank"
-            aria-label="Blog's GitHub Repository"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3.5 h-3.5"
-              fill="currentColor"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            class="no-underline"
-            href="https://twitter.com/abjrcode"
-            target="_blank"
-            aria-label="Blog Author Twitter Account"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3.5 h-3.5"
-              fill="currentColor"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill="currentColor"
-                d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"
-              />
-            </svg>
-          </a>
+          <a class="no-underline" href="https://github.com/abjrcode" aria-label="GitHub">{{<icon.github />}}</a>
+          <a class="no-underline" href="https://x.com/abjrcode" aria-label="X">{{<icon.x />}}</a>
         </p>
-
-        <p class="mb-0">
-          &copy;
-          <time
-            datetime="{{ '2023-01-01T00:00:00.00+00:00' | date(format='%Y') }}"
-            >{{ '2023-01-01T00:00:00.00+00:00' | date(format="%Y") }}</time
-          >-<time datetime="{{ now() | date(format='%Y') }}"
-            >{{ now() | date(format="%Y") }}</time
-          >
-          — {{ config.author }}
-        </p>
-
-        <p class="mb-0">
-          All rights reserved. &nbsp;
-          <a
-            class="underline"
-            href="https://github.com/abjrcode/blog-madin#license"
-            target="_blank"
-            >License</a
-          >
-        </p>
+        <p class="mb-0">&copy; 2023-{{ now() | date(format="%Y") }} — {{ config.author }}</p>
+        <p class="mb-0">All rights reserved. &nbsp;<a href="https://github.com/abjrcode/blog-madin#license">License</a></p>
       </small>
     </footer>
-    {%block giscus_script %} {% endblock giscus_script %}
   </body>
 </html>

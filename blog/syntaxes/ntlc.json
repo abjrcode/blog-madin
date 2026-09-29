@@ -1,0 +1,17 @@
+{
+  "name": "ntlc",
+  "scopeName": "source.ntlc",
+  "fileTypes": ["ntlc"],
+  "patterns": [{ "include": "#main" }],
+  "repository": {
+    "main": {
+      "patterns": [
+        { "match": "\\b(if|else|then)\\b", "name": "keyword.control.ntlc" },
+        { "match": "\\b(succ|iszero|pred)\\b", "name": "support.function.ntlc" },
+        { "match": "\\b(0|true|false)\\b", "name": "constant.language.ntlc" },
+        { "begin": "\\(", "end": "\\)", "patterns": [{ "include": "#main" }] },
+        { "match": "\\)", "name": "invalid.illegal.stray-bracket-end" }
+      ]
+    }
+  }
+}

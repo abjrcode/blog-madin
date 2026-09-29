@@ -8,8 +8,8 @@ The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust 
 
 # Dependencies
 
-- [NodeJS 22.x.x](https://nodejs.org/en/download)
-- [Zola 0.20.0](https://www.getzola.org/documentation/getting-started/installation/)
+- [Node.js 24+](https://nodejs.org/en/download)
+- [Zola 0.23.6](https://www.getzola.org/documentation/getting-started/installation/)
 
 ## Local Development
 
@@ -17,6 +17,18 @@ The blog's setup and tooling was inspired by the awesome [Writing an OS in Rust 
 npm install
 npm start
 ```
+
+## Writing posts
+
+Zola 0.23 renders post bodies as Tera templates. Wrap any literal `{{`, `{%` or `{#` in `{% raw %}...{% endraw %}`, or the build fails.
+
+Components usable from markdown live in `blog/templates/components.html`, e.g.:
+
+```
+{{<imgcaption path="my-post/picture.jpeg" caption="A caption" />}}
+```
+
+Run `npm run svg` after adding SVG diagrams to strip editor metadata.
 
 ## License
 

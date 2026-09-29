@@ -23,7 +23,7 @@ The problem comes in many forms, but the most common one is the following:
 
 > Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to change your initial choice and open the remaining door, or would you rather stay with it?"
 
-{{ imgcaption(src="./monty_hall_problem.jpeg", caption="The Monty Hall Problem - Courtesy of Bing AI") }}
+{{<imgcaption path="monty-hall-problem/monty_hall_problem.jpeg" caption="The Monty Hall Problem - Courtesy of Bing AI" />}}
 
 The question is: Should you switch or not?
 That is, which action of the too would maximize your chances of winning the car?

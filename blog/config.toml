@@ -8,32 +8,34 @@ default_language = "en"
 
 author = "Ibrahim Najjar"
 
-# Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = true
+# Nothing on the site queries a search index, so building one only adds bytes
+build_search_index = false
+
+minify_html = true
 
 # Ignore blog license
 ignored_content = ["*/README.md", "*/LICENSE-CC-BY-NC"]
 
-# Generate RSS feed
+# Only served via resize_image, never as the original
+ignored_static = ["ibrahim_najjar.jpg", "about.txt"]
+
 generate_feeds = true
+feed_filenames = ["atom.xml"]
 
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
-
-highlight_theme = "monokai"
-
 external_links_target_blank = true
-
+external_links_no_referrer = true
 render_emoji = true
-
 smart_punctuation = true
+lazy_async_image = true
 
-extra_syntaxes_and_themes = ["syntaxes"]
+[markdown.highlighting]
+theme = "monokai"
+# Classes instead of inline styles shrink code-heavy pages several-fold
+style = "class"
+extra_grammars = ["syntaxes/ntlc.json"]
 
 [extra]
 subtitle = "Ibrahim Najjar's blog"
