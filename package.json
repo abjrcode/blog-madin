@@ -1,6 +1,7 @@
 {
   "name": "blog-madin",
   "private": true,
+  "type": "module",
   "author": {
     "name": "Ibrahim Najjar",
     "url": "https://madin.dev"
@@ -10,27 +11,28 @@
     "type": "git",
     "url": "git@github.com:abjrcode/blog-madin.git"
   },
-  "keywords": [],
-  "categories": [],
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development concurrently --restart-tries 3 --restart-after 500 -c blue,magenta,yellow -n TAILWIND,ESBUILD,ZOLA npm:dev:css npm:dev:js npm:dev:zola",
+    "start": "concurrently --restart-tries 3 --restart-after 500 -c blue,magenta,yellow -n TAILWIND,ESBUILD,ZOLA npm:dev:css npm:dev:js npm:dev:zola",
     "dev:zola": "zola --root ./blog serve",
-    "dev:css": "npm run css -- --watch",
+    "dev:css": "tailwindcss -i bundles/dev.css -o blog/static/main.g.css --watch",
     "dev:js": "npm run js -- --watch",
-    "build": "cross-env NODE_ENV=production npm run build:css && npm run build:js && npm run build:zola",
+    "build": "npm run build:css && npm run build:js && npm run build:zola",
     "build:zola": "zola --root ./blog build",
     "build:css": "npm run css -- --minify",
-    "build:js": "npm run js",
-    "css": "npx @tailwindcss/cli -i bundles/main.css -o blog/static/main.g.css --postcss",
-    "js": "esbuild bundles/main.js --outfile=blog/static/main.g.js --bundle"
+    "build:js": "npm run js -- --minify",
+    "css": "tailwindcss -i bundles/main.css -o blog/static/main.g.css",
+    "js": "esbuild bundles/main.js --outfile=blog/static/main.g.js --bundle --format=iife --target=es2022",
+    "svg": "svgo --multipass -r -f blog/content"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "concurrently": "^10.0.5",
-    "cross-env": "^7.0.3",
-    "cssnano": "^7.1.9",
     "esbuild": "^0.28.2",
-    "tailwindcss": "^4.1.6",
+    "svgo": "^4.0.2",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-debug-screens": "^3.0.1"
   }
 }

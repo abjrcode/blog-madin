@@ -1,23 +1,15 @@
-{% import "macros/single_post_card.html" as single_post_card %} {% import
-"macros/series_card.html" as series_card %} {% extends "base.html" %} {% block
-title %}{{ config.title }}{% endblock title %} {% block main %}
-
-<h1
-  class="mx-auto max-w-3xl md:max-w-4xl text-4xl md:text-5xl font-medium tracking dark:text-primary-200 mt-0 mb-8 border-b-0"
->
-  Latest Articles
-</h1>
-<div class="relative mx-auto max-w-3xl md:max-w-4xl">
-  <div
-    class="absolute left-1/2 -z-10 border-primary-500 dark:border-primary-200 border-l h-full"
-  ></div>
+{% extends "base.html" %}
+{% block main %}
+<h1 class="mx-auto max-w-4xl text-4xl md:text-5xl font-medium mt-0 mb-8 border-b-0">Latest Articles</h1>
+<div class="relative mx-auto max-w-4xl">
+  <div class="absolute left-1/2 -z-10 border-primary-500 dark:border-primary-200 border-l h-full" aria-hidden="true"></div>
+  {% set posts = [get_section(path=p) for p in section.subsections] | sort(attribute="extra.date") | reverse %}
   <ul class="grid grid-cols-1 gap-16">
-    {% for section in section.subsections | slice(end=10) | reverse %}
+    {% for post in posts[:10] %}
     <li class="list-none">
-      {% set post = get_section(path=section) %} {% if post.extra.type ==
-      "standalone" %} {{ single_post_card::render(section=post) }} {% else %} {{
-      series_card::render(series=post) }} {% endif %} {% endfor %}
+      {% if post.extra.type == "standalone" %}{{<post_card section={post} />}}{% else %}{{<series_card series={post} />}}{% endif %}
     </li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock main %}

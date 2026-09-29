@@ -22,7 +22,7 @@ updates:
 
   - package-ecosystem: "github-actions"
     directories:
-      - "/.github"
+      - "/"
     schedule:
       interval: "daily"
       time: "07:00"

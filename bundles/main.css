@@ -1,13 +1,15 @@
 @import "tailwindcss";
+@import "./highlight.css";
 
-@plugin 'tailwindcss-debug-screens' {
-  position: "bottom, right";
-}
+@source not "../blog/public";
+@source not "../node_modules";
 
 @theme {
-  --font-sans: "Roboto", "sans-serif";
-  --font-mono: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
-    "Consolas", "Liberation Mono", "Courier New", monospace;
+  /* System fonts: zero font requests, no layout shift on load */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", Menlo,
+    Consolas, "Liberation Mono", monospace;
 
   --color-primary-50: var(--color-purple-50);
   --color-primary-100: var(--color-purple-100);
@@ -53,12 +55,30 @@
     @apply font-sans;
   }
 
-  * {
-    @apply transition-colors duration-20;
+  body {
+    @apply text-lg antialiased;
   }
 
-  body {
-    @apply text-lg;
+  :target {
+    scroll-margin-top: 1rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  .nav-link {
+    @apply uppercase no-underline font-semibold hover:underline;
+  }
+
+  .icon-btn {
+    @apply bg-primary-200 dark:text-primary-700 border border-primary-700 rounded-lg p-1;
+  }
+
+  .card {
+    @apply border border-primary-600 dark:border-primary-200 bg-primary-50 dark:bg-tone-900 shadow-xs rounded-md py-2 px-4 hover:shadow-xl dark:hover:shadow-lg dark:hover:shadow-primary-200 transition-shadow;
   }
 
   button:not(:disabled),
@@ -136,6 +156,6 @@
     @apply text-sm italic my-2;
   }
   #md-content img {
-    @apply mx-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-primary-700 dark:border-primary-200 border-dotted bg-primary-50;
+    @apply mx-auto h-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-primary-700 dark:border-primary-200 border-dotted bg-primary-50;
   }
 }

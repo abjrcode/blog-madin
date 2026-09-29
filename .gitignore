@@ -25,3 +25,4 @@ node_modules
 /blog/static/*.g.js.map
 /blog/static/*.g.css.map
 /blog/public/
+/blog/static/processed_images/

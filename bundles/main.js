@@ -1,140 +1,119 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-  const themeToggleLightIcon = document.getElementById(
-    "theme-toggle-light-icon"
-  );
+const root = document.documentElement;
 
-  function dispatchThemeSwitchEvent(newTheme) {
-    window.dispatchEvent(new CustomEvent("theme-switch", { detail: newTheme }));
+function store(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Private mode or blocked storage: the preference just won't persist
   }
+}
 
-  const themeToggleBtn = document.getElementById("theme-toggle");
-
-  themeToggleBtn.addEventListener("click", function () {
-    themeToggleDarkIcon.classList.toggle("hidden");
-    themeToggleLightIcon.classList.toggle("hidden");
-
-    if (localStorage && localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        dispatchThemeSwitchEvent("dark");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        dispatchThemeSwitchEvent("light");
-        localStorage.setItem("color-theme", "light");
-      }
-    } else {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        dispatchThemeSwitchEvent("light");
-        localStorage.setItem("color-theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        dispatchThemeSwitchEvent("dark");
-        localStorage.setItem("color-theme", "dark");
-      }
-    }
-  });
-
-  if (localStorage) {
-    if (
-      localStorage.getItem("color-theme") === "dark" ||
-      (!("color-theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      themeToggleLightIcon.classList.remove("hidden");
-    } else {
-      themeToggleDarkIcon.classList.remove("hidden");
-    }
-  } else {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      themeToggleLightIcon.classList.remove("hidden");
-    } else {
-      themeToggleDarkIcon.classList.remove("hidden");
-    }
-  }
-
-  const changeFontSizeBtn = document.getElementById("font-size-switcher");
-
-  changeFontSizeBtn.addEventListener("click", function () {
-    const currentFontSize = parseInt(
-      document.documentElement.style.fontSize.substring(0, 2),
-      10
-    );
-
-    let newFontSize = currentFontSize || 16;
-
-    switch (currentFontSize) {
-      case 16:
-        newFontSize = 18;
-        break;
-      case 18:
-        newFontSize = 20;
-        break;
-      case 20:
-        newFontSize = 16;
-        break;
-      default:
-        newFontSize = 16;
-        break;
-    }
-
-    localStorage.setItem("font-size", newFontSize);
-
-    document.documentElement.style.fontSize = `${newFontSize}px`;
-  });
+document.getElementById("theme-toggle")?.addEventListener("click", () => {
+  const theme = root.classList.toggle("dark") ? "dark" : "light";
+  store("color-theme", theme);
+  setGiscusTheme(theme);
 });
 
-window.madin = window.madin || {};
+const FONT_SIZES = [16, 18, 20];
 
-/**
- *
- * @param {Date} date A UTC timestamp
- * @returns Relative human readable date
- * Thanks to https://javascript.plainenglish.io/convert-a-date-into-relative-date-in-javascript-12d405eae316
- */
-window.madin.relativeDate = function (date) {
-  const diff = Math.round((new Date() - new Date(date)) / 1000);
+document.getElementById("font-size-switcher")?.addEventListener("click", () => {
+  const current = parseInt(root.style.fontSize, 10) || FONT_SIZES[0];
+  const next = FONT_SIZES[(FONT_SIZES.indexOf(current) + 1) % FONT_SIZES.length];
+  root.style.fontSize = `${next}px`;
+  store("font-size", next);
+});
 
-  const minute = 60;
-  const hour = minute * 60;
-  const day = hour * 24;
-  const week = day * 7;
-  const month = day * 30;
-  const year = month * 12;
+// Heading anchors copy their link as well as navigating
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest?.("a.heading-anchor");
+  if (anchor) navigator.clipboard?.writeText(anchor.href).catch(() => {});
+});
 
-  if (diff < 0) {
-    return "coming soon";
-  } else if (diff < 30) {
-    return "just now";
-  } else if (diff < minute) {
-    return diff + " seconds ago";
-  } else if (diff < 2 * minute) {
-    return "a minute ago";
-  } else if (diff < hour) {
-    return Math.floor(diff / minute) + " minutes ago";
-  } else if (Math.floor(diff / hour) == 1) {
-    return "1 hour ago";
-  } else if (diff < day) {
-    return Math.floor(diff / hour) + " hours ago";
-  } else if (diff < day * 2) {
-    return "yesterday";
-  } else if (diff < week) {
-    return Math.floor(diff / day) + " days ago";
-  } else if (diff < month) {
-    return Math.floor(diff / week) + " weeks ago";
-  } else if (diff < year) {
-    return Math.floor(diff / month) + " months ago";
-  } else {
-    return Math.floor(diff / year) + " years ago";
+const relative = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const UNITS = [
+  ["year", 365 * 86400],
+  ["month", 30 * 86400],
+  ["week", 7 * 86400],
+  ["day", 86400],
+  ["hour", 3600],
+  ["minute", 60],
+];
+
+function relativeDate(date) {
+  const seconds = (date - Date.now()) / 1000;
+  if (seconds > 0) return "coming soon";
+  for (const [unit, size] of UNITS) {
+    if (Math.abs(seconds) >= size) return relative.format(Math.round(seconds / size), unit);
   }
-};
+  return "just now";
+}
 
-window.madin.getScrollPercentage = function () {
-  const view = document.documentElement;
+for (const time of document.querySelectorAll("time[data-relative]")) {
+  time.append(`  (${relativeDate(new Date(time.dateTime))})`);
+}
 
-  return Math.round(
-    (view.scrollTop / (view.scrollHeight - view.clientHeight)) * 100
+const scrollTop = document.getElementById("scroll-to-top");
+
+if (scrollTop) {
+  let last = 0;
+  let queued = false;
+
+  scrollTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        const y = Math.max(window.scrollY, 0);
+        // Only offer the button while the reader is scrolling back up a long page
+        scrollTop.hidden = !(y > 800 && y < last);
+        last = y;
+        queued = false;
+      });
+    },
+    { passive: true }
   );
-};
+}
+
+const giscusTheme = (theme) => (theme === "dark" ? "purple_dark" : "light");
+
+function setGiscusTheme(theme) {
+  document
+    .querySelector("iframe.giscus-frame")
+    ?.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme(theme) } } }, "https://giscus.app");
+}
+
+const comments = document.getElementById("comments");
+
+if (comments) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+
+      const { giscusRepo, giscusRepoId, giscusCategory, giscusCategoryId } = comments.dataset;
+      const script = document.createElement("script");
+      Object.entries({
+        src: "https://giscus.app/client.js",
+        "data-repo": giscusRepo,
+        "data-repo-id": giscusRepoId,
+        "data-category": giscusCategory,
+        "data-category-id": giscusCategoryId,
+        "data-mapping": "title",
+        "data-strict": "1",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "bottom",
+        "data-theme": giscusTheme(root.classList.contains("dark") ? "dark" : "light"),
+        "data-lang": "en",
+        crossorigin: "anonymous",
+        async: "",
+      }).forEach(([key, value]) => script.setAttribute(key, value));
+      comments.append(script);
+    },
+    { rootMargin: "600px" }
+  );
+  observer.observe(comments);
+}
