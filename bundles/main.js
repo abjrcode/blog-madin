@@ -29,6 +29,14 @@ document.addEventListener("click", (event) => {
   if (anchor) navigator.clipboard?.writeText(anchor.href).catch(() => {});
 });
 
+// Sidebar panels are disclosure widgets on small screens but always open beside the text
+const wide = matchMedia("(min-width: 64rem)");
+const syncPanels = () => {
+  for (const panel of document.querySelectorAll("details.side-panel")) panel.open = wide.matches;
+};
+syncPanels();
+wide.addEventListener("change", syncPanels);
+
 const relative = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 const UNITS = [
   ["year", 365 * 86400],
@@ -49,7 +57,7 @@ function relativeDate(date) {
 }
 
 for (const time of document.querySelectorAll("time[data-relative]")) {
-  time.append(`  (${relativeDate(new Date(time.dateTime))})`);
+  time.append(` · ${relativeDate(new Date(time.dateTime))}`);
 }
 
 const scrollTop = document.getElementById("scroll-to-top");

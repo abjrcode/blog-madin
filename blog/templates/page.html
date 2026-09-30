@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block main %}
-<article>
-  {{<post_header title={page.title} date={page.date} updated={page.updated or ""} />}}
-  {% if page.higher or page.lower %}{{<series_toc series={get_section(path=page.ancestors[-1])} current={page.permalink} />}}{% endif %}
-  {% if page.toc %}{{<post_toc toc={page.toc} />}}{% endif %}
-  <div id="md-content">{{ page.content | safe }}</div>
-</article>
-{{<prev_next lower={page.lower} higher={page.higher} />}}
+{% set series = get_section(path=page.ancestors[-1]) if (page.higher or page.lower) else "" %}
+<div class="post-layout mx-auto grid max-w-6xl gap-x-24 gap-y-8 py-12 md:py-20 lg:grid-cols-[15rem_minmax(0,42.5rem)] lg:justify-center">
+  <aside class="flex flex-col gap-6 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:self-start lg:overflow-y-auto" aria-label="Contents">
+    {% if series %}{{<series_toc series={series} current={page.permalink} />}}{% endif %}
+    {% if page.toc %}{{<post_toc toc={page.toc} />}}{% endif %}
+  </aside>
+  <article class="min-w-0">
+    {{<post_header title={page.title} date={page.date} updated={page.updated or ""} minutes={page.reading_time} lead={page.description or ""} />}}
+    <div id="md-content" class="prose mt-12">{{ page.content | safe }}</div>
+    {{<prev_next lower={page.lower} higher={page.higher} />}}
+    {% if not page.extra.comments_disabled and config.mode != "serve" %}{{<comments />}}{% endif %}
+  </article>
+</div>
 {{<scroll_to_top />}}
-{% if not page.extra.comments_disabled and config.mode != "serve" %}{{<comments />}}{% endif %}
 {% endblock main %}

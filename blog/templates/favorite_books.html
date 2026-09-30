@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block main_extra_classes %}flex flex-col{% endblock main_extra_classes %}
 {% block main %}
-
-<div>
+<div class="mx-auto max-w-[42.5rem] py-12 md:py-20">
+  {{<post_header title={page.title} date={page.date} lead={page.description or ""} />}}
+<div class="prose mt-12">
   <p>
     Below, you will find a list of some of my most favorite books. I used two
     criterion for including a book in this list:
   </p>
-  <ul class="pl-4 list-disc list-inside space-y-1">
+  <ul>
     <li>I have read the entire book, cover to cover</li>
     <li>I enjoyed reading the book, learned a lot from it or both</li>
   </ul>
@@ -15,16 +15,16 @@
   <h1>Computer Science</h1>
 
   <h2>Databases & Distributed Systems</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a
         target="_blank"
         href="https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321"
         >Designing Data-Intensive Applications</a
       >
-      <span class="italic">- Martin Kleppmann</span>
+      <span class="font-sans text-base text-muted"> — Martin Kleppmann</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         While the title suggests that you might be reading about large scale
         data intensive systems, this is not really the case. It is more about
         how databases and distributed systems work and it serves both as an
@@ -36,16 +36,16 @@
   </ul>
 
   <h2>Artificial Intelligence (AI)</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a
         target="_blank"
         href="https://www.manning.com/books/grokking-deep-learning"
         >Grokking Deep Learning</a
       >
-      <span class="italic">- Andrew W. Trask</span>
+      <span class="font-sans text-base text-muted"> — Andrew W. Trask</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         An amazing book if you want to start your journey in the world of AI,
         machine learning and neural networks. Uses Python to build everything
         from scratch.
@@ -54,28 +54,28 @@
   </ul>
 
   <h2>Algorithms &amp; Data Structures</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a target="_blank" href="https://www.crackingthecodinginterview.com/"
         >Cracking the Coding Interview</a
       >
-      <span class="italic">- Gayle Mcdowell</span>
+      <span class="font-sans text-base text-muted"> — Gayle Mcdowell</span>
 
-      <p class="pl-4 text-base">Absolute classic and still relevant today.</p>
+      <p class="mt-2 text-lg text-muted">Absolute classic and still relevant today.</p>
     </li>
   </ul>
 
   <h2>Development &amp; Operations (DevOps)</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a
         target="_blank"
         href="https://www.amazon.nl/-/en/Michael-Nygard-dp-1680502395/dp/1680502395/ref=dp_ob_title_bk"
         >Release It, 2nd Edition</a
       >
-      <span class="italic">- Michael T. Nygard</span>
+      <span class="font-sans text-base text-muted"> — Michael T. Nygard</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         Great book about overall software development lifecycle and looking at
         it from the lens of operations.
       </p>
@@ -83,16 +83,16 @@
   </ul>
 
   <h2>Software Architecture</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a
         target="_blank"
         href="https://pragprog.com/titles/swdddf/domain-modeling-made-functional/"
         >Domain Driven Design Made Functional</a
       >
-      <span class="italic">- Scott Wlaschin</span>
+      <span class="font-sans text-base text-muted"> — Scott Wlaschin</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         Teaches DDD using F# and functional programming. While the focus is on
         how to build systems and model them using a functional language, it
         still serves as a great introduction to DDD.
@@ -105,9 +105,9 @@
         href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"
         >Clean Code</a
       >
-      <span class="italic">- Robert C. Martin</span>
+      <span class="font-sans text-base text-muted"> — Robert C. Martin</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         It is a good read, especially early on in your career. It helps one
         understand how to structure code for readability and maintainability.
         Later on, you will decide for your self what works for you and what
@@ -121,9 +121,9 @@
         href="https://www.manning.com/books/dependency-injection-principles-practices-patterns"
         >Dependency Injection Principles, Practices, and Patterns</a
       >
-      <span class="italic">- Steven van Deursen and Mark Seemann</span>
+      <span class="font-sans text-base text-muted"> — Steven van Deursen and Mark Seemann</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         I read the original one by Mark Seemann
         <span class="italic"
           >(probably the first software book I ever read)</span
@@ -147,7 +147,7 @@
     There are a few reasons for that:
   </p>
 
-  <ul class="pl-4 list-disc list-inside space-y-1">
+  <ul>
     <li>
       Probably a deep sense of
       <a target="_blank" href="https://en.wikipedia.org/wiki/Impostor_syndrome"
@@ -162,16 +162,16 @@
     <li>Zen garden of beautiful ideas</li>
   </ul>
 
-  <div class="mt-8">
+  <div>
     <a
       target="_blank"
       href="https://www.amazon.com/Love-Math-Heart-Hidden-Reality/dp/0465050743"
       >Love and Math</a
     >
 
-    <span class="italic">- Edward Frenkel</span>
+    <span class="font-sans text-base text-muted"> — Edward Frenkel</span>
 
-    <p class="pl-4 text-base">
+    <p class="mt-2 text-lg text-muted">
       Don't let the title fool you. This is not a poetic book. It is one that
       tries to show you the different beautiful sides of Mathematics. Ones you
       probably weren't exposed to in school. It is not really teach you any
@@ -185,21 +185,21 @@
     </p>
   </div>
 
-  <div class="mt-8">
+  <div>
     <a target="_blank" href="https://pimbook.org/"
       >A Programmer's Introduction to Mathematics</a
     >
 
-    <span class="italic">- Jeremy Kun</span>
+    <span class="font-sans text-base text-muted"> — Jeremy Kun</span>
 
-    <p class="pl-4 text-base">
+    <p class="mt-2 text-lg text-muted">
       This can serve as either a refresher or an introduction to the world of
       mathematics.
     </p>
   </div>
 
   <h2>Pure Math</h2>
-  <ul class="list-inside space-y-8">
+  <ul class="list-none pl-0 space-y-8">
     <li>
       <a
         target="_blank"
@@ -207,9 +207,9 @@
         >Book of Proof, 3rd Edition</a
       >
 
-      <span class="italic">- Richard Hammack</span>
+      <span class="font-sans text-base text-muted"> — Richard Hammack</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         First of all, this book is free. Secondly, it is an excellent
         introduction to set theory, logic and proof writing. It has a ton of
         examples and the author explains everything intuitively.
@@ -223,9 +223,9 @@
         >A Friendly Introduction to Abstract Algebra</a
       >
 
-      <span class="italic">- Ryota Matsuura</span>
+      <span class="font-sans text-base text-muted"> — Ryota Matsuura</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         An excellent book that introduces you to the world of Abstract Algebra.
         It is written in proof style but still very approachable and intuitive
         with lots of examples.
@@ -234,7 +234,7 @@
   </ul>
 
   <h2>Group Theory</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a
         target="_blank"
@@ -242,9 +242,9 @@
         >Visual Group Theory</a
       >
 
-      <span class="italic">- Nathan Carter</span>
+      <span class="font-sans text-base text-muted"> — Nathan Carter</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         I discovered Group theory when I was studying Linear Algebra. It turned
         out to be the workhorse of modern mathematics and this is by far the
         best introduction you can have.
@@ -259,13 +259,13 @@
   <br />
   <br />
 
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a target="_blank" href="https://hefferon.net/linearalgebra/"
         >Linear Algebra, 4th Edition</a
       >
-      <span class="italic">- Jim Hefferon</span>
-      <p class="pl-4 text-base">
+      <span class="font-sans text-base text-muted"> — Jim Hefferon</span>
+      <p class="mt-2 text-lg text-muted">
         This is a great introduction to Linear Algebra. It is free and it is
         written in a very intuitive way. It is a great book if you want to
         understand the concepts of Linear Algebra and not just memorize
@@ -280,15 +280,15 @@
   </ul>
 
   <h2>Probability &amp; Statistics</h2>
-  <ul class="list-inside">
+  <ul class="list-none pl-0">
     <li>
       <a target="_blank" href="https://greenteapress.com/wp/think-stats-2e/"
         >Think Stats, 2nd Edition</a
       >
 
-      <span class="italic">- Allen B. Downey</span>
+      <span class="font-sans text-base text-muted"> — Allen B. Downey</span>
 
-      <p class="pl-4 text-base">
+      <p class="mt-2 text-lg text-muted">
         Allen introduces a lot mathematical concepts using a computational
         approach with hands-on Python code, and, all of his books are free. This
         is a great and practical book.
@@ -305,15 +305,16 @@
       >Philosophy: The Basics</a
     >
 
-    <span class="italic">- Nigel Warburton</span>
+    <span class="font-sans text-base text-muted"> — Nigel Warburton</span>
 
-    <p class="pl-4 text-base">
+    <p class="mt-2 text-lg text-muted">
       This is a great introduction to the world of philosophy. The main areas of
       philosophy are covered and the author does a great job in explaining the
       different schools of thought and the main ideas in each. It is a great
       starting point if you want to dive deeper into philosophy.
     </p>
   </div>
+</div>
 </div>
 
 {% endblock main %}

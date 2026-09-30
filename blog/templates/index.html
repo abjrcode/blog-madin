@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block main %}
-<h1 class="mx-auto max-w-4xl text-4xl md:text-5xl font-medium mt-0 mb-8 border-b-0">Latest Articles</h1>
-<div class="relative mx-auto max-w-4xl">
-  <div class="absolute left-1/2 -z-10 border-primary-500 dark:border-primary-200 border-l h-full" aria-hidden="true"></div>
+<div class="mx-auto max-w-3xl py-12 md:py-20">
+  <h1 class="sr-only">{{ config.title }}: {{ config.extra.subtitle }}</h1>
   {% set posts = [get_section(path=p) for p in section.subsections] | sort(attribute="extra.date") | reverse %}
-  <ul class="grid grid-cols-1 gap-16">
+  {# The line runs behind the cards and only shows in the gaps, stitching posts into a timeline #}
+  <div class="relative">
+    <div class="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-accent/40" aria-hidden="true"></div>
+  <ol class="relative grid gap-16">
     {% for post in posts[:10] %}
-    <li class="list-none">
-      {% if post.extra.type == "standalone" %}{{<post_card section={post} />}}{% else %}{{<series_card series={post} />}}{% endif %}
-    </li>
+    <li class="timeline-item">{% if post.extra.type == "standalone" %}{{<post_card section={post} />}}{% else %}{{<series_card series={post} />}}{% endif %}</li>
     {% endfor %}
-  </ul>
+  </ol>
+  </div>
 </div>
 {% endblock main %}
