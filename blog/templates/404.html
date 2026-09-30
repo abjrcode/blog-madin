@@ -1,36 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Page not found | {{ config.title }}{% endblock title %}
-{% block main_extra_classes %}flex flex-col justify-center{% endblock main_extra_classes %}
 {% block main %}
-<div
-  class="flex flex-col items-center min-h-full mx-auto max-w-2xl md:max-w-5xl"
->
-  <div class="flex flex-col items-center">
-    <p class="flex-col text-4xl md:text-5xl lg:text-7xl">
-      Page not found :&lpar;
-      <br />
-    </p>
-    <p class="-mt-2 mb-2 md:text-base sm:text-sm text-xs">
-      Sorry, this address is not valid.
-    </p>
+<div class="mx-auto flex max-w-[42.5rem] flex-col items-center py-24 text-center md:py-32">
+  <p class="eyebrow">404</p>
+  <h1 class="mt-3 font-sans text-4xl md:text-5xl font-semibold tracking-tight">Page not found</h1>
+  <p class="mt-5 text-xl text-muted">Sorry, this address doesn’t lead anywhere.</p>
+  <div class="prose mt-10 text-lg">
+    <p><a href="{{ config.base_url | safe }}">Back to the latest writing</a></p>
+    <p class="text-base text-muted">If a link on this site brought you here, please <a href="https://github.com/abjrcode/blog-madin/issues">report it</a>.</p>
   </div>
-
-  <br />
-  <br />
-
-  <p>
-    <a class="underline" href="{{ config.base_url | safe }}"
-      >Go to the index page</a
-    >.
-  </p>
-  <p class="text-sm md:text-base">
-    If you followed a link on this site, please
-    <a
-      class="underline"
-      href="https://github.com/abjrcode/blog-madin/issues"
-      target="_blank"
-      >report it</a
-    >!
-  </p>
 </div>
 {% endblock main %}

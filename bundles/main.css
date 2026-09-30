@@ -4,63 +4,100 @@
 @source not "../blog/public";
 @source not "../node_modules";
 
-@theme {
-  /* System fonts: zero font requests, no layout shift on load */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    "Noto Sans", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", Menlo,
-    Consolas, "Liberation Mono", monospace;
-
-  --color-primary-50: var(--color-purple-50);
-  --color-primary-100: var(--color-purple-100);
-  --color-primary-200: var(--color-purple-200);
-  --color-primary-300: var(--color-purple-300);
-  --color-primary-400: var(--color-purple-400);
-  --color-primary-500: var(--color-purple-500);
-  --color-primary-600: var(--color-purple-600);
-  --color-primary-700: var(--color-purple-700);
-  --color-primary-800: var(--color-purple-800);
-  --color-primary-900: var(--color-purple-900);
-  --color-primary-950: var(--color-purple-950);
-
-  --color-tone-50: var(--color-gray-50);
-  --color-tone-100: var(--color-gray-100);
-  --color-tone-200: var(--color-gray-200);
-  --color-tone-300: var(--color-gray-300);
-  --color-tone-400: var(--color-gray-400);
-  --color-tone-500: var(--color-gray-500);
-  --color-tone-600: var(--color-gray-600);
-  --color-tone-700: var(--color-gray-700);
-  --color-tone-800: var(--color-gray-800);
-  --color-tone-900: var(--color-gray-900);
-  --color-tone-950: var(--color-gray-950);
-
-  --color-bright: var(--color-white);
-  --color-dark: var(--color-black);
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/literata.woff2") format("woff2");
 }
 
-/* Configure Dark mode based on a class */
+@font-face {
+  font-family: "Literata";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/literata-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/figtree.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono.woff2") format("woff2");
+}
+
+/* Lavender Mist palette. Utilities read these variables, so dark mode only swaps values */
+:root {
+  --bg: #f4f2f8;
+  --surface: #eae6f2;
+  --ink: #221c30;
+  --muted: #5e5770;
+  --rule: #dcd6e6;
+  --accent: #6547a8;
+  --accent-soft: #e6dff4;
+  --code-bg: #211b2e;
+  --code-ink: #e4deee;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #17141f;
+  --surface: #201c2b;
+  --ink: #e3deec;
+  --muted: #9d95ae;
+  --rule: #2d2839;
+  --accent: #b9a5f0;
+  --accent-soft: #2a2340;
+  --code-bg: #100e16;
+  --code-ink: #e4deee;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-code: var(--code-bg);
+  --color-code-ink: var(--code-ink);
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @utility list-roman {
   list-style-type: upper-roman;
 }
 
-@utility list-square {
-  list-style-type: square;
-}
-
-@layer components {
+@layer base {
   html {
-    @apply font-sans;
+    @apply bg-bg text-ink font-serif antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  body {
-    @apply text-lg antialiased;
+  ::selection {
+    @apply bg-accent-soft text-ink;
   }
 
   :target {
-    scroll-margin-top: 1rem;
+    scroll-margin-top: 1.5rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -69,93 +106,190 @@
     }
   }
 
-  .nav-link {
-    @apply uppercase no-underline font-semibold hover:underline;
-  }
-
-  .icon-btn {
-    @apply bg-primary-200 dark:text-primary-700 border border-primary-700 rounded-lg p-1;
-  }
-
-  .card {
-    @apply border border-primary-600 dark:border-primary-200 bg-primary-50 dark:bg-tone-900 shadow-xs rounded-md py-2 px-4 hover:shadow-xl dark:hover:shadow-lg dark:hover:shadow-primary-200 transition-shadow;
-  }
-
   button:not(:disabled),
-  [role="button"]:not(:disabled) {
+  summary {
     cursor: pointer;
   }
 
-  h1 {
-    @apply font-medium text-2xl md:text-3xl mt-8 mb-1 md:mb-2 border-b border-dotted border-primary-300;
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent rounded-sm;
   }
-  h2 {
-    @apply font-medium text-xl md:text-2xl mt-8 mb-1 border-b border-dotted border-primary-300;
+}
+
+@layer components {
+  .nav-link {
+    @apply font-sans text-base text-muted no-underline hover:text-ink transition-colors;
   }
-  h3 {
-    @apply font-medium text-lg md:text-xl mt-8 mb-1 border-b border-dotted border-primary-300;
+
+  .nav-link[aria-current="page"] {
+    @apply text-ink;
   }
-  h4 {
-    @apply font-medium text-base md:text-lg mt-8 mb-1 border-b border-dotted border-primary-300;
+
+  .icon-btn {
+    @apply flex items-center justify-center size-11 rounded-full border border-rule text-muted hover:text-ink hover:bg-surface transition-colors;
   }
-  p {
-    @apply leading-relaxed mb-4;
+
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-widest text-muted;
   }
-  #md-content figcaption {
-    @apply text-center text-sm italic -mt-2;
+
+  .meta {
+    @apply font-sans text-[0.9375rem] text-muted;
   }
-  a {
-    @apply underline underline-offset-2 decoration-1;
+
+  .side-link {
+    @apply flex items-baseline gap-3 rounded-lg px-3 py-2 font-sans text-[0.9375rem] text-muted no-underline hover:text-ink hover:bg-surface transition-colors;
   }
-  #md-content a[target="_blank"] {
-    @apply after:font-light after:text-xs after:content-['\2197'];
+
+  .side-link[aria-current="page"] {
+    @apply bg-accent-soft text-accent font-semibold;
   }
-  #md-content a.heading-anchor {
-    @apply no-underline;
+
+  .nav-card {
+    @apply flex flex-col gap-1.5 rounded-xl border border-rule px-5 py-5 font-sans no-underline hover:border-accent hover:bg-surface transition-colors;
   }
+
+  .timeline-card {
+    @apply rounded-2xl border border-rule bg-surface px-6 py-7 md:px-9 md:py-8 transition-colors hover:border-accent/60;
+  }
+
+  .card-rule {
+    @apply my-4 border-0 border-t border-dotted border-accent/50;
+  }
+
+  .timeline-card .side-link:hover {
+    @apply bg-bg;
+  }
+
+  /* A dot where the line meets each card after the first */
+  .timeline-item + .timeline-item {
+    @apply relative before:absolute before:-top-8 before:left-1/2 before:size-2.5 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-accent before:ring-4 before:ring-bg;
+  }
+
+  /* Long-form text: posts, books, quotes and about all share it */
+  .prose {
+    @apply text-lg md:text-xl leading-[1.8] wrap-break-word;
+  }
+
+  .prose > * + * {
+    @apply mt-5;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    @apply font-sans font-semibold text-ink leading-snug text-balance;
+  }
+
+  .prose h1 {
+    @apply text-2xl md:text-[1.75rem] mt-14;
+  }
+
+  .prose h2 {
+    @apply text-xl md:text-[1.375rem] mt-12;
+  }
+
+  .prose h3,
+  .prose h4 {
+    @apply text-lg md:text-xl mt-10;
+  }
+
+  .prose :is(h1, h2, h3, h4) + * {
+    @apply mt-4;
+  }
+
+  .prose a {
+    @apply text-accent underline decoration-1 underline-offset-[0.2em] decoration-accent/40 hover:decoration-accent transition-colors;
+  }
+
+  .prose a[target="_blank"]::after {
+    @apply text-[0.7em] text-muted;
+    content: "\2197";
+  }
+
+  .prose a.heading-anchor {
+    @apply ml-2 text-muted no-underline;
+  }
+
   @media (hover: hover) {
-    #md-content a.heading-anchor {
+    .prose a.heading-anchor {
       @apply invisible;
     }
 
-    #md-content :hover > a.heading-anchor {
+    .prose :hover > a.heading-anchor {
       @apply visible;
     }
   }
-  #md-content pre {
-    @apply font-mono resize-y border-dotted border-2 p-1 my-2 max-h-216 overflow-auto;
+
+  .prose strong {
+    @apply font-semibold;
   }
-  #md-content pre[style*="height"] {
-    @apply max-h-none;
+
+  .prose blockquote {
+    @apply my-8 rounded-xl bg-accent-soft px-7 py-6 text-ink;
   }
-  #md-content :not(pre) code {
-    @apply font-mono whitespace-nowrap bg-gray-50 dark:bg-primary-800 dark:text-primary-200 border border-gray-400 dark:border-primary-300 px-1 shadow-inner;
+
+  .prose blockquote > * + * {
+    @apply mt-3;
   }
-  #md-content blockquote {
-    @apply bg-primary-50 dark:bg-primary-950 border-l-4 border-primary-300 dark:border-primary-200 p-2 my-4 mx-4 italic;
+
+  .prose pre {
+    @apply my-7 overflow-x-auto rounded-xl bg-code text-code-ink px-7 py-6 font-mono text-[0.9375rem] leading-[1.75];
+    tab-size: 4;
   }
-  #quotes blockquote:nth-child(odd) {
-    @apply -translate-x-8;
+
+  .prose :not(pre) > code {
+    @apply rounded-md bg-surface px-1.5 py-0.5 font-mono text-[0.85em] text-accent whitespace-nowrap;
   }
-  #quotes blockquote:nth-child(even) {
-    @apply translate-x-8;
+
+  .prose ul {
+    @apply list-disc pl-6 space-y-2 marker:text-accent;
   }
-  #quotes p:last-child {
-    @apply text-sm text-right mt-4;
+
+  .prose ol {
+    @apply list-roman pl-8 space-y-2 marker:text-muted marker:font-sans marker:text-base;
   }
-  #md-content ul {
-    @apply pl-4 list-disc list-inside leading-7 my-2 space-y-1;
+
+  .prose hr {
+    @apply my-12 border-rule;
   }
-  #md-content ol {
-    @apply pl-4 list-roman list-inside leading-7 my-2 space-y-1;
+
+  .prose img {
+    @apply mx-auto h-auto max-w-full my-8 rounded-xl;
   }
-  #md-content #footnotes {
-    @apply my-8 border-t leading-8;
+
+  .prose figure img {
+    @apply mb-3;
   }
-  #md-content #footnotes li {
-    @apply text-sm italic my-2;
+
+  .prose figcaption {
+    @apply text-center font-sans text-sm text-muted;
   }
-  #md-content img {
-    @apply mx-auto h-auto max-w-xs md:max-w-xl my-3 p-2 border-2 border-primary-700 dark:border-primary-200 border-dotted bg-primary-50;
+
+  .prose sup a {
+    @apply no-underline font-sans text-[0.75em];
+  }
+
+  .prose .footnote-definition,
+  .prose #footnotes,
+  .prose .footnotes {
+    @apply mt-16 border-t border-rule pt-6 text-base text-muted;
+  }
+
+  .prose table {
+    @apply w-full font-sans text-base;
+  }
+
+  .prose :is(th, td) {
+    @apply border-b border-rule px-3 py-2 text-left;
+  }
+
+  #quotes blockquote {
+    @apply mx-0 text-center text-xl md:text-2xl leading-relaxed italic;
+  }
+
+  #quotes blockquote p:last-child {
+    @apply mt-4 font-sans text-sm not-italic text-muted;
   }
 }

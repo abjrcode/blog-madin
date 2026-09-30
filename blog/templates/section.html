@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block main %}
 {% if section.extra.type == "standalone" %}
-<article>
-  {{<post_header title={section.title} date={section.extra.date} updated={section.extra.updated or ""} />}}
-  {% if section.toc %}{{<post_toc toc={section.toc} />}}{% endif %}
-  <div id="md-content">{{ section.content | safe }}</div>
-</article>
+<div class="post-layout mx-auto grid max-w-6xl gap-x-24 gap-y-8 py-12 md:py-20 lg:grid-cols-[15rem_minmax(0,42.5rem)] lg:justify-center">
+  <aside class="flex flex-col gap-6 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:self-start lg:overflow-y-auto" aria-label="Contents">
+    {% if section.toc %}{{<post_toc toc={section.toc} />}}{% endif %}
+  </aside>
+  <article class="min-w-0">
+    {{<post_header title={section.title} date={section.extra.date} updated={section.extra.updated or ""} minutes={section.reading_time} lead={section.description or ""} />}}
+    <div id="md-content" class="prose mt-12">{{ section.content | safe }}</div>
+    {% if not section.extra.comments_disabled and config.mode != "serve" %}{{<comments />}}{% endif %}
+  </article>
+</div>
 {{<scroll_to_top />}}
-{% if not section.extra.comments_disabled and config.mode != "serve" %}{{<comments />}}{% endif %}
 {% else %}
-{{<series_card series={section} />}}
+<div class="mx-auto max-w-3xl py-12 md:py-20">
+  {{<series_card series={section} />}}
+</div>
 {% endif %}
 {% endblock main %}

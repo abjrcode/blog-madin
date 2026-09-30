@@ -8,5 +8,6 @@ insert_anchor_links = "right"
 
 [extra]
 type = "series"
+short_title = "NTLC series"
 date = "2023-09-20T00:00:00Z"
 +++

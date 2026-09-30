@@ -1,11 +1,7 @@
 {% extends "base.html" %}
-{% block main_extra_classes %}flex flex-col justify-center{% endblock main_extra_classes %}
 {% block main %}
-
-<div class="mx-auto">
-  <div id="md-content" class="text-center">
-    <div id="quotes" class="flex flex-col gap-2">{{ page.content | safe }}</div>
-  </div>
+<div class="mx-auto max-w-[42.5rem] py-12 md:py-20">
+  {{<post_header title={page.title} date={page.date} lead={page.description or ""} />}}
+  <div id="quotes" class="prose mt-12">{{ page.content | safe }}</div>
 </div>
-
 {% endblock main %}
