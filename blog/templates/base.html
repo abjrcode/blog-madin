@@ -33,8 +33,8 @@
     </script>
     <link rel="preload" href="/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="{{ get_url(path='main.g.css', cachebust=true) | safe }}">
-    <script defer src="{{ get_url(path='main.g.js', cachebust=true) | safe }}"></script>
+    <link rel="stylesheet" href="{{ get_url(path='main.g.css') | safe }}?v={{ get_hash(path='main.g.css', sha_type=256, base64=false)[:16] }}">
+    <script defer src="{{ get_url(path='main.g.js') | safe }}?v={{ get_hash(path='main.g.js', sha_type=256, base64=false)[:16] }}"></script>
     {% if config.mode != "serve" %}
     <script type="speculationrules">
       {"prerender": [{"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
