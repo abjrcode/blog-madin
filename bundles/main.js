@@ -152,3 +152,13 @@ if (seriesMenu) {
   });
 }
 
+for (const button of document.querySelectorAll("[data-open-note]")) {
+  const dialog = button.nextElementSibling;
+  button.addEventListener("click", () => dialog.showModal());
+  // Clicks on the backdrop land on the dialog element itself, outside its box
+  dialog.addEventListener("click", (event) => {
+    const box = dialog.getBoundingClientRect();
+    const inside = event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
+    if (!inside) dialog.close();
+  });
+}

@@ -1,320 +1,47 @@
 {% extends "base.html" %}
 {% block main %}
+{% set data = load_data(path="data/books.toml") %}
 <div class="mx-auto max-w-[42.5rem] py-12 md:py-20">
   {{<post_header title={page.title} lead={page.description or ""} />}}
-<div class="prose mt-12">
-  <p>
-    Below, you will find a list of some of my most favorite books. I used two
-    criterion for including a book in this list:
-  </p>
-  <ul>
-    <li>I have read the entire book, cover to cover</li>
-    <li>I enjoyed reading the book, learned a lot from it or both</li>
-  </ul>
-
-  <h1>Computer Science</h1>
-
-  <h2>Databases & Distributed Systems</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321"
-        >Designing Data-Intensive Applications</a
-      >
-      <span class="font-sans text-base text-muted"> — Martin Kleppmann</span>
-
-      <p class="mt-2 text-lg text-muted">
-        While the title suggests that you might be reading about large scale
-        data intensive systems, this is not really the case. It is more about
-        how databases and distributed systems work and it serves both as an
-        excellent explanation as well as a reference. I recommend this if you
-        have been building enterprise applications and have a few years of
-        experience under your belt. Excellent book.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Artificial Intelligence (AI)</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.manning.com/books/grokking-deep-learning"
-        >Grokking Deep Learning</a
-      >
-      <span class="font-sans text-base text-muted"> — Andrew W. Trask</span>
-
-      <p class="mt-2 text-lg text-muted">
-        An amazing book if you want to start your journey in the world of AI,
-        machine learning and neural networks. Uses Python to build everything
-        from scratch.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Algorithms &amp; Data Structures</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a target="_blank" href="https://www.crackingthecodinginterview.com/"
-        >Cracking the Coding Interview</a
-      >
-      <span class="font-sans text-base text-muted"> — Gayle Mcdowell</span>
-
-      <p class="mt-2 text-lg text-muted">Absolute classic and still relevant today.</p>
-    </li>
-  </ul>
-
-  <h2>Development &amp; Operations (DevOps)</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.amazon.nl/-/en/Michael-Nygard-dp-1680502395/dp/1680502395/ref=dp_ob_title_bk"
-        >Release It, 2nd Edition</a
-      >
-      <span class="font-sans text-base text-muted"> — Michael T. Nygard</span>
-
-      <p class="mt-2 text-lg text-muted">
-        Great book about overall software development lifecycle and looking at
-        it from the lens of operations.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Software Architecture</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a
-        target="_blank"
-        href="https://pragprog.com/titles/swdddf/domain-modeling-made-functional/"
-        >Domain Driven Design Made Functional</a
-      >
-      <span class="font-sans text-base text-muted"> — Scott Wlaschin</span>
-
-      <p class="mt-2 text-lg text-muted">
-        Teaches DDD using F# and functional programming. While the focus is on
-        how to build systems and model them using a functional language, it
-        still serves as a great introduction to DDD.
-      </p>
-    </li>
-
-    <li>
-      <a
-        target="_blank"
-        href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"
-        >Clean Code</a
-      >
-      <span class="font-sans text-base text-muted"> — Robert C. Martin</span>
-
-      <p class="mt-2 text-lg text-muted">
-        It is a good read, especially early on in your career. It helps one
-        understand how to structure code for readability and maintainability.
-        Later on, you will decide for your self what works for you and what
-        doesn't.
-      </p>
-    </li>
-
-    <li>
-      <a
-        target="_blank"
-        href="https://www.manning.com/books/dependency-injection-principles-practices-patterns"
-        >Dependency Injection Principles, Practices, and Patterns</a
-      >
-      <span class="font-sans text-base text-muted"> — Steven van Deursen and Mark Seemann</span>
-
-      <p class="mt-2 text-lg text-muted">
-        I read the original one by Mark Seemann
-        <span class="italic"
-          >(probably the first software book I ever read)</span
-        >
-        and it was a great introduction to DI. I must say DI wasn't the learning
-        "thing" that I got out of this book. It was more about how to structure
-        your code and how to think about dependencies. It is a great book and I
-        highly recommend it.
-      </p>
-    </li>
-  </ul>
-
-  <h1>Mathematics</h1>
-
-  <p>
-    As you can see, I enjoy "reading" math books
-    <span class="italic"
-      >(although I read them like a novel and i don't do the exercises, highly,
-      <em>highly</em> not recommended)</span
-    >, even ones that don't or aren't relevant, yet, to software engineering!
-    There are a few reasons for that:
-  </p>
-
-  <ul>
-    <li>
-      Probably a deep sense of
-      <a target="_blank" href="https://en.wikipedia.org/wiki/Impostor_syndrome"
-        >imposter syndrome!</a
-      >
-    </li>
-    <li>
-      Mathematics & Logic are the foundations of computer science and every
-      other science for that matter
-    </li>
-    <li>Keeps the brain a bit sharp</li>
-    <li>Zen garden of beautiful ideas</li>
-  </ul>
-
-  <div>
-    <a
-      target="_blank"
-      href="https://www.amazon.com/Love-Math-Heart-Hidden-Reality/dp/0465050743"
-      >Love and Math</a
-    >
-
-    <span class="font-sans text-base text-muted"> — Edward Frenkel</span>
-
-    <p class="mt-2 text-lg text-muted">
-      Don't let the title fool you. This is not a poetic book. It is one that
-      tries to show you the different beautiful sides of Mathematics. Ones you
-      probably weren't exposed to in school. It is not really teach you any
-      concrete mathematics that you will use tomorrow, but it shows you what it
-      is like to be a mathematician. The reason I love this book is that it
-      takes you on a whirlwind tour in the different landscapes of mathematics.
-      It shows how the different pieces of the puzzle fit together, and the
-      author has an amazing talent in explaining very complex and esoteric
-      concepts very intuitively. I wish "actual" math books were so approachable
-      and intuitive.
-    </p>
-  </div>
-
-  <div>
-    <a target="_blank" href="https://pimbook.org/"
-      >A Programmer's Introduction to Mathematics</a
-    >
-
-    <span class="font-sans text-base text-muted"> — Jeremy Kun</span>
-
-    <p class="mt-2 text-lg text-muted">
-      This can serve as either a refresher or an introduction to the world of
-      mathematics.
-    </p>
-  </div>
-
-  <h2>Pure Math</h2>
-  <ul class="list-none pl-0 space-y-8">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.people.vcu.edu/~rhammack/BookOfProof/"
-        >Book of Proof, 3rd Edition</a
-      >
-
-      <span class="font-sans text-base text-muted"> — Richard Hammack</span>
-
-      <p class="mt-2 text-lg text-muted">
-        First of all, this book is free. Secondly, it is an excellent
-        introduction to set theory, logic and proof writing. It has a ton of
-        examples and the author explains everything intuitively.
-      </p>
-    </li>
-
-    <li>
-      <a
-        target="_blank"
-        href="https://www.amazon.nl/-/en/Ryota-Matsuura/dp/1470468816"
-        >A Friendly Introduction to Abstract Algebra</a
-      >
-
-      <span class="font-sans text-base text-muted"> — Ryota Matsuura</span>
-
-      <p class="mt-2 text-lg text-muted">
-        An excellent book that introduces you to the world of Abstract Algebra.
-        It is written in proof style but still very approachable and intuitive
-        with lots of examples.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Group Theory</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.amazon.com/Visual-Group-Theory-Problem-Book/dp/088385757X"
-        >Visual Group Theory</a
-      >
-
-      <span class="font-sans text-base text-muted"> — Nathan Carter</span>
-
-      <p class="mt-2 text-lg text-muted">
-        I discovered Group theory when I was studying Linear Algebra. It turned
-        out to be the workhorse of modern mathematics and this is by far the
-        best introduction you can have.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Linear Algebra</h2>
-  Linear Algebra is used everywhere. No matter what engineering or scientific
-  discipline you plan to go through, Linear Algebra will be there, guaranteed.
-
-  <br />
-  <br />
-
-  <ul class="list-none pl-0">
-    <li>
-      <a target="_blank" href="https://hefferon.net/linearalgebra/"
-        >Linear Algebra, 4th Edition</a
-      >
-      <span class="font-sans text-base text-muted"> — Jim Hefferon</span>
-      <p class="mt-2 text-lg text-muted">
-        This is a great introduction to Linear Algebra. It is free and it is
-        written in a very intuitive way. It is a great book if you want to
-        understand the concepts of Linear Algebra and not just memorize
-        formulas. Professor Hefferon has a full accompanying video course,
-        <a target="_blank" href="https://www.youtube.com/watch?v=JnTa9XtvmfI"
-          >free on YouTube</a
-        >, that you can follow along while reading through the book. He has also
-        provided answers for every single exercise in the book. Hands down the
-        best course I have taken on the subject.
-      </p>
-    </li>
-  </ul>
-
-  <h2>Probability &amp; Statistics</h2>
-  <ul class="list-none pl-0">
-    <li>
-      <a target="_blank" href="https://greenteapress.com/wp/think-stats-2e/"
-        >Think Stats, 2nd Edition</a
-      >
-
-      <span class="font-sans text-base text-muted"> — Allen B. Downey</span>
-
-      <p class="mt-2 text-lg text-muted">
-        Allen introduces a lot mathematical concepts using a computational
-        approach with hands-on Python code, and, all of his books are free. This
-        is a great and practical book.
-      </p>
-    </li>
-  </ul>
-
-  <h1>Philosophy</h1>
-
-  <div>
-    <a
-      target="_blank"
-      href="https://www.amazon.nl/-/en/Nigel-Warburton/dp/0415693160"
-      >Philosophy: The Basics</a
-    >
-
-    <span class="font-sans text-base text-muted"> — Nigel Warburton</span>
-
-    <p class="mt-2 text-lg text-muted">
-      This is a great introduction to the world of philosophy. The main areas of
-      philosophy are covered and the author does a great job in explaining the
-      different schools of thought and the main ideas in each. It is a great
-      starting point if you want to dive deeper into philosophy.
-    </p>
-  </div>
-</div>
+  <div class="prose mt-10">{{ data.intro | safe }}</div>
+  <p class="mt-6 font-sans text-sm text-muted">Book covers via <a class="underline underline-offset-2 hover:text-accent" href="https://openlibrary.org/">Open Library</a>; where no cover could be found, a generated illustration stands in and says so.</p>
 </div>
 
+<div class="mx-auto max-w-4xl pb-20">
+  {% for group in data.groups %}
+  <section class="mt-14 first:mt-0">
+    <h2 class="font-sans text-2xl md:text-[1.75rem] font-semibold">{{ group.name }}</h2>
+    <ul class="mt-6 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
+      {% for topic in group.topics %}
+      {% for book in topic.books %}
+      <li>
+        <button type="button" class="gallery-book group" data-open-note>
+          {{<book_cover cover={book.cover} title={book.title} />}}
+          <span class="mt-3 block font-sans text-[0.9375rem] font-semibold leading-snug text-ink group-hover:text-accent">{{ book.title }}</span>
+          <span class="block font-sans text-sm text-muted">{{ book.author }}</span>
+        </button>
+        <dialog class="book-dialog">
+          <div class="flex flex-col gap-6 sm:flex-row">
+            <figure class="w-36 shrink-0 self-start">
+              {{<book_cover cover={book.cover} title={book.title} width={320} />}}
+              {% if book?.generated %}<figcaption class="mt-2 text-center font-sans text-xs text-muted">Generated illustration, not the book’s cover</figcaption>
+              {% elif book.cover %}<figcaption class="mt-2 text-center font-sans text-xs text-muted">Cover via <a class="underline underline-offset-2 hover:text-accent" href="https://openlibrary.org/">Open Library</a></figcaption>{% endif %}
+            </figure>
+            <div class="flex flex-col gap-1">
+              <p class="eyebrow">{{ topic.name or group.name }}</p>
+              <h3 class="font-sans text-2xl font-semibold leading-snug">{{ book.title }}</h3>
+              <p class="font-sans text-sm text-muted">{{ book.author }}</p>
+              <p class="book-note mt-3 text-lg leading-relaxed">{{ book.note | safe }}</p>
+              <a class="mt-4 font-sans text-sm text-accent" href="{{ book.url }}" target="_blank">Find the book</a>
+            </div>
+          </div>
+          <form method="dialog"><button class="book-dialog-close" aria-label="Close">&times;</button></form>
+        </dialog>
+      </li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</div>
 {% endblock main %}
