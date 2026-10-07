@@ -19,7 +19,7 @@ minify_html = true
 ignored_content = ["*/README.md", "*/LICENSE-CC-BY-NC"]
 
 # Only served via resize_image, never as the original
-ignored_static = ["ibrahim_najjar.jpg", "about.txt"]
+ignored_static = ["ibrahim_najjar.jpg", "about.txt", "books/*.jpg"]
 
 generate_feeds = true
 feed_filenames = ["atom.xml"]

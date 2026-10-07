@@ -153,3 +153,14 @@
   <figcaption>{{ caption }}</figcaption>
 </figure>
 {%- endcomponent imgcaption %}
+
+{% component book_cover(cover: string, title: string, width: integer = 240, class: string = "") -%}
+{% if cover[-4:] == ".svg" %}
+<img class="book-cover {{ class }}" src="{{ get_url(path=cover) }}" alt="Illustration for {{ title }}" width="400" height="600" loading="lazy" decoding="async">
+{% elif cover %}
+{% set img = resize_image(path=cover, width=width, op="fit_width", format="webp", quality=82) %}
+<img class="book-cover {{ class }}" src="{{ img.url }}" alt="Cover of {{ title }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" decoding="async">
+{% else %}
+<span class="book-cover book-cover-blank {{ class }}" role="img" aria-label="Cover of {{ title }}"><span>{{ title }}</span></span>
+{% endif %}
+{%- endcomponent book_cover %}

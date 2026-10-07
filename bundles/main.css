@@ -155,6 +155,39 @@
     @apply bg-bg font-medium text-accent shadow-sm shadow-accent/10;
   }
 
+  .book-cover {
+    @apply block aspect-[2/3] w-full rounded-md object-cover shadow-md shadow-ink/20 ring-1 ring-ink/10;
+  }
+
+  .book-cover-blank {
+    @apply flex items-end p-3 font-serif text-sm font-semibold leading-snug text-white;
+    background: linear-gradient(to right, color-mix(in oklab, var(--accent) 70%, black) 0 6px, var(--accent) 6px);
+  }
+
+  .book-note a {
+    @apply text-accent underline decoration-accent/40 underline-offset-2;
+  }
+
+  .gallery-book {
+    @apply block w-full text-left;
+  }
+
+  .gallery-book .book-cover {
+    @apply transition duration-300 ease-out;
+  }
+
+  .gallery-book:hover .book-cover {
+    @apply -translate-y-1.5 -rotate-1 shadow-xl shadow-accent/25;
+  }
+
+  .book-dialog {
+    @apply m-auto w-[min(40rem,calc(100vw-2rem))] rounded-2xl border border-rule bg-bg p-6 text-ink shadow-2xl backdrop:bg-ink/40 backdrop:backdrop-blur-sm md:p-8;
+  }
+
+  .book-dialog-close {
+    @apply absolute top-3 right-3 flex size-9 items-center justify-center rounded-full text-2xl text-muted hover:bg-surface hover:text-ink;
+  }
+
   .band-btn {
     @apply flex size-9 items-center justify-center rounded-full text-muted transition hover:bg-bg hover:text-accent active:scale-90;
   }

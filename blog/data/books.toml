@@ -1,0 +1,167 @@
+# Covers in static/books/ come from Open Library (covers.openlibrary.org), fetched by ISBN.
+# `note` and the intros are HTML; `cover` is a path under static/, or empty for a typographic stand-in.
+# `generated = true` marks a drawn stand-in used where no real cover exists.
+
+intro = "<p> Below, you will find a list of some of my most favorite books. I used two criterion for including a book in this list: </p> <ul> <li>I have read the entire book, cover to cover</li> <li>I enjoyed reading the book, learned a lot from it or both</li> </ul>"
+
+[[groups]]
+name = "Computer Science"
+intro = ""
+
+[[groups.topics]]
+name = "Databases & Distributed Systems"
+intro = ""
+
+[[groups.topics.books]]
+title = "Designing Data-Intensive Applications"
+cover = "books/ddia.jpg"
+author = "Martin Kleppmann"
+url = "https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321"
+note = "While the title suggests that you might be reading about large scale data intensive systems, this is not really the case. It is more about how databases and distributed systems work and it serves both as an excellent explanation as well as a reference. I recommend this if you have been building enterprise applications and have a few years of experience under your belt. Excellent book."
+
+[[groups.topics]]
+name = "Artificial Intelligence (AI)"
+intro = ""
+
+[[groups.topics.books]]
+title = "Grokking Deep Learning"
+cover = "books/grokking-dl.jpg"
+author = "Andrew W. Trask"
+url = "https://www.manning.com/books/grokking-deep-learning"
+note = "An amazing book if you want to start your journey in the world of AI, machine learning and neural networks. Uses Python to build everything from scratch."
+
+[[groups.topics]]
+name = "Algorithms & Data Structures"
+intro = ""
+
+[[groups.topics.books]]
+title = "Cracking the Coding Interview"
+cover = "books/ctci.jpg"
+author = "Gayle Mcdowell"
+url = "https://www.crackingthecodinginterview.com/"
+note = "Absolute classic and still relevant today."
+
+[[groups.topics]]
+name = "Development & Operations (DevOps)"
+intro = ""
+
+[[groups.topics.books]]
+title = "Release It, 2nd Edition"
+cover = "books/release-it.jpg"
+author = "Michael T. Nygard"
+url = "https://www.amazon.nl/-/en/Michael-Nygard-dp-1680502395/dp/1680502395/ref=dp_ob_title_bk"
+note = "Great book about overall software development lifecycle and looking at it from the lens of operations."
+
+[[groups.topics]]
+name = "Software Architecture"
+intro = ""
+
+[[groups.topics.books]]
+title = "Domain Driven Design Made Functional"
+cover = "books/ddd-functional.jpg"
+author = "Scott Wlaschin"
+url = "https://pragprog.com/titles/swdddf/domain-modeling-made-functional/"
+note = "Teaches DDD using F# and functional programming. While the focus is on how to build systems and model them using a functional language, it still serves as a great introduction to DDD."
+
+[[groups.topics.books]]
+title = "Clean Code"
+cover = "books/clean-code.jpg"
+author = "Robert C. Martin"
+url = "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"
+note = "It is a good read, especially early on in your career. It helps one understand how to structure code for readability and maintainability. Later on, you will decide for your self what works for you and what doesn't."
+
+[[groups.topics.books]]
+title = "Dependency Injection Principles, Practices, and Patterns"
+cover = "books/di-ppp.jpg"
+author = "Steven van Deursen and Mark Seemann"
+url = "https://www.manning.com/books/dependency-injection-principles-practices-patterns"
+note = "I read the original one by Mark Seemann <em>(probably the first software book I ever read)</em> and it was a great introduction to DI. I must say DI wasn't the learning \"thing\" that I got out of this book. It was more about how to structure your code and how to think about dependencies. It is a great book and I highly recommend it."
+
+[[groups]]
+name = "Mathematics"
+intro = "<p> As you can see, I enjoy \"reading\" math books <em>(although I read them like a novel and i don't do the exercises, highly, <em>highly</em> not recommended)</em>, even ones that don't or aren't relevant, yet, to software engineering! There are a few reasons for that: </p> <ul> <li> Probably a deep sense of <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Impostor_syndrome\">imposter syndrome!</a> </li> <li> Mathematics & Logic are the foundations of computer science and every other science for that matter </li> <li>Keeps the brain a bit sharp</li> <li>Zen garden of beautiful ideas</li> </ul>"
+
+[[groups.topics]]
+name = ""
+intro = ""
+
+[[groups.topics.books]]
+title = "Love and Math"
+cover = "books/love-math.jpg"
+author = "Edward Frenkel"
+url = "https://www.amazon.com/Love-Math-Heart-Hidden-Reality/dp/0465050743"
+note = "Don't let the title fool you. This is not a poetic book. It is one that tries to show you the different beautiful sides of Mathematics. Ones you probably weren't exposed to in school. It is not really teach you any concrete mathematics that you will use tomorrow, but it shows you what it is like to be a mathematician. The reason I love this book is that it takes you on a whirlwind tour in the different landscapes of mathematics. It shows how the different pieces of the puzzle fit together, and the author has an amazing talent in explaining very complex and esoteric concepts very intuitively. I wish \"actual\" math books were so approachable and intuitive."
+
+[[groups.topics.books]]
+title = "A Programmer's Introduction to Mathematics"
+cover = "books/pim.jpg"
+author = "Jeremy Kun"
+url = "https://pimbook.org/"
+note = "This can serve as either a refresher or an introduction to the world of mathematics."
+
+[[groups.topics]]
+name = "Pure Math"
+intro = ""
+
+[[groups.topics.books]]
+title = "Book of Proof, 3rd Edition"
+cover = "books/book-of-proof.jpg"
+author = "Richard Hammack"
+url = "https://www.people.vcu.edu/~rhammack/BookOfProof/"
+note = "First of all, this book is free. Secondly, it is an excellent introduction to set theory, logic and proof writing. It has a ton of examples and the author explains everything intuitively."
+
+[[groups.topics.books]]
+title = "A Friendly Introduction to Abstract Algebra"
+cover = "books/friendly-algebra.jpg"
+author = "Ryota Matsuura"
+url = "https://www.amazon.nl/-/en/Ryota-Matsuura/dp/1470468816"
+note = "An excellent book that introduces you to the world of Abstract Algebra. It is written in proof style but still very approachable and intuitive with lots of examples."
+
+[[groups.topics]]
+name = "Group Theory"
+intro = ""
+
+[[groups.topics.books]]
+title = "Visual Group Theory"
+cover = "books/visual-group.svg"
+generated = true
+author = "Nathan Carter"
+url = "https://www.amazon.com/Visual-Group-Theory-Problem-Book/dp/088385757X"
+note = "I discovered Group theory when I was studying Linear Algebra. It turned out to be the workhorse of modern mathematics and this is by far the best introduction you can have."
+
+[[groups.topics]]
+name = "Linear Algebra"
+intro = "Linear Algebra is used everywhere. No matter what engineering or scientific discipline you plan to go through, Linear Algebra will be there, guaranteed."
+
+[[groups.topics.books]]
+title = "Linear Algebra, 4th Edition"
+cover = "books/hefferon.jpg"
+author = "Jim Hefferon"
+url = "https://hefferon.net/linearalgebra/"
+note = "This is a great introduction to Linear Algebra. It is free and it is written in a very intuitive way. It is a great book if you want to understand the concepts of Linear Algebra and not just memorize formulas. Professor Hefferon has a full accompanying video course, <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=JnTa9XtvmfI\">free on YouTube</a>, that you can follow along while reading through the book. He has also provided answers for every single exercise in the book. Hands down the best course I have taken on the subject."
+
+[[groups.topics]]
+name = "Probability & Statistics"
+intro = ""
+
+[[groups.topics.books]]
+title = "Think Stats, 2nd Edition"
+cover = "books/think-stats.jpg"
+author = "Allen B. Downey"
+url = "https://greenteapress.com/wp/think-stats-2e/"
+note = "Allen introduces a lot mathematical concepts using a computational approach with hands-on Python code, and, all of his books are free. This is a great and practical book."
+
+[[groups]]
+name = "Philosophy"
+intro = ""
+
+[[groups.topics]]
+name = ""
+intro = ""
+
+[[groups.topics.books]]
+title = "Philosophy: The Basics"
+cover = "books/philosophy-basics.jpg"
+author = "Nigel Warburton"
+url = "https://www.amazon.nl/-/en/Nigel-Warburton/dp/0415693160"
+note = "This is a great introduction to the world of philosophy. The main areas of philosophy are covered and the author does a great job in explaining the different schools of thought and the main ideas in each. It is a great starting point if you want to dive deeper into philosophy."
