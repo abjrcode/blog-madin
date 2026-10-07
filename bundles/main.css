@@ -487,14 +487,27 @@
     @apply border-b border-rule px-3 py-2 text-left;
   }
 
+  #quotes {
+    @apply gap-5 md:columns-2;
+  }
+
   #quotes blockquote {
-    @apply mx-0 text-center text-xl md:text-2xl leading-relaxed italic;
+    @apply relative mx-0 mt-0 mb-5 break-inside-avoid rounded-2xl border border-rule bg-surface px-7 pt-14 pb-7 text-left text-xl leading-relaxed italic md:text-2xl transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10;
+  }
+
+  #quotes blockquote::before {
+    @apply absolute top-3 left-6 font-serif text-6xl leading-none text-accent/35 not-italic content-['“'];
+  }
+
+  #quotes blockquote:nth-child(3n + 1) {
+    @apply bg-accent-soft;
   }
 
   #quotes blockquote p:last-child {
-    @apply mt-4 font-sans text-sm not-italic text-muted;
+    @apply mt-4 text-right font-sans text-sm not-italic text-muted;
   }
 }
+
 
 @keyframes card-rise {
   from {

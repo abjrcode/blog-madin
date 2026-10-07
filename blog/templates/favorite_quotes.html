@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
-<div class="mx-auto max-w-[42.5rem] py-12 md:py-20">
-  {{<post_header title={page.title} lead={page.description or ""} />}}
+<div class="mx-auto max-w-4xl py-12 md:py-20">
+  <div class="max-w-[42.5rem]">{{<post_header title={page.title} lead={page.description or ""} />}}</div>
   <div id="quotes" class="prose mt-12">{{ page.content | safe }}</div>
 </div>
 {% endblock main %}
