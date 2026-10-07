@@ -1,8 +1,5 @@
-# Cache-busted via ?h=<sha256> query strings, so they can be cached forever
-/main.g.css
-  Cache-Control: public, max-age=31536000, immutable
-/main.g.js
-  Cache-Control: public, max-age=31536000, immutable
+# Only content-hashed file names may be cached forever: main.g.css/js keep a fixed
+# path, so a request racing a deploy could pin an old copy at the edge.
 /processed_images/*
   Cache-Control: public, max-age=31536000, immutable
 
