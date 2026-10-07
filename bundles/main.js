@@ -125,3 +125,30 @@ if (comments) {
   );
   observer.observe(comments);
 }
+
+document.addEventListener(
+  "pointermove",
+  (event) => {
+    const card = event.target.closest?.(".timeline-card");
+    if (!card) return;
+    const box = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${event.clientX - box.left}px`);
+    card.style.setProperty("--my", `${event.clientY - box.top}px`);
+  },
+  { passive: true }
+);
+
+const seriesMenu = document.querySelector(".series-menu");
+
+if (seriesMenu) {
+  document.addEventListener("click", (event) => {
+    if (seriesMenu.open && !seriesMenu.contains(event.target)) seriesMenu.open = false;
+  });
+  seriesMenu.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && seriesMenu.open) {
+      seriesMenu.open = false;
+      seriesMenu.querySelector("summary").focus();
+    }
+  });
+}
+

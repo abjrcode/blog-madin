@@ -117,16 +117,69 @@
 }
 
 @layer components {
+  .band {
+    @apply relative border-t-[3px] border-b border-t-accent text-ink;
+    background: color-mix(in oklab, var(--accent) 9%, var(--bg));
+    border-bottom-color: color-mix(in oklab, var(--accent) 28%, transparent);
+  }
+
+  .band-inner {
+    @apply mx-auto flex h-14 max-w-5xl items-center gap-2 px-4 sm:gap-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-6;
+  }
+
+  .brand {
+    @apply flex items-center gap-2.5 justify-self-start text-accent no-underline;
+  }
+
+  .brand-mark {
+    @apply shrink-0 transition-transform duration-500 ease-out;
+  }
+
+  .brand:hover .brand-mark {
+    @apply -rotate-6 scale-110;
+  }
+
+  .band-nav {
+    @apply flex items-center gap-0.5 sm:gap-1;
+  }
+
+  .band-actions {
+    @apply ml-auto flex shrink-0 gap-1.5 justify-self-end;
+  }
+
   .nav-link {
-    @apply font-sans text-base text-muted no-underline hover:text-ink transition-colors;
+    @apply rounded-full px-2.5 py-1.5 font-sans text-sm text-muted no-underline transition-colors hover:text-ink sm:px-3.5 sm:text-[0.9375rem];
   }
 
   .nav-link[aria-current="page"] {
-    @apply text-ink;
+    @apply bg-bg font-medium text-accent shadow-sm shadow-accent/10;
+  }
+
+  .band-btn {
+    @apply flex size-9 items-center justify-center rounded-full text-muted transition hover:bg-bg hover:text-accent active:scale-90;
   }
 
   .icon-btn {
-    @apply flex items-center justify-center size-11 rounded-full border border-rule text-muted hover:text-ink hover:bg-surface transition-colors;
+    @apply flex items-center justify-center size-10 rounded-full border border-rule text-muted transition hover:text-accent hover:bg-surface hover:border-accent/40 active:scale-90;
+  }
+
+  .theme-btn svg {
+    @apply transition-transform duration-500;
+  }
+
+  .theme-btn:hover svg {
+    @apply rotate-45;
+  }
+
+  .read-progress {
+    @apply fixed inset-x-0 top-0 z-50 h-[3px] origin-left scale-x-0 bg-accent;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .read-progress {
+      animation: read-progress linear both;
+      animation-timeline: scroll(root);
+    }
   }
 
   .eyebrow {
@@ -150,20 +203,136 @@
   }
 
   .timeline-card {
-    @apply rounded-2xl border border-rule bg-surface px-6 py-7 md:px-9 md:py-8 transition-colors hover:border-accent/60;
+    @apply relative isolate flex flex-col overflow-hidden rounded-2xl border border-rule bg-surface px-6 py-7 md:px-9 md:py-8 transition duration-300 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10;
+  }
+
+  /* main.js sets --mx and --my from the pointer position */
+  .timeline-card::before {
+    @apply pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 content-[''];
+    background: radial-gradient(26rem circle at var(--mx, 50%) var(--my, 0%), color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%);
   }
 
   .card-rule {
-    @apply my-4 border-0 border-t border-dotted border-accent/50;
+    @apply relative my-4 block h-px border-t border-dotted border-accent/50;
+  }
+
+  .card-rule::after {
+    @apply absolute -top-px left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out content-[''];
+  }
+
+  .timeline-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .timeline-card:hover .card-rule::after {
+    @apply scale-x-100;
+  }
+
+  .card-foot {
+    @apply mt-6 flex justify-end;
+  }
+
+  .series-nav {
+    @apply mb-8 flex flex-col;
+  }
+
+  .series-arrow {
+    @apply flex size-9 items-center justify-center rounded-full border border-rule text-muted transition hover:border-accent/40 hover:bg-surface hover:text-accent active:scale-90;
+  }
+
+  .series-menu {
+    @apply relative;
+  }
+
+  .series-menu-btn {
+    @apply -ml-2 flex min-h-10 list-none items-center gap-2 rounded-lg px-2 transition-colors hover:bg-surface [&::-webkit-details-marker]:hidden;
+  }
+
+  .series-menu-chevron {
+    @apply transition-transform duration-300;
+  }
+
+  .series-menu[open] .series-menu-chevron {
+    @apply rotate-180;
+  }
+
+  .series-menu-list {
+    @apply absolute left-0 top-full z-30 mt-2 flex w-max max-w-[min(22rem,calc(100vw-3rem))] flex-col gap-0.5 rounded-xl border border-rule bg-bg p-2 shadow-xl shadow-accent/10;
+  }
+
+  .series-menu-item {
+    @apply flex items-center gap-3 rounded-lg px-2.5 py-2 font-sans text-[0.9375rem] text-muted no-underline transition-colors hover:bg-surface hover:text-ink;
+  }
+
+  .series-menu-item[aria-current="page"] {
+    @apply bg-accent-soft font-semibold text-accent;
+  }
+
+  /* Parts before the current one are tinted */
+  .series-track {
+    @apply flex gap-1.5;
+  }
+
+  .series-track li {
+    @apply flex-1;
+  }
+
+  .series-seg {
+    @apply block py-3;
+  }
+
+  .series-seg::before {
+    @apply block h-1.5 rounded-full bg-rule transition-colors content-[''];
+  }
+
+  .series-track li:has(~ li > [aria-current]) .series-seg::before {
+    @apply bg-accent/45;
+  }
+
+  .series-seg[aria-current]::before {
+    @apply bg-accent;
+  }
+
+  .series-seg:hover::before {
+    @apply bg-accent/75;
+  }
+
+  .series-badge {
+    @apply inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 font-sans text-xs font-semibold uppercase tracking-wider text-accent;
+  }
+
+  .series-part {
+    @apply relative z-20 flex h-full items-start gap-3.5 rounded-xl border border-rule bg-bg/60 p-4 no-underline transition duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-bg hover:shadow-md hover:shadow-accent/10;
+  }
+
+  .series-part-num {
+    @apply flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft font-mono text-sm font-semibold text-accent transition-colors;
+  }
+
+  .series-part:hover .series-part-num {
+    @apply bg-accent text-bg;
+  }
+
+  .timeline-card .side-link {
+    @apply relative z-20;
   }
 
   .timeline-card .side-link:hover {
     @apply bg-bg;
   }
 
-  /* A dot where the line meets each card after the first */
   .timeline-item + .timeline-item {
-    @apply relative before:absolute before:-top-8 before:left-1/2 before:size-2.5 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-accent before:ring-4 before:ring-bg;
+    @apply relative before:absolute before:-top-8 before:left-1/2 before:size-2.5 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-accent/60 before:ring-4 before:ring-bg before:transition before:duration-300 hover:before:scale-150 hover:before:bg-accent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .timeline-item {
+        animation: card-rise linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+      }
+    }
   }
 
   /* Long-form text: posts, books, quotes and about all share it */
@@ -291,5 +460,18 @@
 
   #quotes blockquote p:last-child {
     @apply mt-4 font-sans text-sm not-italic text-muted;
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.98);
+  }
+}
+
+@keyframes read-progress {
+  to {
+    scale: 1 1;
   }
 }
