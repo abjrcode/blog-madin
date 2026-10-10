@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 {% set series = get_section(path=page.ancestors[-1]) if (page.higher or page.lower) else "" %}
-<div class="post-layout mx-auto grid max-w-6xl gap-x-24 gap-y-8 py-12 md:py-20 lg:grid-cols-[15rem_minmax(0,42.5rem)] lg:justify-center">
+<div class="post-layout mx-auto grid max-w-6xl gap-x-12 gap-y-8 py-12 md:py-16 lg:grid-cols-[14rem_minmax(0,52rem)] lg:justify-center">
   <aside class="flex flex-col gap-6 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:self-start lg:overflow-y-auto" aria-label="Contents">
     {% if page.toc %}{{<post_toc toc={page.toc} />}}{% endif %}
   </aside>
