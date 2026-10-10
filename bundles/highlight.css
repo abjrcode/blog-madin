@@ -14,6 +14,8 @@
 
 .giallo-ln {
   color: #6f6784;
+  margin-right: 2ch;
+  user-select: none;
 }
 
 .z-1 { color: #9fd0e8; }

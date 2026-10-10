@@ -162,3 +162,59 @@ for (const button of document.querySelectorAll("[data-open-note]")) {
     if (!inside) dialog.close();
   });
 }
+
+const COLLAPSE_AFTER = 40;
+
+const ICON = (path) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+const COPY_ICON = ICON('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/>');
+const COPIED_ICON = ICON('<path d="M5 12.5l4.5 4.5L19 7.5"/>');
+
+for (const pre of document.querySelectorAll(".prose pre")) {
+  const lines = pre.querySelectorAll(".giallo-l");
+
+  for (const line of lines) {
+    // Line number gutter (2ch margin in highlight.css) plus leading spaces, so wrapped rows line up under the code
+    const number = line.querySelector(".giallo-ln");
+    const gutter = number ? number.textContent.length + 2 : 0;
+    const code = number ? line.textContent.slice(number.textContent.length) : line.textContent;
+    const hang = gutter + code.match(/^\s*/)[0].replace(/\t/g, "    ").length;
+    if (hang) line.style.setProperty("--hang", `${hang}ch`);
+  }
+
+  const copy = document.createElement("button");
+  copy.type = "button";
+  copy.className = "code-copy";
+  copy.setAttribute("aria-label", "Copy code");
+  copy.innerHTML = COPY_ICON;
+  copy.addEventListener("click", async () => {
+    const text = [...lines]
+      .map((line) => line.textContent.slice(line.querySelector(".giallo-ln")?.textContent.length ?? 0))
+      .join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      copy.innerHTML = COPIED_ICON;
+      copy.setAttribute("aria-label", "Copied");
+    } catch {
+      return;
+    }
+    clearTimeout(copy.reset);
+    copy.reset = setTimeout(() => {
+      copy.innerHTML = COPY_ICON;
+      copy.setAttribute("aria-label", "Copy code");
+    }, 1500);
+  });
+  pre.append(copy);
+
+  if (lines.length > COLLAPSE_AFTER) {
+    pre.classList.add("collapsed");
+    const bar = document.createElement("div");
+    bar.className = "code-expand";
+    bar.innerHTML = `<button type="button">Show all ${lines.length} lines</button>`;
+    bar.firstChild.addEventListener("click", () => {
+      pre.classList.remove("collapsed");
+      bar.remove();
+    });
+    pre.append(bar);
+  }
+}

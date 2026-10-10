@@ -437,8 +437,44 @@
   }
 
   .prose pre {
-    @apply my-7 overflow-x-auto rounded-xl bg-code text-code-ink px-7 py-6 font-mono text-[0.9375rem] leading-[1.75];
+    @apply relative my-7 overflow-x-auto rounded-xl bg-code text-code-ink px-4 py-5 font-mono text-[0.8125rem] leading-[1.7] sm:px-7 sm:py-6 sm:text-[0.9375rem] sm:leading-[1.75];
     tab-size: 4;
+  }
+
+  /* Lines wrap instead of scrolling sideways. As a flex column, the newlines between lines collapse away */
+  .prose pre > code {
+    @apply flex flex-col whitespace-pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* Wrapped rows hang past the line's own indent; main.js sets --hang to that indent in ch */
+  .prose pre .giallo-l {
+    --indent: calc(var(--hang, 0ch) + 2ch);
+    padding-left: var(--indent);
+    text-indent: calc(-1 * var(--indent));
+  }
+
+  .prose pre.collapsed {
+    @apply overflow-hidden;
+    max-height: 30lh;
+  }
+
+  .code-expand {
+    @apply absolute inset-x-0 bottom-0 flex justify-center pt-16 pb-4 font-sans text-sm;
+    background: linear-gradient(transparent, var(--code-bg) 70%);
+  }
+
+  .code-copy {
+    @apply absolute top-2.5 right-2.5 grid size-8 place-items-center rounded-lg border border-code-ink/20 bg-code text-code-ink/70 transition-colors hover:border-accent hover:text-accent sm:top-3.5 sm:right-3.5;
+  }
+
+  /* Keeps the first line clear of the copy button */
+  .prose pre .giallo-l:first-child {
+    padding-right: 2.25rem;
+  }
+
+  .code-expand button {
+    @apply rounded-full border border-code-ink/25 bg-code px-4 py-1.5 text-code-ink hover:border-accent hover:text-accent;
   }
 
   .prose :not(pre) > code {
