@@ -27,7 +27,7 @@ This is not just for compliance purposes or cyber security. It is also for opera
 
 Most organizations solve this by creating a dedicated service account and then give certain people the ability to manage said account. The service account itself is used to generate API keys and other secrets that are then used by other systems or users.
 
-For example, let's say you're using GitHub. You can create a service account and give it access to your repositories. Then you can generate an API key for that service account and use it from other systems that need access to GitHub <sup><a href="#github_apps">1</a></sup>.
+For example, let's say you're using GitHub. You can create a service account and give it access to your repositories. Then you can generate an API key for that service account and use it from other systems that need access to GitHub[^github_apps].
 
 ## So what's the problem?
 
@@ -48,7 +48,7 @@ If all Swervo did was store your secrets, it wouldn't be that useful. Swervo's j
 
 I did this beforehand for a few systems, Postgres, AWS IAM credentials to name a few. I wanted Swervo to support all of these and more.
 
-I also used it as an opportunity to learn Go and React. I discovered [Wails](https://wails.io/) <sup><a href="#wails">2</a></sup> along the way and published a [blog post](@/cross-wails/_index.md) _(and an [open source project](https://github.com/abjrcode/cross-wails))_ to help compile and build a [CGO](https://go.dev/blog/cgo) cross-platform application.
+I also used it as an opportunity to learn Go and React. I discovered [Wails](https://wails.io/)[^wails] along the way and published a [blog post](@/cross-wails/_index.md) _(and an [open source project](https://github.com/abjrcode/cross-wails))_ to help compile and build a [CGO](https://go.dev/blog/cgo) cross-platform application.
 
 ### Necessary Features
 
@@ -85,7 +85,5 @@ It sounds so obvious in hindsight, but I guess I had to learn it the hard way.
 
 Nevertheless, I still decided to publish [Swervo as an open source project](https://github.com/abjrcode/swervo). Maybe someone will find it useful or extend it in a way I did not expect, or perhaps someone will be inspired by it and build something better.
 
-<ol id="footnotes"> 
- <li id="github_apps">GitHub provides GitHub Apps to solve this problem and they are the right choice if you are integrating apps from 3rd party providers with your GitHub organization, but in many cases they are an overkill for simple use cases so you still need personal access tokens</li>
- <li id="wails">An Electron alternative that allows you to use Go and any frontend technology to build cross-platform desktop applications</li>
-</ol>
+[^github_apps]: GitHub provides GitHub Apps to solve this problem and they are the right choice if you are integrating apps from 3rd party providers with your GitHub organization, but in many cases they are an overkill for simple use cases so you still need personal access tokens
+[^wails]: An Electron alternative that allows you to use Go and any frontend technology to build cross-platform desktop applications

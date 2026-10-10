@@ -30,6 +30,8 @@ external_links_no_referrer = true
 render_emoji = true
 smart_punctuation = true
 lazy_async_image = true
+# Numbered at the bottom of the page with links back to each reference
+bottom_footnotes = true
 
 [markdown.highlighting]
 theme = "monokai"

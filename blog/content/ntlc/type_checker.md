@@ -40,7 +40,7 @@ const y = "hello" + 3;
 
 This is not about type inference but about static vs dynamic typing, which we will get to in a bit.
 
-You might think all of this is very obvious, and it is in this silly example, but this can get _really tricky_ as you add functions and more complex types to a language<sup><a href="#type_inference">1</a></sup>.
+You might think all of this is very obvious, and it is in this silly example, but this can get _really tricky_ as you add functions and more complex types to a language[^type_inference].
 
 If JavaScript was statically typed, then we would have to specify the types of `x` and `y` explicitly.
 
@@ -122,10 +122,6 @@ The algorithm is very similar to the recursive descent algorithm we used to pars
 Recursion would always stop at terminal nodes since those are always going to be either `0`, `true` or `false` which types we know.
 
 Again, have a look at the code and I hope all of this would make perfect sense.
-
-<ol id="footnotes">
-  <li id="type_inference"><a target="_blank" href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> seems to be the most widely used type-inference algorithm. <a target="_blank" href="https://medium.com/@dhruvrajvanshi/type-inference-for-beginners-part-1-3e0a5be98a4b">Type Inference for Beginners</a> and <a target="_blank" href="https://mukulrathi.com/create-your-own-programming-language/intro-to-type-checking/">Intro to Type Checking</a> do a great job of explaining the concepts</li>
-</ol>
 
 # Code
 
@@ -528,3 +524,5 @@ mod test_type_checker_unhappy_path {
     }
 }
 ```
+
+[^type_inference]: [Hindley-Milner](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system) seems to be the most widely used type-inference algorithm. [Type Inference for Beginners](https://medium.com/@dhruvrajvanshi/type-inference-for-beginners-part-1-3e0a5be98a4b) and [Intro to Type Checking](https://mukulrathi.com/create-your-own-programming-language/intro-to-type-checking/) do a great job of explaining the concepts

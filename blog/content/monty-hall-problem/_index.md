@@ -40,7 +40,7 @@ It turns out that you should always switch. You will have a 2/3 (~66%) chance of
 
 Now if your intuition failed you as well, don't worry, you are not alone in this.
 
-When the problem was first published somewhere in the 90s, many people, including mathematicians, wrote to the author claiming that he was wrong. Many who supposedly had PhD's in mathematics. Even [Paul Erdős](https://en.wikipedia.org/wiki/Paul_Erd%C5%91s), one of the most prolific mathematicians of the 20th century, had to be shown a computer simulation before he was convinced<sup><a href="#monty_hall_background">1</a></sup>.
+When the problem was first published somewhere in the 90s, many people, including mathematicians, wrote to the author claiming that he was wrong. Many who supposedly had PhD's in mathematics. Even [Paul Erdős](https://en.wikipedia.org/wiki/Paul_Erd%C5%91s), one of the most prolific mathematicians of the 20th century, had to be shown a computer simulation before he was convinced[^monty_hall_background].
 
 I was no different. Even after I saw the solution and the reasoning behind it, I was still trying to justify why and how that solution could be wrong.
 
@@ -104,8 +104,4 @@ I hope this post was helpful in some way. If you're still struggling to accept t
 
 Explaining how you're thinking about the problem from your perspective, phrased in your own words, might help me help you eliminate the confusion.
 
-<ol id="footnotes"> 
- <li id="monty_hall_background"><a target="_blank" href="https://en.wikipedia.org/wiki/Monty_Hall_problem
-">https://en.wikipedia.org/wiki/Monty_Hall_problem
-</a></li>
-</ol>
+[^monty_hall_background]: <https://en.wikipedia.org/wiki/Monty_Hall_problem>

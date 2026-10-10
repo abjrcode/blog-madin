@@ -9,17 +9,17 @@ weight = 6
 
 # Introduction
 
-Welcome to the fourth and final step in our journey. This step is what differentiates a compiled language from an interpreted one<sup>[1](#compiled_vs_interpreted)</sup>
+Welcome to the fourth and final step in our journey. This step is what differentiates a compiled language from an interpreted one[^compiled_vs_interpreted]
 
 In interpreted languages, the interpreter is responsible for executing the program. It does so by reading the source code, parsing it into an AST and executing the AST directly. JavaScript, Python and Ruby are examples of interpreted languages.
 
-In compiled languages, the compiler reads the source code, parses it into an AST then transforms<sup>[2](#visitor_pattern)</sup> the AST into an [Intermediate Representations (IR)](https://en.wikipedia.org/wiki/Intermediate_representation), assembly code or directly into machine code. The end user can then run the resulting binary directly using their operating system. C, C++ and Rust are examples of compiled languages.
+In compiled languages, the compiler reads the source code, parses it into an AST then transforms[^visitor_pattern] the AST into an [Intermediate Representations (IR)](https://en.wikipedia.org/wiki/Intermediate_representation), assembly code or directly into machine code. The end user can then run the resulting binary directly using their operating system. C, C++ and Rust are examples of compiled languages.
 
 ## Low Level Virtual Machine (LLVM)
 
 Most compilers used to implement code generation directly, but as the number of [platforms](https://en.wikipedia.org/wiki/Computing_platform) _(Windows, OSx, \*Nix)_ kept growing and the number of [compute architectures](https://en.wikipedia.org/wiki/Comparison_of_instruction_set_architectures) became even larger _(think x86_64, arch64 etc...)_, it became harder to maintain a single code generator that targets all platforms.
 
-LLVM<sup>[3](#cranelift)</sup> was born out of the need to solve this problem<sup>[4](#lsp_similarity)</sup>. It is a collection of tools and libraries that can be used to build compiler **backend**s.
+LLVM[^cranelift] was born out of the need to solve this problem[^lsp_similarity]. It is a collection of tools and libraries that can be used to build compiler **backend**s.
 
 Everything that we have worked on so far, i.e. the lexer, parser and type checker are part of the **frontend** of a compiler.
 
@@ -197,13 +197,6 @@ If you feel like you have a good grasp of most concepts and would like to challe
 - Add support for user defined types
 
 The possibilities are endless really. Have fun and happy hacking!
-
-<ol id="footnotes">
-  <li id="compiled_vs_interpreted">Some interpreted languages perform some compilation to speed things up at execution time, and some even support both interpretation and compilation which makes it hard to draw a distinction</li>
-  <li id="visitor_pattern"><a target="_blank" href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</a> is a common OOP pattern that is used to implement both interpretation and transformation of AST</li>
-  <li id="cranelift"><a href="https://cranelift.dev/">Cranelift</a> seems to be another option. It is written in Rust, but it was/is still new and not as well documented as LLVM at the time I looked into it</li>
-  <li id="lsp_similarity">This is the same as the idea behind <a href="/ntlc/lsp/#intro">LSPs</a> whereby a single Language Server can be used by multiple "frontend" client editors</li>
-</ol>
 
 # Code
 
@@ -1090,3 +1083,8 @@ mod code_generator_builtins_tests {
     }
 }
 ```
+
+[^compiled_vs_interpreted]: Some interpreted languages perform some compilation to speed things up at execution time, and some even support both interpretation and compilation which makes it hard to draw a distinction
+[^visitor_pattern]: [Visitor pattern](https://en.wikipedia.org/wiki/Visitor_pattern) is a common OOP pattern that is used to implement both interpretation and transformation of AST
+[^cranelift]: [Cranelift](https://cranelift.dev/) seems to be another option. It is written in Rust, but it was/is still new and not as well documented as LLVM at the time I looked into it
+[^lsp_similarity]: This is the same as the idea behind [LSPs](/ntlc/lsp/#intro) whereby a single Language Server can be used by multiple "frontend" client editors

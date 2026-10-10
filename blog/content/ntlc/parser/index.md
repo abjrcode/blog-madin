@@ -54,7 +54,7 @@ We need to somehow extract "meaning" from the source code, and the way we extrac
 
 ## Language and Grammar
 
-The source code is written in a language, and we need to understand that language. The best solution that we "humans" came up with so far to "understand" <sup><a href="#large_language_models">1</a></sup> language was to extract structure from it, and the way we extract structure is through following a systematic grammar.
+The source code is written in a language, and we need to understand that language. The best solution that we "humans" came up with so far to "understand"[^large_language_models] language was to extract structure from it, and the way we extract structure is through following a systematic grammar.
 
 For example, in the case of natural languages such as English, we have a grammar rule that tells us that a sentence is composed of a subject, a verb, and an object.
 
@@ -64,7 +64,7 @@ The parser is the machinery that carries out the task of extracting structure fr
 
 ## Theory and Practice
 
-As far as I have seen, parsing theory which lends itself to the study of grammars and languages seems to be one of the most studied topics in compilers and computer science in general. There is so much literature and academic work on the topic<sup><a href="#parsing_theory">2</a></sup> that it is impossible to give it justice in a single blog post<sup><a href="#recommendation_grammar_book">3</a></sup>.
+As far as I have seen, parsing theory which lends itself to the study of grammars and languages seems to be one of the most studied topics in compilers and computer science in general. There is so much literature and academic work on the topic[^parsing_theory] that it is impossible to give it justice in a single blog post[^recommendation_grammar_book].
 
 For our purposes, I am going to make a very gross simplification and say that grammar is just a bunch of substitution rules. For our language, NTLC, the grammar is:
 
@@ -132,7 +132,7 @@ As I said earlier, there is a lot of theory on parsing and so many techniques, b
 
 Why did I choose this technique?
 
-Honestly, it is the only kind of parsing technique that people actually implement by hand<sup><a href="#parsing_techniques">4</a></sup>. Every other technique is typically implemented by Parser Generators<sup><a href="#tree_sitter">5</a></sup>
+Honestly, it is the only kind of parsing technique that people actually implement by hand[^parsing_techniques]. Every other technique is typically implemented by Parser Generators[^tree_sitter]
 
 ## Recursive Descent Parsing
 
@@ -237,18 +237,9 @@ I also did not mention two possible problems that could rise in different gramma
 
 For a better understanding on both issues and their solutions, I refer you to [Pratt Parsers: Expression Parsing Made Easy](https://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/) and [Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html).
 
-Okay, with all this talk you might think the implementation is pretty complex<sup><a href="#error_recovery">6</a></sup>, but actually it almost _rolls off the tongue_.
+Okay, with all this talk you might think the implementation is pretty complex[^error_recovery], but actually it almost _rolls off the tongue_.
 
 So, without further ado, I leave you with the code.
-
-<ol id="footnotes">
-  <li id="large_language_models">Recent advances in AI and specifially <a target="_blank" href="https://www.elastic.co/what-is/large-language-models">Largage Language Models (LLMs)</a> might present a different approach to understanding language. After all, many people communicate and understand others although they have never taken a single grammar class</li>
-  <li id="parsing_theory">There does not seem to be much recent research on the topic though. I think it's mainly because there aren't any stones which has not been turned. i.e., it is a solved problem</li>
-  <li id="recommendation_grammar_book">I highly recommend <a target="_blank" href="https://dickgrune.com/Books/PTAPG_2nd_Edition/">Parsing Techniques - A Practical Guide</a> for a very good understanding of both grammar and parsing techniques. It is an easy read even if you don't have a technical background</li>
-  <li id="parsing_techniques">Funny enough, it is also the least studied theoratically. Most research covers the other techniques that are implemented by Parser Generators. Read <a target="_blank" href="https://tratt.net/laurie/blog/2020/which_parsing_approach.html">Which Parsing Approach</a> for a recap</li>
-  <li id="tree_sitter"><a target="_blank" href="https://tree-sitter.github.io/tree-sitter/">Tree Sitter</a> seems to be one of the most powerful and recent Parser Generators</li>
-  <li id="error_recovery">The implementation of recursive descent is simple. What turned out to be difficult when implementing parsers in general is two topics that we don't cover in this post: error recovery and error reporting, also incremental parsing</li>
-</ol>
 
 # Code
 
@@ -845,3 +836,10 @@ mod tests_sad_path {
 }
 
 ```
+
+[^large_language_models]: Recent advances in AI and specifially [Largage Language Models (LLMs)](https://www.elastic.co/what-is/large-language-models) might present a different approach to understanding language. After all, many people communicate and understand others although they have never taken a single grammar class
+[^parsing_theory]: There does not seem to be much recent research on the topic though. I think it's mainly because there aren't any stones which has not been turned. i.e., it is a solved problem
+[^recommendation_grammar_book]: I highly recommend [Parsing Techniques - A Practical Guide](https://dickgrune.com/Books/PTAPG_2nd_Edition/) for a very good understanding of both grammar and parsing techniques. It is an easy read even if you don't have a technical background
+[^parsing_techniques]: Funny enough, it is also the least studied theoratically. Most research covers the other techniques that are implemented by Parser Generators. Read [Which Parsing Approach](https://tratt.net/laurie/blog/2020/which_parsing_approach.html) for a recap
+[^tree_sitter]: [Tree Sitter](https://tree-sitter.github.io/tree-sitter/) seems to be one of the most powerful and recent Parser Generators
+[^error_recovery]: The implementation of recursive descent is simple. What turned out to be difficult when implementing parsers in general is two topics that we don't cover in this post: error recovery and error reporting, also incremental parsing

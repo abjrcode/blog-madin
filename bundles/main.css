@@ -520,10 +520,29 @@
     @apply no-underline font-sans text-[0.75em];
   }
 
-  .prose .footnote-definition,
-  .prose #footnotes,
   .prose .footnotes {
     @apply mt-16 border-t border-rule pt-6 text-base text-muted;
+  }
+
+  /* Zola numbers references as [1], so the list must count the same way, not in roman */
+  .prose .footnotes-list {
+    @apply list-decimal space-y-3 pl-6 marker:font-sans marker:text-sm;
+  }
+
+  .prose .footnotes-list li:target {
+    @apply text-ink marker:text-accent;
+  }
+
+  .prose .footnote-reference {
+    @apply font-sans text-[0.7em] leading-none;
+  }
+
+  .prose .footnote-reference a {
+    @apply no-underline;
+  }
+
+  .prose .footnotes-list a[href*="#fr-"] {
+    @apply ml-1 no-underline;
   }
 
   .prose table {

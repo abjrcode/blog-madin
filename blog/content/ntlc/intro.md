@@ -39,7 +39,7 @@ The book uses a language called "Simply Typed Lambda Calculus" to demonstrate th
 
 The language itself is so simple that one might not even call it a language, but that also makes for a great learning playground.
 
-Also, I have never built a language before so this felt like a great place to start, and, it will allow us to build the full compiler pipeline<sup><a href="#full_compiler_pipeline">1</a></sup>: including a type checker, simple IDE integration and native code generation from start to finish.
+Also, I have never built a language before so this felt like a great place to start, and, it will allow us to build the full compiler pipeline[^full_compiler_pipeline]: including a type checker, simple IDE integration and native code generation from start to finish.
 
 ### Small Interlude
 
@@ -81,6 +81,4 @@ In the next chapter, we will build the first stage of our language compiler -- t
 
 [See you there!](@/ntlc/lexer/index.md)
 
-<ol id="footnotes"> 
- <li id="full_compiler_pipeline">It is as full of a pipeline as possible with such simple language that doesn't have many constructs but it is more than enough for a start.</li>
-</ol>
+[^full_compiler_pipeline]: It is as full of a pipeline as possible with such simple language that doesn't have many constructs but it is more than enough for a start.

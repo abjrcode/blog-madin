@@ -9,13 +9,13 @@ weight = 2
 
 # What is a lexer?
 
-The **lexer**<sup><a href="#lexer_derivation">1</a></sup>, also known as the **tokenizer** or the **scanner**, is the first stage in the compilation process. It takes source code _(NTLC source code in our case)_ and converts it into a stream of "tokens".
+The **lexer**[^lexer_derivation], also known as the **tokenizer** or the **scanner**, is the first stage in the compilation process. It takes source code _(NTLC source code in our case)_ and converts it into a stream of "tokens".
 
 First stage you say, are there more? Definitely!
 
 Actually, the compiler is more like a pipeline. Each stage takes the output of the previous one and transforms it into something that is ready for the next stage to consume. The output of the lexer is the input of the parser, and so on.
 
-Here is a very typical compiler pipeline<sup><a href="#compiler_pipeline">2</a></sup>:
+Here is a very typical compiler pipeline[^compiler_pipeline]:
 
 ![Compiler Pipeline](compiler_pipeline.svg)
 
@@ -33,7 +33,7 @@ Remember when we said earlier that the lexer converts source code to tokens. It 
 
 The lexer typically outputs an array/vector/list of tokens _(technically speaking, that's if it is not a streaming lexer but let's ignore that for now)_.
 
-Now, most of the time a token<sup><a href="#token">3</a></sup> is a structure that has a type and a value. Here is an example to illustrate how our NTLC snippet from the [previous post](@/ntlc/intro.md) would map to a list of tokens:
+Now, most of the time a token[^token] is a structure that has a type and a value. Here is an example to illustrate how our NTLC snippet from the [previous post](@/ntlc/intro.md) would map to a list of tokens:
 
 ![Lexer Output](lexer_at_work.svg)
 
@@ -78,7 +78,7 @@ Actually, sort of. Remember, this is _our_ language and we get to define the rul
 
 Before we describe the workings of the lexer, and parser for that matter, it is worth mentioning that there exists tools known as Parser Generators _([yacc](https://en.wikipedia.org/wiki/Yacc) and [Tree Sitter](https://tree-sitter.github.io/tree-sitter/) are such tools)_ that can actually generate code that implements the lexer and parser for your given you provide them with your programming language definition in some form or another, but hey, where is the fun in that!
 
-Okay, getting back to how lexers work. They basically scan the input character by character<sup><a href="#lexer_regex">4</a></sup> _(and most of the time, they take a sneak peek ahead at the next character or characters)_ and try to match those characters against a set of rules. If a rule matches, the lexer would emit a token and move on to the next character. If it comes across an unexpected character, it would throw an error.
+Okay, getting back to how lexers work. They basically scan the input character by character[^lexer_regex] _(and most of the time, they take a sneak peek ahead at the next character or characters)_ and try to match those characters against a set of rules. If a rule matches, the lexer would emit a token and move on to the next character. If it comes across an unexpected character, it would throw an error.
 
 It's good to know that in NTLC we have the following token types:
 
@@ -101,13 +101,6 @@ pub enum Token {
 ```
 
 Okay, enough with words. I feel that describing the workings of a compiler makes things sound more complicated than they actually are. So, let's just look at the code. I have left comments all over the place to explain what is going on.
-
-<ol id="footnotes">
-  <li id="lexer_derivation">The word "lexer" is derived from the Latin word "lexicon" which refers to the vocabulary of a language, including its words and their meanings.</li>
-  <li id="compiler_pipeline">Actually, there is something quite satisfying about compilers: they are as "pure" as they can be. The compiler is essentially a function that takes a string and returns an alternative representation of that string -- no network calls, no database transactions, no file storage etc.</li>
-  <li id="token">Sometimes the token encodes additional information such as the line number and column of the corresponding source code. Choosing what to store in a token depends on your application and requirements</li>
-  <li id="lexer_regex">Most of the time, lexers are defined in terms of one or more more regular expressions and you will see why soon!</li>
-</ol>
 
 # Full Lexer code listing
 
@@ -889,3 +882,8 @@ mod lexer_tests_sad_path {
     }
 }
 ```
+
+[^lexer_derivation]: The word "lexer" is derived from the Latin word "lexicon" which refers to the vocabulary of a language, including its words and their meanings.
+[^compiler_pipeline]: Actually, there is something quite satisfying about compilers: they are as "pure" as they can be. The compiler is essentially a function that takes a string and returns an alternative representation of that string -- no network calls, no database transactions, no file storage etc.
+[^token]: Sometimes the token encodes additional information such as the line number and column of the corresponding source code. Choosing what to store in a token depends on your application and requirements
+[^lexer_regex]: Most of the time, lexers are defined in terms of one or more more regular expressions and you will see why soon!

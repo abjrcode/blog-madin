@@ -13,11 +13,11 @@ date = "2023-10-28T00:00:00Z"
 
 [Wails](https://wails.io/) is a framework for building cross platform desktop applications using Go and Web Technologies. It is similar to [Electron](https://www.electronjs.org/) and [Tauri](https://tauri.app/) but uses Go instead of JavaScript and Rust, respectively.
 
-It still allows you to use whatever technology _(React, Vue, Svelte etc...)_ you want for the frontend part<sup><a href="#no_server_side">1</a></sup>
+It still allows you to use whatever technology _(React, Vue, Svelte etc...)_ you want for the frontend part[^no_server_side]
 
 ## The Lure of Go
 
-I personally find Golang to be a very simple and minimalistic language. That is something I find very attractive because it allows me to focus _less on the language and its runtime_ and more on the problem I am actually trying to solve. Add on top the ability to cross-compile<sup><a href="#cross_compile">2</a></sup> to almost any platform and things cannot be any better. All in a single self-contained binary.
+I personally find Golang to be a very simple and minimalistic language. That is something I find very attractive because it allows me to focus _less on the language and its runtime_ and more on the problem I am actually trying to solve. Add on top the ability to cross-compile[^cross_compile] to almost any platform and things cannot be any better. All in a single self-contained binary.
 
 ## So what's the catch?
 
@@ -90,7 +90,6 @@ RUN go mod download
 
 COPY . .
 
-
 # Docker injects the value of BUILDARCH into the build process
 ARG BUILDARCH
 
@@ -148,7 +147,5 @@ Feel free to copy the contents of the Docker file and adjust them to your needs.
 
 And finally, If you think I am missing something here or there is a better or simpler way to do this, I would love to hear about it.
 
-<ol id="footnotes"> 
- <li id="no_server_side">Unfortunately, it doesn't "fully" support using server side technologies. e.g. if you want to build your application with Go <code>text/html</code> templates or other templating languages. I say "fully" because you can get it to work but the development experience won't be as nice as when you use full client side frameworks</li>
- <li id="cross_compile">Cross compilation is, simply put, when you can compile an application on one platform (e.g. linux) to produce an executable that can run on another platform (e.g. Windows)</li>
-</ol>
+[^no_server_side]: Unfortunately, it doesn't "fully" support using server side technologies. e.g. if you want to build your application with Go `text/html` templates or other templating languages. I say "fully" because you can get it to work but the development experience won't be as nice as when you use full client side frameworks
+[^cross_compile]: Cross compilation is, simply put, when you can compile an application on one platform (e.g. linux) to produce an executable that can run on another platform (e.g. Windows)
