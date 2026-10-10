@@ -405,9 +405,12 @@
     @apply text-accent underline decoration-1 underline-offset-[0.2em] decoration-accent/40 hover:decoration-accent transition-colors;
   }
 
+  /* An SVG mask, not the ↗ character: the subset fonts lack that glyph, so phones fell back
+     to an emoji and Windows to a mismatched symbol font. Screen readers also skip it */
   .prose a[target="_blank"]::after {
-    @apply text-[0.7em] text-muted;
-    content: "\2197";
+    @apply ml-[0.15em] inline-block size-[0.65em] bg-current align-[0.35em] opacity-60;
+    content: "";
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l5-5M4.5 3.5h4v4'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 
   .prose a.heading-anchor {
