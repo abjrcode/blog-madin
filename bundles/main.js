@@ -210,10 +210,14 @@ for (const pre of document.querySelectorAll(".prose pre")) {
     pre.classList.add("collapsed");
     const bar = document.createElement("div");
     bar.className = "code-expand";
-    bar.innerHTML = `<button type="button">Show all ${lines.length} lines</button>`;
-    bar.firstChild.addEventListener("click", () => {
-      pre.classList.remove("collapsed");
-      bar.remove();
+    bar.innerHTML = `<button type="button" aria-expanded="false">Show all ${lines.length} lines</button>`;
+    const toggle = bar.firstChild;
+    toggle.addEventListener("click", () => {
+      const collapsed = pre.classList.toggle("collapsed");
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+      toggle.textContent = collapsed ? `Show all ${lines.length} lines` : "Collapse";
+      // Collapsing from deep inside a long listing would otherwise strand the reader far below it
+      if (collapsed && pre.getBoundingClientRect().top < 0) pre.scrollIntoView({ block: "start" });
     });
     pre.append(bar);
   }

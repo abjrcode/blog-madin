@@ -437,7 +437,7 @@
   }
 
   .prose pre {
-    @apply relative my-7 overflow-x-auto rounded-xl bg-code text-code-ink px-4 py-5 font-mono text-[0.8125rem] leading-[1.7] sm:px-7 sm:py-6 sm:text-[0.9375rem] sm:leading-[1.75];
+    @apply relative my-7 scroll-mt-6 overflow-x-auto rounded-xl bg-code text-code-ink px-4 py-5 font-mono text-[0.8125rem] leading-[1.7] sm:px-7 sm:py-6 sm:text-[0.9375rem] sm:leading-[1.75];
     tab-size: 4;
   }
 
@@ -462,6 +462,17 @@
   .code-expand {
     @apply absolute inset-x-0 bottom-0 flex justify-center pt-16 pb-4 font-sans text-sm;
     background: linear-gradient(transparent, var(--code-bg) 70%);
+  }
+
+  /* Expanded, the bar rides the bottom of the viewport so Collapse is never 700 lines away.
+     Sticky needs the block itself not to be a scroll container */
+  .prose pre:has(> .code-expand):not(.collapsed) {
+    @apply overflow-visible;
+  }
+
+  pre:not(.collapsed) > .code-expand {
+    @apply sticky pt-6;
+    background: none;
   }
 
   .code-copy {
