@@ -28,7 +28,7 @@
     "svg": "svgo --multipass -r -f blog/content"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.3.4",
+    "@tailwindcss/cli": "^4.3.5",
     "concurrently": "^10.0.6",
     "esbuild": "^0.28.2",
     "svgo": "^4.0.2",
